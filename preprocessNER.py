@@ -55,7 +55,7 @@ for sent in corpus:
     line = []
     for token in sent[:-1]:
         outfile.write(token[0] + '\t' + token[1] + '\r\n')
-    #outfile.write('-----\r\n')
+    outfile.write('-----\r\n')
 
 outfile.close()
 

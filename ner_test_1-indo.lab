@@ -23,13 +23,13 @@ selama	O
 upaya	O
 pembebasan	O
 ,	O
-Pemerintah	O
-Indonesia	LOCATION
+Pemerintah	ORGANIZATION
+Indonesia	ORGANIZATION
 selalu	O
 berkoordinasi	O
 dengan	O
 Pemerintah	O
-Filipina	LOCATION
+Filipina	O
 dengan	O
 bertukar	O
 informasi	O
@@ -112,7 +112,7 @@ Selatan	LOCATION
 ,	O
 Kamis	O
 (	O
-24/3/2016	O
+2432016	O
 )	O
 .	O
 -----
@@ -174,9 +174,9 @@ sering	O
 digugat	O
 dalam	O
 peradilan	O
-Tata	ORGANIZATION
-Usaha	ORGANIZATION
-Negara	ORGANIZATION
+Tata	O
+Usaha	O
+Negara	O
 (	O
 TUN	ORGANIZATION
 )	O
@@ -201,9 +201,9 @@ ini	O
 juga	O
 disepakati	O
 bahwa	O
-Jaksa	ORGANIZATION
-Pengacara	ORGANIZATION
-Negara	ORGANIZATION
+Jaksa	O
+Pengacara	O
+Negara	O
 akan	O
 membantu	O
 Kemenhub	ORGANIZATION
@@ -282,8 +282,8 @@ Agung	O
 -----
 Menurut	O
 Jonan	PERSON
-Jamintel	O
-Kejagung	ORGANIZATION
+Jamintel	PERSON
+Kejagung	PERSON
 dan	O
 Kemenhub	ORGANIZATION
 bisa	O
@@ -399,10 +399,10 @@ dikonsultasikan	O
 dengan	O
 rekan	O
 rekan	O
-Kejari	ORGANIZATION
-Sumsel	LOCATION
+Kejari	PERSON
+Sumsel	PERSON
 dan	O
-Kejari	ORGANIZATION
+Kejari	LOCATION
 Palembang	LOCATION
 supaya	O
 nggak	O
@@ -447,15 +447,15 @@ Kemenhub	ORGANIZATION
 Kejagung	ORGANIZATION
 meluncurkan	O
 program	O
-TP4	ORGANIZATION
+TP4	O
 (	O
-Tim	ORGANIZATION
-Pengawal	ORGANIZATION
-dan	ORGANIZATION
-Pengaman	ORGANIZATION
-Pemerintahan	ORGANIZATION
-dan	ORGANIZATION
-Pembangunan	ORGANIZATION
+Tim	O
+Pengawal	O
+dan	O
+Pengaman	O
+Pemerintahan	O
+dan	O
+Pembangunan	O
 )	O
 .	O
 -----
@@ -472,7 +472,7 @@ dengan	O
 bentuk	O
 Kejari	ORGANIZATION
 dan	O
-Kejati	ORGANIZATION
+Kejati	PERSON
 sebagai	O
 pendamping	O
 di	O
@@ -509,7 +509,7 @@ Sebelumnya	O
 Menteri	O
 Luar	O
 Negeri	O
-RI	LOCATION
+RI	PERSON
 Retno	PERSON
 Marsudi	PERSON
 pun	O
@@ -526,7 +526,7 @@ Polhukam	O
 Luhut	PERSON
 Pandjaitan	PERSON
 dan	O
-Panglima	O
+Panglima	ORGANIZATION
 Tentara	ORGANIZATION
 Nasional	ORGANIZATION
 Indonesia	ORGANIZATION
@@ -556,7 +556,7 @@ pusat	O
 maupun	O
 daerah	O
 karena	O
-TP4	ORGANIZATION
+TP4	O
 ada	O
 di	O
 daerah	O
@@ -573,11 +573,11 @@ tutup	O
 Prasetyo	PERSON
 .	O
 -----
-Komisi	ORGANIZATION
-Pengawasan	ORGANIZATION
-dan	ORGANIZATION
-Persaingan	ORGANIZATION
-Usaha	ORGANIZATION
+Komisi	O
+Pengawasan	O
+dan	O
+Persaingan	O
+Usaha	O
 (	O
 KPPU	ORGANIZATION
 )	O
@@ -591,7 +591,7 @@ Jonan	PERSON
 .	O
 -----
 ``	O
-KPPU	ORGANIZATION
+KPPU	O
 merekomendasikan	O
 dihilangkan	O
 ,	O
@@ -609,8 +609,8 @@ rendah	O
 jelas	O
 Ketua	O
 KPPU	ORGANIZATION
-M	PERSON
-.	PERSON
+M	ORGANIZATION
+.	O
 Syarkawi	PERSON
 Rauf	PERSON
 saat	O
@@ -620,7 +620,7 @@ detikcom	ORGANIZATION
 ,	O
 Kamis	O
 (	O
-24/3/2016	O
+2432016	O
 )	O
 .	O
 -----
@@ -663,13 +663,13 @@ mahal	O
 dihilangkan	O
 ,	O
 kemudian	O
-Pemda	O
+Pemda	ORGANIZATION
 juga	O
 jangan	O
 menjadikan	O
 taksi	O
 sumber	O
-PAD	O
+PAD	ORGANIZATION
 ,	O
 karena	O
 taksi	O
@@ -724,7 +724,7 @@ bidang	O
 transportasi	O
 .	O
 -----
-Syarkawi	PERSON
+Syarkawi	O
 membandingkan	O
 dengan	O
 Singapura	LOCATION
@@ -774,8 +774,8 @@ Jonas	PERSON
 mantan	O
 personel	O
 band	O
-Jonas	ORGANIZATION
-Brothers	ORGANIZATION
+Jonas	PERSON
+Brothers	PERSON
 dari	O
 AS	LOCATION
 ,	O
@@ -813,7 +813,7 @@ Menhub	O
 Ignasius	PERSON
 Jonan	PERSON
 dan	O
-Menkominfo	O
+Menkominfo	PERSON
 Rudiantara	PERSON
 ,	O
 proses	O
@@ -822,8 +822,8 @@ mudah	O
 .	O
 -----
 Penyanyi	O
-Demi	PERSON
-Lovato	PERSON
+Demi	O
+Lovato	O
 (	O
 22	O
 )	O
@@ -885,11 +885,11 @@ Jakarta	LOCATION
 ,	O
 Kamis	O
 (	O
-24/3/2016	O
+2432016	O
 )	O
 .	O
 -----
-Zuckerberg	PERSON
+Zuckerberg	O
 juga	O
 bernostalgia	O
 tentang	O
@@ -907,7 +907,7 @@ Jokowi	PERSON
 menyatakan	O
 harapannya	O
 agar	O
-Facebook	O
+Facebook	ORGANIZATION
 bisa	O
 membantu	O
 mewujudkan	O
@@ -935,9 +935,9 @@ kesulitan	O
 bisa	O
 disampaikan	O
 ke	O
-kantor	LOCATION
-Menko	LOCATION
-Polhukam	LOCATION
+kantor	O
+Menko	ORGANIZATION
+Polhukam	ORGANIZATION
 .	O
 -----
 Menhub	O
@@ -976,14 +976,14 @@ dalam	O
 jumpa	O
 pers	O
 di	O
-Kemenko	LOCATION
-Polhukam	LOCATION
+Kemenko	ORGANIZATION
+Polhukam	ORGANIZATION
 ,	O
 Jakarta	LOCATION
 ,	O
 Kamis	O
 (	O
-24/3/2016	O
+2432016	O
 )	O
 .	O
 -----
@@ -1009,7 +1009,7 @@ Polhukam	ORGANIZATION
 ,	O
 Kamis	O
 (	O
-24/3/2016	O
+2432016	O
 )	O
 sejumlah	O
 persyaratan	O
@@ -1079,7 +1079,7 @@ Somalia	LOCATION
 ,	O
 Kamis	O
 (	O
-22/1/2016	O
+2212016	O
 )	O
 sekitar	O
 pukul	O
@@ -1099,8 +1099,8 @@ yang	O
 cukup	O
 terkenal	O
 ,	O
-Pantai	LOCATION
-Lido	LOCATION
+Pantai	PERSON
+Lido	PERSON
 .	O
 -----
 Pemerintah	O
@@ -1119,8 +1119,8 @@ Menhub	O
 Ignasius	PERSON
 Jonan	PERSON
 di	O
-Kemenko	ORGANIZATION
-Polhukam	ORGANIZATION
+Kemenko	LOCATION
+Polhukam	LOCATION
 ,	O
 Jl	LOCATION
 Medan	LOCATION
@@ -1131,7 +1131,7 @@ Jakarta	LOCATION
 ,	O
 Kamis	O
 (	O
-24/3/2016	O
+2432016	O
 )	O
 ,	O
 Uber	ORGANIZATION
@@ -1222,7 +1222,7 @@ Presiden	O
 Amerika	LOCATION
 Serikat	LOCATION
 (	O
-AS	LOCATION
+AS	O
 )	O
 Barack	PERSON
 Obama	PERSON
@@ -1257,14 +1257,14 @@ Polhukam	O
 Luhut	PERSON
 Pandjaitan	PERSON
 di	O
-Kemenko	ORGANIZATION
-Polhukam	ORGANIZATION
+Kemenko	LOCATION
+Polhukam	LOCATION
 ,	O
 Jakarta	LOCATION
 ,	O
 Kamis	O
 (	O
-24/3/2016	O
+2432016	O
 )	O
 ,	O
 hadir	O
@@ -1274,11 +1274,11 @@ Menhub	O
 Ignasius	PERSON
 Jonan	PERSON
 ,	O
-Menkominfo	O
+Menkominfo	PERSON
 Rudiantara	PERSON
 ,	O
 CEO	O
-Go-Jek	ORGANIZATION
+Go-Jek	O
 Nadiem	PERSON
 Makarim	PERSON
 ,	O
@@ -1368,7 +1368,7 @@ California	LOCATION
 ,	O
 Selasa	O
 (	O
-16/2/2016	O
+1622016	O
 )	O
 pagi	O
 WIB	O
@@ -1418,7 +1418,7 @@ efisien	O
 Ini	O
 pertama	O
 kali	O
-AS	LOCATION
+AS	O
 menjadi	O
 tuan	O
 rumah	O
@@ -1434,7 +1434,7 @@ pribadi	O
 saya	O
 ,	O
 komitmen	O
-AS	LOCATION
+AS	O
 terhadap	O
 masing-masing	O
 negara	O
@@ -1450,7 +1450,7 @@ Obama	PERSON
 -----
 Tak	O
 lupa	O
-Obama	O
+Obama	PERSON
 pun	O
 mengucapkan	O
 terima	O
@@ -1458,13 +1458,13 @@ kasih	O
 kepada	O
 Sekretaris	O
 Jenderal	O
-ASEAN	O
+ASEAN	ORGANIZATION
 dari	O
-Laos	O
+Laos	ORGANIZATION
 ,	O
-Le	O
-Luong	O
-Minh	O
+Le	PERSON
+Luong	PERSON
+Minh	PERSON
 .	O
 -----
 Ketiga	O
@@ -1554,12 +1554,12 @@ Perhubungan	O
 Ignasius	PERSON
 Jonan	PERSON
 dan	O
-Menkominfo	O
+Menkominfo	PERSON
 Rudiantara	PERSON
 mendatangi	O
 kantor	O
 Menko	O
-Polhukam	O
+Polhukam	PERSON
 Luhut	PERSON
 B	PERSON
 Pandjaitan	PERSON
@@ -1589,7 +1589,7 @@ mobil	O
 dinas	O
 Toyota	ORGANIZATION
 Crown	O
-RI	LOCATION
+RI	O
 36	O
 ,	O
 Jonan	PERSON
@@ -1757,7 +1757,7 @@ tidak	O
 terdaftar	O
 .	O
 -----
-Nitya	PERSON
+Nitya	O
 dibekap	O
 cedera	O
 lutut	O
@@ -1804,9 +1804,9 @@ politik	O
 dan	O
 politisi	O
 di	O
-Dewan	ORGANIZATION
-Perwakilan	ORGANIZATION
-Rakyat	ORGANIZATION
+Dewan	O
+Perwakilan	O
+Rakyat	O
 ,	O
 misalnya	O
 ,	O
@@ -1819,9 +1819,9 @@ digeser	O
 .	O
 -----
 Politisi	O
-Partai	ORGANIZATION
-Golongan	ORGANIZATION
-Karya	ORGANIZATION
+Partai	O
+Golongan	O
+Karya	O
 yang	O
 juga	O
 Ketua	O
@@ -1876,7 +1876,7 @@ Pusat	LOCATION
 ,	O
 Kamis	O
 (	O
-24/3/2016	O
+2432016	O
 )	O
 .	O
 -----
@@ -1939,7 +1939,7 @@ dan	O
 Aburizal	PERSON
 Bakrie	PERSON
 (	O
-Ical	PERSON
+Ical	O
 )	O
 ,	O
 namun	O
@@ -1999,7 +1999,7 @@ Bali	LOCATION
 -----
 ``	O
 Lutut	O
-Nitya	PERSON
+Nitya	O
 agak	O
 bengkak	O
 ,	O
@@ -2076,8 +2076,8 @@ markas	O
 Facebook	ORGANIZATION
 di	O
 kawasan	O
-Silicon	LOCATION
-Valley	LOCATION
+Silicon	PERSON
+Valley	PERSON
 .	O
 -----
 Menteri	O
@@ -2098,7 +2098,7 @@ dihubungi	O
 ,	O
 Senin	O
 (	O
-21/3/2016	O
+2132016	O
 )	O
 kemarin	O
 .	O
@@ -2260,11 +2260,11 @@ ruang	O
 Fraksi	O
 PDIP	ORGANIZATION
 ,	O
-Nusantara	O
-I	O
+Nusantara	LOCATION
+I	LOCATION
 ,	O
-gedung	LOCATION
-DPR	LOCATION
+gedung	O
+DPR	ORGANIZATION
 ,	O
 Senayan	LOCATION
 ,	O
@@ -2272,7 +2272,7 @@ Jakarta	LOCATION
 ,	O
 Rabu	O
 (	O
-23/3/2016	O
+2332016	O
 )	O
 .	O
 -----
@@ -2307,7 +2307,7 @@ V	O
 DPR	ORGANIZATION
 dari	O
 PDIP	ORGANIZATION
-Sadarestuwati	PERSON
+Sadarestuwati	ORGANIZATION
 .	O
 -----
 Terkait	O
@@ -2390,7 +2390,7 @@ dan	O
 Angkutan	O
 Jalan	O
 (	O
-LLAJ	O
+LLAJ	ORGANIZATION
 )	O
 .	O
 -----
@@ -2411,10 +2411,10 @@ Presiden	O
 Joko	PERSON
 Widodo	PERSON
 meresmikan	O
-Bandar	LOCATION
-Udara	LOCATION
-Internasional	LOCATION
-Juwata	LOCATION
+Bandar	ORGANIZATION
+Udara	ORGANIZATION
+Internasional	ORGANIZATION
+Juwata	ORGANIZATION
 ,	O
 Tarakan	LOCATION
 ,	O
@@ -2451,11 +2451,11 @@ Utara	LOCATION
 sekitar	O
 pukul	O
 16.00	O
-WITA	O
+WITA	ORGANIZATION
 ,	O
 Rabu	O
 (	O
-23/3/2016	O
+2332016	O
 )	O
 ,	O
 setelah	O
@@ -2503,7 +2503,7 @@ Juwata	LOCATION
 Untuk	O
 diketahui	O
 ,	O
-Kota	O
+Kota	LOCATION
 Tarakan	LOCATION
 ini	O
 dulunya	O
@@ -2674,22 +2674,22 @@ lalu	O
 .	O
 -----
 Tanpa	O
-Nitya	PERSON
+Nitya	O
 ,	O
 tim	O
-Uber	O
-Cup	O
-Indonesia	LOCATION
+Uber	ORGANIZATION
+Cup	ORGANIZATION
+Indonesia	ORGANIZATION
 pada	O
 sektor	O
 ganda	O
 akan	O
 diperkuat	O
-Ni	PERSON
-Ketut	PERSON
+Ni	O
+Ketut	O
 Mahadewi	PERSON
 Istarani	PERSON
-/	O
+	O
 Anggia	PERSON
 Shitta	PERSON
 Awanda	PERSON
@@ -2697,15 +2697,15 @@ Awanda	PERSON
 Della	PERSON
 Destiara	PERSON
 Haris	PERSON
-/	O
+	O
 Rosyita	PERSON
 Eka	PERSON
 Putri	PERSON
 Sari	PERSON
 serta	O
-Greysia	PERSON
+Greysia	LOCATION
 dan	O
-Tiara	PERSON
+Tiara	LOCATION
 .	O
 -----
 Kita	O
@@ -2731,12 +2731,12 @@ menjadi	O
 bandara	O
 di	O
 sebelah	O
-Utara	O
+Utara	LOCATION
 yang	O
 akan	O
 menghubungkan	O
 dengan	O
-Brunei	LOCATION
+Brunei	PERSON
 ,	O
 Malaysia	LOCATION
 ,	O
@@ -2783,16 +2783,16 @@ segera	O
 diumumkan	O
 .	O
 -----
-Malia	PERSON
-Obama	PERSON
+Malia	LOCATION
+Obama	LOCATION
 ,	O
 putri	O
 tertua	O
 Presiden	O
 Amerika	LOCATION
 Serikat	LOCATION
-Barack	PERSON
-Obama	PERSON
+Barack	LOCATION
+Obama	LOCATION
 dan	O
 Michelle	PERSON
 Obama	PERSON
@@ -2828,8 +2828,8 @@ Officer	O
 (	O
 CEO	O
 )	O
-Cyrus	ORGANIZATION
-Network	ORGANIZATION
+Cyrus	PERSON
+Network	PERSON
 Hasan	PERSON
 Nasbi	PERSON
 kepada	O
@@ -2837,7 +2837,7 @@ detikcom	ORGANIZATION
 ,	O
 Rabu	O
 (	O
-23/3/2016	O
+2332016	O
 )	O
 .	O
 -----
@@ -2937,9 +2937,9 @@ dengan	O
 menggunakan	O
 kacamata	O
 pintar	O
-Facebook	ORGANIZATION
+Facebook	O
 Oculus	O
-Rift	O
+Rift	PERSON
 .	O
 -----
 ``	O
@@ -2947,7 +2947,7 @@ Karena	O
 sudah	O
 ada	O
 rekomendasi	O
-Pansus	O
+Pansus	ORGANIZATION
 Pelindo	ORGANIZATION
 II	ORGANIZATION
 yang	O
@@ -2973,7 +2973,7 @@ dihubungi	O
 ,	O
 Senin	O
 (	O
-21/3/2016	O
+2132016	O
 )	O
 kemarin	O
 .	O
@@ -3014,8 +3014,8 @@ kami	O
 lebih	O
 tepat	O
 di	O
-Menristek	ORGANIZATION
-Dikti	ORGANIZATION
+Menristek	LOCATION
+Dikti	LOCATION
 ,	O
 terus	O
 Siti	PERSON
@@ -3023,7 +3023,7 @@ Nurbaya	PERSON
 lebih	O
 tepat	O
 di	O
-MenPANRB	ORGANIZATION
+MenPANRB	O
 .	O
 -----
 Ya	O
@@ -3067,8 +3067,8 @@ September	O
 2015	O
 ,	O
 Ratu	O
-Elizabeth	PERSON
-II	PERSON
+Elizabeth	O
+II	O
 dari	O
 Kerajaan	LOCATION
 Inggris	LOCATION
@@ -3133,7 +3133,7 @@ Barat	LOCATION
 ,	O
 Rabu	O
 (	O
-23/3/2016	O
+2332016	O
 )	O
 .	O
 -----
@@ -3200,11 +3200,11 @@ ini	O
 mengatakan	O
 ,	O
 Wakil	O
-Presiden	PERSON
+Presiden	O
 Jusuf	PERSON
 Kalla	PERSON
 (	O
-JK	PERSON
+JK	O
 )	O
 juga	O
 sudah	O
@@ -3215,8 +3215,8 @@ ini	O
 .	O
 -----
 Ratu	O
-Elizabeth	PERSON
-II	PERSON
+Elizabeth	O
+II	O
 telah	O
 mencapai	O
 masa	O
@@ -3239,7 +3239,7 @@ dan	O
 kebugaran	O
 nenek	O
 Pangeran	O
-William	PERSON
+William	O
 ini	O
 ?	O
 -----
@@ -3366,13 +3366,13 @@ luas	O
 ,	O
 ''	O
 kata	O
-Hendrawan	O
+Hendrawan	PERSON
 saat	O
 dihubungi	O
 ,	O
 Senin	O
 (	O
-21/3/2016	O
+2132016	O
 )	O
 kemarin	O
 .	O
@@ -3386,7 +3386,7 @@ Penyertaan	O
 Modal	O
 Negara	O
 (	O
-PMN	O
+PMN	ORGANIZATION
 )	O
 untuk	O
 BUMN	ORGANIZATION
@@ -3557,7 +3557,7 @@ armada	O
 gelap	O
 .	O
 -----
-Bayu	PERSON
+Bayu	O
 merupakan	O
 cucu	O
 dari	O
@@ -3569,7 +3569,7 @@ Mutiara	PERSON
 Djokosoetono	PERSON
 saat	O
 diwawancara	O
-detikFinance	O
+detikFinance	ORGANIZATION
 pada	O
 Jumat	O
 ,	O
@@ -3648,7 +3648,7 @@ Dalam	O
 perjalanannya	O
 ,	O
 diakui	O
-Bayu	PERSON
+Bayu	O
 ,	O
 memang	O
 tidak	O
@@ -3744,11 +3744,11 @@ dunia	O
 ada	O
 nama	O
 seperti	O
-Travis	PERSON
-Kalanick	PERSON
+Travis	ORGANIZATION
+Kalanick	ORGANIZATION
 dan	O
-Garret	PERSON
-Camp	PERSON
+Garret	ORGANIZATION
+Camp	ORGANIZATION
 ,	O
 yang	O
 tahun	O
@@ -3793,7 +3793,7 @@ online	O
 -----
 Kominfo	O
 dan	O
-Kemenhub	O
+Kemenhub	ORGANIZATION
 akan	O
 duduk	O
 bersama	O
@@ -3833,7 +3833,7 @@ adanya	O
 ojek	O
 online	O
 seperti	O
-Go-Jek	ORGANIZATION
+Go-Jek	O
 .	O
 -----
 Untuk	O
@@ -3855,7 +3855,7 @@ Menteri	O
 Komunikasi	O
 dan	O
 Informatika	O
-Rudiantara	PERSON
+Rudiantara	O
 akan	O
 duduk	O
 bersama	O
@@ -3898,7 +3898,7 @@ Bird	ORGANIZATION
 ,	O
 Express	ORGANIZATION
 ,	O
-Go-Jek	ORGANIZATION
+Go-Jek	O
 ,	O
 GrabCar	ORGANIZATION
 dan	O
@@ -3917,9 +3917,9 @@ baik	O
 Blue	ORGANIZATION
 Bird	ORGANIZATION
 maupun	O
-Exspress	ORGANIZATION
+Exspress	O
 ,	O
-Go-Jek	ORGANIZATION
+Go-Jek	O
 untuk	O
 mehanan	O
 diri	O
@@ -4059,7 +4059,7 @@ Jonan	PERSON
 -----
 Kemudian	O
 ,	O
-Menkominfo	O
+Menkominfo	PERSON
 Rudiantara	PERSON
 menyebut	O
 kalau	O
@@ -4072,7 +4072,7 @@ pemerintah	O
 DKI	LOCATION
 .	O
 -----
-Rudi	PERSON
+Rudi	O
 menyebut	O
 ketetapan	O
 suatu	O
@@ -4092,7 +4092,7 @@ Itu	O
 dibawa	O
 penerima	O
 izin	O
-BTSP	ORGANIZATION
+BTSP	O
 ke	O
 kepala	O
 dinas	O
@@ -4178,7 +4178,7 @@ dalam	O
 jumpa	O
 pers	O
 di	O
-Kemenhub	ORGANIZATION
+Kemenhub	LOCATION
 Jl	LOCATION
 Medan	LOCATION
 Merdeka	LOCATION
@@ -4188,7 +4188,7 @@ Jakpus	LOCATION
 ,	O
 Selasa	O
 (	O
-22/3/2016	O
+2232016	O
 )	O
 malam	O
 .	O
@@ -4215,7 +4215,7 @@ badan	O
 usaha	O
 .	O
 -----
-Ratu	O
+Ratu	PERSON
 Elizabeth	PERSON
 sudah	O
 melihat	O
@@ -4297,7 +4297,7 @@ Pusat	LOCATION
 ,	O
 Selasa	O
 (	O
-22/3/2016	O
+2232016	O
 )	O
 .	O
 -----
@@ -4353,7 +4353,7 @@ Pusat	LOCATION
 ,	O
 Selasa	O
 (	O
-22/3/2016	O
+2232016	O
 )	O
 .	O
 -----
@@ -4416,10 +4416,10 @@ hukum	O
 -----
 Putri	O
 Pangeran	O
-William	PERSON
+William	O
 dan	O
 Putri	O
-Kate	PERSON
+Kate	O
 tersebut	O
 merupakan	O
 ahli	O
@@ -4427,7 +4427,7 @@ waris	O
 takhta	O
 urutan	O
 keempat	O
-Kerajaan	LOCATION
+Kerajaan	O
 Inggris	LOCATION
 .	O
 -----
@@ -4529,13 +4529,13 @@ yang	O
 risetnya	O
 tengah	O
 dikembangkan	O
-Lembaga	ORGANIZATION
-Penerbangan	ORGANIZATION
-dan	ORGANIZATION
+Lembaga	O
+Penerbangan	O
+dan	O
 Antariksa	ORGANIZATION
 Nasional	ORGANIZATION
 (	O
-Lapan	ORGANIZATION
+Lapan	O
 )	O
 .	O
 -----
@@ -4589,7 +4589,7 @@ Pusat	LOCATION
 ,	O
 Selasa	O
 (	O
-22/3/2016	O
+2232016	O
 )	O
 .	O
 -----
@@ -4617,12 +4617,12 @@ Semarang	LOCATION
 ,	O
 Jumat	O
 (	O
-30/1/2015	O
+3012015	O
 )	O
 malam	O
 .	O
 -----
-Jonan	PERSON
+Jonan	O
 menduga	O
 ada	O
 pihak-pihak	O
@@ -4701,7 +4701,7 @@ Jakarta	LOCATION
 ,	O
 Selasa	O
 (	O
-22/3/2016	O
+2232016	O
 )	O
 .	O
 -----
@@ -4733,7 +4733,7 @@ Menteri	O
 Komunikasi	O
 dan	O
 Informatika	O
-Rudiantara	PERSON
+Rudiantara	O
 .	O
 -----
 ``	O
@@ -4752,8 +4752,8 @@ besok	O
 saya	O
 berharap	O
 ,	O
-Pak	O
-Menkominfo	O
+Pak	PERSON
+Menkominfo	PERSON
 dan	O
 Pak	O
 Menhub	O
@@ -4778,9 +4778,9 @@ Politik	O
 Hukum	O
 dan	O
 Keamanan	O
-Luhut	PERSON
-Binsar	PERSON
-Pandjaitan	PERSON
+Luhut	O
+Binsar	O
+Pandjaitan	O
 untuk	O
 mengambil	O
 langkah-langkah	O
@@ -4814,9 +4814,9 @@ dengan	O
 layanan	O
 transportasi	O
 online	O
-Uber	O
+Uber	ORGANIZATION
 dan	O
-GrabCar	O
+GrabCar	ORGANIZATION
 .	O
 -----
 ``	O
@@ -4850,7 +4850,7 @@ kantor	O
 Kemenko	ORGANIZATION
 Polhukam	ORGANIZATION
 ,	O
-jalan	LOCATION
+jalan	O
 Medan	LOCATION
 Merdeka	LOCATION
 Barat	LOCATION
@@ -4859,7 +4859,7 @@ Jakarta	LOCATION
 ,	O
 Selasa	O
 (	O
-22/3/2016	O
+2232016	O
 )	O
 .	O
 -----
@@ -4876,7 +4876,7 @@ Menteri	O
 Komunikasi	O
 dan	O
 Informatika	O
-Rudiantara	PERSON
+Rudiantara	O
 akan	O
 duduk	O
 bersama	O
@@ -4935,7 +4935,7 @@ Bird	ORGANIZATION
 ,	O
 Express	ORGANIZATION
 ,	O
-Go-Jek	ORGANIZATION
+Go-Jek	O
 ,	O
 GrabCar	ORGANIZATION
 dan	O
@@ -4954,9 +4954,9 @@ baik	O
 Blue	ORGANIZATION
 Bird	ORGANIZATION
 maupun	O
-Exspress	ORGANIZATION
+Exspress	O
 ,	O
-Go-Jek	ORGANIZATION
+Go-Jek	O
 untuk	O
 mehanan	O
 diri	O
@@ -4991,7 +4991,7 @@ aplikasi	O
 online	O
 .	O
 -----
-Badrodin	PERSON
+Badrodin	O
 menginstruksikan	O
 Kapolda	O
 Metro	O
@@ -4999,7 +4999,7 @@ Jaya	O
 Irjen	O
 Pol	O
 Irjen	O
-Pol	O
+Pol	PERSON
 Moechgiyarto	PERSON
 untuk	O
 menindak	O
@@ -5014,9 +5014,9 @@ PT	ORGANIZATION
 Dirgantara	ORGANIZATION
 Indonesia	ORGANIZATION
 berbasiskan	O
-CASA	O
-C-212/NC-212	O
-Aviocar	O
+CASA	ORGANIZATION
+C-212NC-212	O
+Aviocar	PERSON
 yang	O
 produksinya	O
 lebih	O
@@ -5039,7 +5039,7 @@ pengadilan	O
 ,	O
 ''	O
 kata	O
-Kapolri	O
+Kapolri	PERSON
 di	O
 Taman	LOCATION
 Makam	LOCATION
@@ -5051,7 +5051,7 @@ Selatan	LOCATION
 ,	O
 Selasa	O
 (	O
-22/3/2016	O
+2232016	O
 )	O
 .	O
 -----
@@ -5084,7 +5084,7 @@ bahwa	O
 orang	O
 warga	O
 negara	O
-Indonesia	O
+Indonesia	LOCATION
 yang	O
 disandera	O
 kelompok	O
@@ -5216,7 +5216,7 @@ pukul	O
 WIB	O
 ,	O
 Wapres	O
-JK	PERSON
+JK	O
 Tiba	O
 lebih	O
 dulu	O
@@ -5261,9 +5261,9 @@ kata	O
 JK	PERSON
 .	O
 -----
-Organisasi	ORGANIZATION
-Angkutan	ORGANIZATION
-Darat	ORGANIZATION
+Organisasi	O
+Angkutan	O
+Darat	O
 (	O
 Organda	ORGANIZATION
 )	O
@@ -5380,7 +5380,7 @@ Presiden	O
 Jusuf	PERSON
 Kalla	PERSON
 (	O
-JK	PERSON
+JK	O
 )	O
 .	O
 -----
@@ -5417,7 +5417,7 @@ pukul	O
 WIB	O
 ,	O
 Wapres	O
-JK	PERSON
+JK	O
 Tiba	O
 lebih	O
 dulu	O
@@ -5495,7 +5495,7 @@ Jonan	PERSON
 ,	O
 Selasa	O
 (	O
-22/3/2016	O
+2232016	O
 )	O
 .	O
 -----
@@ -5607,7 +5607,7 @@ dihubungi	O
 ,	O
 Senin	O
 (	O
-21/3/2016	O
+2132016	O
 )	O
 .	O
 -----
@@ -5620,7 +5620,7 @@ Penyertaan	O
 Modal	O
 Negara	O
 (	O
-PMN	O
+PMN	ORGANIZATION
 )	O
 untuk	O
 BUMN	ORGANIZATION
@@ -5675,17 +5675,17 @@ sesuai	O
 kapasitasnya	O
 .	O
 -----
-Direktorat	ORGANIZATION
-Jenderal	ORGANIZATION
-Keimigrasian	ORGANIZATION
+Direktorat	O
+Jenderal	O
+Keimigrasian	O
 akan	O
 melakukan	O
 evaluasi	O
 terhadap	O
-Tim	O
-Pengawas	O
-Orang	O
-Asing	O
+Tim	ORGANIZATION
+Pengawas	ORGANIZATION
+Orang	ORGANIZATION
+Asing	ORGANIZATION
 (	O
 Timpora	O
 )	O
@@ -5704,7 +5704,7 @@ bermagnitudo	O
 yang	O
 mengguncang	O
 wilayah	O
-Mentawai	LOCATION
+Mentawai	O
 dan	O
 sekitarnya	O
 mengakibatkan	O
@@ -5735,8 +5735,8 @@ masing-masing	O
 ``	O
 Di	O
 wilayah	O
-Kepulauan	LOCATION
-Riau	LOCATION
+Kepulauan	O
+Riau	O
 banyak	O
 terhambat	O
 karena	O
@@ -5791,7 +5791,7 @@ dengan	O
 gempa	O
 yang	O
 mengguncang	O
-Aceh	LOCATION
+Aceh	O
 pada	O
 tahun	O
 2012	O
@@ -5823,12 +5823,12 @@ Kepala	O
 Biro	O
 Komunikasi	O
 Kemenhub	ORGANIZATION
-JA	PERSON
-Barata	PERSON
+JA	ORGANIZATION
+Barata	ORGANIZATION
 ,	O
 Kamis	O
 (	O
-17/3/2016	O
+1732016	O
 )	O
 .	O
 -----
@@ -5862,7 +5862,7 @@ pelaporan	O
 LHKPN	O
 di	O
 antara	O
-Kementerian	O
+Kementerian	ORGANIZATION
 ,	O
 Lembaga	O
 ,	O
@@ -5930,10 +5930,10 @@ Onrust	LOCATION
 ,	O
 Cipir	LOCATION
 ,	O
-Kelor	LOCATION
+Kelor	ORGANIZATION
 ,	O
 dan	O
-Bidadari	LOCATION
+Bidadari	ORGANIZATION
 .	O
 -----
 Selain	O
@@ -6000,8 +6000,8 @@ Gadot	PERSON
 menjalani	O
 syuting	O
 film	O
-Wonder	PERSON
-Woman	PERSON
+Wonder	O
+Woman	O
 di	O
 sebuah	O
 pantai	O
@@ -6019,9 +6019,9 @@ membawa	O
 citranya	O
 sendiri	O
 sebagai	O
-Ksatria	O
-Kota	LOCATION
-Gotham	LOCATION
+Ksatria	ORGANIZATION
+Kota	ORGANIZATION
+Gotham	ORGANIZATION
 .	O
 -----
 Di	O
@@ -6057,7 +6057,7 @@ besar	O
 penonton	O
 adalah	O
 ketika	O
-Superman	O
+Superman	PERSON
 pertama	O
 kali	O
 beraksi	O
@@ -6065,8 +6065,8 @@ di	O
 Afrika	LOCATION
 untuk	O
 menyelamatkan	O
-Lois	PERSON
-Lane	PERSON
+Lois	O
+Lane	O
 yang	O
 diculik	O
 .	O
@@ -6105,8 +6105,8 @@ seorang	O
 jurnalis	O
 ,	O
 minimal	O
-Clark	PERSON
-Kent	PERSON
+Clark	ORGANIZATION
+Kent	ORGANIZATION
 harus	O
 tahu	O
 siapa	O
@@ -6117,7 +6117,7 @@ Wayne	PERSON
 miliarder	O
 terkaya	O
 sekota	O
-Gotham	LOCATION
+Gotham	O
 .	O
 -----
 Sejak	O
@@ -6173,8 +6173,8 @@ untuk	O
 memindahkan	O
 nelayan	O
 ke	O
-Kepulauan	LOCATION
-Seribu	LOCATION
+Kepulauan	O
+Seribu	O
 .	O
 -----
 ``	O
@@ -6227,7 +6227,7 @@ Rismaharini	PERSON
 masih	O
 berat	O
 meninggalkan	O
-Kota	LOCATION
+Kota	O
 Surabaya	LOCATION
 ketika	O
 mendapat	O
@@ -6247,8 +6247,8 @@ Namun	O
 kata	O
 Risma	PERSON
 ,	O
-Pemkot	O
-Surabaya	LOCATION
+Pemkot	ORGANIZATION
+Surabaya	ORGANIZATION
 saat	O
 ini	O
 mengubah	O
@@ -6272,8 +6272,8 @@ kemarin	O
 untuk	O
 menghadiri	O
 Munas	O
-Surabaya	ORGANIZATION
-Community	ORGANIZATION
+Surabaya	LOCATION
+Community	LOCATION
 ,	O
 Risma	PERSON
 mengaku	O
@@ -6293,8 +6293,8 @@ kembali	O
 dilanjutkan	O
 khususnya	O
 depan	O
-Mapolda	O
-Jatim	LOCATION
+Mapolda	PERSON
+Jatim	PERSON
 dan	O
 kampus	O
 Universitas	ORGANIZATION
@@ -6341,7 +6341,7 @@ Surabaya	LOCATION
 ,	O
 Kamis	O
 (	O
-31/3/2016	O
+3132016	O
 )	O
 .	O
 -----
@@ -6358,7 +6358,7 @@ track	O
 record	O
 lebih	O
 memihak	O
-Risma	PERSON
+Risma	LOCATION
 ,	O
 ''	O
 kata	O
@@ -6372,8 +6372,8 @@ survei	O
 politik	O
 di	O
 kantor	O
-Charta	ORGANIZATION
-Politika	ORGANIZATION
+Charta	LOCATION
+Politika	LOCATION
 ,	O
 Jl	LOCATION
 Cisanggira	LOCATION
@@ -6383,7 +6383,7 @@ Selatan	LOCATION
 ,	O
 Rabu	O
 (	O
-30/3/2016	O
+3032016	O
 )	O
 .	O
 -----
@@ -6397,9 +6397,9 @@ tantangan	O
 era	O
 Masyarakat	O
 Ekonomi	O
-ASEAN	LOCATION
+ASEAN	ORGANIZATION
 (	O
-MEA	O
+MEA	ORGANIZATION
 )	O
 yang	O
 sudah	O
@@ -6418,7 +6418,7 @@ sebagai	O
 wali	O
 kota	O
 ,	O
-Kota	LOCATION
+Kota	O
 Surabaya	LOCATION
 meraih	O
 empat	O
@@ -6485,7 +6485,7 @@ juga	O
 memperoleh	O
 penghargaan	O
 tingkat	O
-Asia-Pasifik	LOCATION
+Asia-Pasifik	ORGANIZATION
 ,	O
 yaitu	O
 Future	O
@@ -6508,10 +6508,10 @@ menyisihkan	O
 kota	O
 di	O
 seluruh	O
-Asia-Pasifik	LOCATION
+Asia-Pasifik	ORGANIZATION
 .	O
 -----
-Irman	PERSON
+Irman	O
 menilai	O
 semakin	O
 banyak	O
@@ -6571,11 +6571,11 @@ itu	O
 jembatan	O
 yang	O
 menghubungkan	O
-Sentra	LOCATION
-Ikan	LOCATION
-Bulak	LOCATION
+Sentra	O
+Ikan	O
+Bulak	O
 (	O
-SIB	LOCATION
+SIB	ORGANIZATION
 )	O
 dan	O
 hingga	O
@@ -6616,13 +6616,13 @@ Sementara	O
 Sekretaris	O
 Dirjen	O
 Cipta	O
-Karya	O
+Karya	ORGANIZATION
 Kementerian	ORGANIZATION
 Pekerjaan	ORGANIZATION
 Umum	ORGANIZATION
-dan	ORGANIZATION
-Perumahan	ORGANIZATION
-Rakyat	ORGANIZATION
+dan	O
+Perumahan	O
+Rakyat	O
 (	O
 PUPR	ORGANIZATION
 )	O
@@ -6640,8 +6640,8 @@ nantinya	O
 akan	O
 dibahas	O
 dalam	O
-PrepCom	ORGANIZATION
-III	ORGANIZATION
+PrepCom	O
+III	O
 UN	ORGANIZATION
 Habitat	ORGANIZATION
 .	O
@@ -6674,18 +6674,18 @@ akan	O
 memblokir	O
 grand	O
 opening	O
-Pasar	LOCATION
-Turi	LOCATION
+Pasar	O
+Turi	O
 pada	O
 Jumat	O
 (	O
-18/3	O
+183	O
 )	O
 mendatang	O
 ,	O
 jika	O
-Pemkot	O
-Surabaya	LOCATION
+Pemkot	ORGANIZATION
+Surabaya	ORGANIZATION
 tidak	O
 segera	O
 menyegel	O
@@ -6696,7 +6696,7 @@ Kami	O
 akan	O
 blokir	O
 jika	O
-Pemkot	O
+Pemkot	ORGANIZATION
 tidak	O
 segel	O
 ,	O
@@ -6705,8 +6705,8 @@ kata	O
 kuasa	O
 hukum	O
 pedagang	O
-Pasar	LOCATION
-Turi	LOCATION
+Pasar	O
+Turi	O
 ,	O
 Wayan	PERSON
 Titib	PERSON
@@ -6720,7 +6720,7 @@ Surabaya	LOCATION
 ,	O
 Rabu	O
 (	O
-16/3/2016	O
+1632016	O
 )	O
 .	O
 -----
@@ -6817,7 +6817,7 @@ cukup	O
 menarik	O
 adalah	O
 langkah	O
-PD	ORGANIZATION
+PD	O
 mendekati	O
 PDIP	ORGANIZATION
 .	O
@@ -6836,9 +6836,9 @@ mau	O
 nggak	O
 mau	O
 memang	O
-Ganjar	PERSON
+Ganjar	O
 atau	O
-Risma	PERSON
+Risma	O
 .	O
 -----
 Rencananya	O
@@ -6852,7 +6852,7 @@ ini	O
 ,	O
 Minggu	O
 (	O
-13/3	O
+133	O
 )	O
 bersama	O
 Gubernur	O
@@ -6872,7 +6872,7 @@ kumpulkan	O
 teman-teman	O
 di	O
 sekitar	O
-Batang	O
+Batang	LOCATION
 yang	O
 mau	O
 berbagi	O
@@ -6889,7 +6889,7 @@ detikcom	ORGANIZATION
 ,	O
 Minggu	O
 (	O
-13/3/2016	O
+1332016	O
 )	O
 .	O
 -----
@@ -6911,8 +6911,8 @@ daerah	O
 Diberitakan	O
 sebelumnya	O
 ,	O
-Pemkab	O
-Batang	LOCATION
+Pemkab	ORGANIZATION
+Batang	ORGANIZATION
 menggelar	O
 Festival	O
 Anggaran	O
@@ -6926,7 +6926,7 @@ anggaran	O
 Bahkan	O
 nominal	O
 gaji	O
-Yoyok	PERSON
+Yoyok	O
 dan	O
 Wakilnya	O
 ,	O
@@ -6962,7 +6962,7 @@ Timur	LOCATION
 ,	O
 Jumat	O
 (	O
-11/3/2016	O
+1132016	O
 )	O
 .	O
 -----
@@ -7035,8 +7035,8 @@ maju	O
 sendiri	O
 (	O
 ke	O
-Pilgub	O
-DKI	LOCATION
+Pilgub	ORGANIZATION
+DKI	ORGANIZATION
 )	O
 ,	O
 waktu	O
@@ -7056,8 +7056,8 @@ Marsudi	PERSON
 di	O
 Ruang	O
 Pers	O
-Balai	LOCATION
-Kota-DPRD	LOCATION
+Balai	O
+Kota-DPRD	O
 DKI	LOCATION
 ,	O
 Jl	LOCATION
@@ -7068,7 +7068,7 @@ Jakarta	LOCATION
 ,	O
 Selasa	O
 (	O
-8/3/2016	O
+832016	O
 )	O
 .	O
 -----
@@ -7114,17 +7114,17 @@ Marsudi	PERSON
 -----
 Beda	O
 dengan	O
-Pemkot	O
-Blitar	LOCATION
+Pemkot	ORGANIZATION
+Blitar	ORGANIZATION
 yang	O
 mengajukan	O
 gugatan	O
 keberatan	O
 pengambilalihan	O
-SMA/SMK	O
+SMASMK	O
 oleh	O
-Pemrov	O
-Jatim	LOCATION
+Pemrov	PERSON
+Jatim	PERSON
 ,	O
 Pemerintah	O
 Kota	O
@@ -7145,11 +7145,11 @@ tidak	O
 mempermasalahkan	O
 jika	O
 pengelolaan	O
-SMA/SMK	O
+SMASMK	O
 diambil	O
 alih	O
-Pemrov	O
-Jatim	LOCATION
+Pemrov	PERSON
+Jatim	PERSON
 ,	O
 dengan	O
 catatan	O
@@ -7170,7 +7170,7 @@ di	O
 di	O
 depan	O
 pejabat	O
-Pemkot	O
+Pemkot	LOCATION
 Jayapura	LOCATION
 ,	O
 Papua	LOCATION
@@ -7184,14 +7184,14 @@ Kota	O
 Metropolitan	O
 '	O
 di	O
-Kantor	O
-Wali	O
-Kota	O
+Kantor	LOCATION
+Wali	LOCATION
+Kota	LOCATION
 Jayapura	LOCATION
 ,	O
 Jumat	O
 (	O
-4/3/2016	O
+432016	O
 )	O
 .	O
 -----
@@ -7221,8 +7221,8 @@ berbasis	O
 IT	O
 yang	O
 digunakan	O
-Pemkot	O
-Surabaya	LOCATION
+Pemkot	ORGANIZATION
+Surabaya	ORGANIZATION
 juga	O
 diadopsi	O
 KPK	ORGANIZATION
@@ -7244,16 +7244,16 @@ oleh	O
 Wali	O
 Kota	O
 Jayapura	LOCATION
-Benhor	PERSON
-Tomi	PERSON
-Mano	PERSON
+Benhor	LOCATION
+Tomi	LOCATION
+Mano	LOCATION
 untuk	O
 memberikan	O
 motivasi	O
 .	O
 -----
-Pemkot	O
-Surabaya	LOCATION
+Pemkot	ORGANIZATION
+Surabaya	ORGANIZATION
 membuka	O
 pintu	O
 lebar-lebar	O
@@ -7296,7 +7296,7 @@ Pancasila	O
 yang	O
 digelar	O
 PWNU	ORGANIZATION
-Jatim	LOCATION
+Jatim	ORGANIZATION
 di	O
 Hotel	LOCATION
 Mercure	LOCATION
@@ -7304,7 +7304,7 @@ Surabaya	LOCATION
 ,	O
 Selasa	O
 (	O
-1/3/2016	O
+132016	O
 )	O
 .	O
 -----
@@ -7313,7 +7313,7 @@ disinggung	O
 mengenai	O
 nama	O
 Walikota	O
-Surabaya	LOCATION
+Surabaya	O
 Tri	PERSON
 Rismaharini	PERSON
 untuk	O
@@ -7356,9 +7356,9 @@ Jakarta	LOCATION
 Basuki	PERSON
 Tjahaja	PERSON
 Purnama	PERSON
-(	PERSON
+(	O
 Ahok	PERSON
-)	PERSON
+)	O
 berharap	O
 tahun	O
 2019	O
@@ -7425,8 +7425,8 @@ langsung	O
 masuk	O
 ke	O
 Kantor	O
-Satpol	ORGANIZATION
-PP	ORGANIZATION
+Satpol	O
+PP	O
 dan	O
 menginterogasi	O
 satu	O
@@ -7448,7 +7448,7 @@ Surabaya	LOCATION
 ,	O
 Sabtu	O
 (	O
-27/2/2016	O
+2722016	O
 )	O
 malam	O
 .	O
@@ -7494,9 +7494,9 @@ dan	O
 kabinetnya	O
 pun	O
 membangun	O
-Sentra	LOCATION
-Ikan	LOCATION
-Bulak	LOCATION
+Sentra	O
+Ikan	PERSON
+Bulak	PERSON
 di	O
 kawasan	O
 yang	O
@@ -7506,9 +7506,9 @@ nelayan	O
 itu	O
 .	O
 -----
-Sentra	LOCATION
-Ikan	LOCATION
-Bulak	LOCATION
+Sentra	O
+Ikan	O
+Bulak	O
 ini	O
 lokasinya	O
 tak	O
@@ -7534,7 +7534,7 @@ di	O
 tangan	O
 Wali	O
 Kota	O
-Risma	PERSON
+Risma	LOCATION
 niat	O
 mengubah	O
 citra	O
@@ -7550,20 +7550,20 @@ memutar	O
 dari	O
 Kenjeran	LOCATION
 menuju	O
-Kecamatan	LOCATION
-Bulak	LOCATION
+Kecamatan	O
+Bulak	O
 itu	O
 sudah	O
 bisa	O
 disaksikan	O
 dari	O
-Taman	LOCATION
-Hiburan	LOCATION
-Pantau	LOCATION
+Taman	O
+Hiburan	O
+Pantau	O
 (	O
-THP	LOCATION
+THP	ORGANIZATION
 )	O
-Kenjeran	LOCATION
+Kenjeran	O
 .	O
 -----
 Uji	O
@@ -7573,8 +7573,8 @@ mancur	O
 menari	O
 makin	O
 mempercantik	O
-Jembatan	LOCATION
-Kenjeran	LOCATION
+Jembatan	O
+Kenjeran	O
 yang	O
 melingkar	O
 800	O
@@ -7587,7 +7587,7 @@ dilakukan	O
 pada	O
 Kamis	O
 (	O
-25/2/2016	O
+2522016	O
 )	O
 malam	O
 .	O
@@ -7600,18 +7600,18 @@ di	O
 antaranya	O
 adalah	O
 Kepala	O
-Dinas	ORGANIZATION
-Pekerjaan	ORGANIZATION
-Umum	ORGANIZATION
-Bina	ORGANIZATION
-Marga	ORGANIZATION
-dan	ORGANIZATION
-Pematusan	ORGANIZATION
+Dinas	O
+Pekerjaan	O
+Umum	O
+Bina	PERSON
+Marga	PERSON
+dan	O
+Pematusan	O
 Erna	PERSON
 Purnawati	PERSON
 dan	O
-Camat	O
-Bulak	LOCATION
+Camat	PERSON
+Bulak	PERSON
 Suprayitno	PERSON
 .	O
 -----
@@ -7619,8 +7619,8 @@ Banjir	O
 yang	O
 menggenangi	O
 permukiman	O
-Gang	LOCATION
-VI	LOCATION
+Gang	O
+VI	O
 ,	O
 Jl	LOCATION
 Raya	LOCATION
@@ -7644,15 +7644,15 @@ yang	O
 terhalang	O
 gapura	O
 dibongkar	O
-Satpol	ORGANIZATION
+Satpol	O
 ,	O
 ''	O
 kata	O
 Kusnan	PERSON
 ,	O
 warga	O
-Dukuh	LOCATION
-Karangan	LOCATION
+Dukuh	O
+Karangan	O
 ,	O
 saat	O
 melihat	O
@@ -7691,8 +7691,8 @@ manajemen	O
 raskin	O
 kita	O
 (	O
-Pemkot	O
-Bandung	LOCATION
+Pemkot	ORGANIZATION
+Bandung	ORGANIZATION
 )	O
 kan	O
 juara	O
@@ -7711,7 +7711,7 @@ Bandung	LOCATION
 ,	O
 Rabu	O
 (	O
-24/2/2016	O
+2422016	O
 )	O
 .	O
 -----
@@ -7739,7 +7739,7 @@ tinggi	O
 Saat	O
 ini	O
 Jalan	O
-Kalianak	LOCATION
+Kalianak	O
 mengalami	O
 kerusakan	O
 parah	O
@@ -7748,7 +7748,7 @@ tergenang	O
 air	O
 .	O
 -----
-Risma	PERSON
+Risma	O
 akan	O
 memberikan	O
 penjelasan	O
@@ -7765,7 +7765,7 @@ Surabaya	LOCATION
 ,	O
 Selasa	O
 (	O
-23/2/2016	O
+2322016	O
 )	O
 .	O
 -----
@@ -7800,8 +7800,8 @@ Djarot	PERSON
 Saiful	PERSON
 Hidayat	PERSON
 di	O
-Balai	LOCATION
-Kota	LOCATION
+Balai	O
+Kota	O
 ,	O
 Jl	LOCATION
 Medan	LOCATION
@@ -7812,7 +7812,7 @@ Jakarta	LOCATION
 ,	O
 Senin	O
 (	O
-22/2/2016	O
+2222016	O
 )	O
 .	O
 -----
@@ -7825,7 +7825,7 @@ saya	O
 ingin	O
 seluruh	O
 warga	O
-Putat	LOCATION
+Putat	ORGANIZATION
 punya	O
 hak	O
 sama	O
@@ -7861,7 +7861,7 @@ hadir	O
 ,	O
 Minggu	O
 (	O
-21/2/2016	O
+2122016	O
 )	O
 .	O
 -----
@@ -7880,7 +7880,7 @@ dilakukan	O
 Risma	PERSON
 dan	O
 Pemkot	ORGANIZATION
-Surabaya	LOCATION
+Surabaya	ORGANIZATION
 terhadap	O
 kepedulian	O
 lingkungan	O
@@ -7916,9 +7916,9 @@ Pariwisata	ORGANIZATION
 dan	O
 Dinas	ORGANIZATION
 Kependudukan	ORGANIZATION
-dan	ORGANIZATION
-Catatan	ORGANIZATION
-Sipil	ORGANIZATION
+dan	O
+Catatan	O
+Sipil	O
 yang	O
 ditempatkan	O
 di	O
@@ -7938,9 +7938,9 @@ Indonesia	LOCATION
 yang	O
 bekerja	O
 di	O
-University	ORGANIZATION
-of	ORGANIZATION
-California	ORGANIZATION
+University	LOCATION
+of	LOCATION
+California	LOCATION
 di	O
 Irvine	LOCATION
 ,	O
@@ -7981,19 +7981,19 @@ ujarnya	O
 kepada	O
 wartawan	O
 di	O
-Balai	LOCATION
-Kota	LOCATION
+Balai	O
+Kota	O
 Surabaya	LOCATION
 usai	O
 pelantikan	O
 Ketua	O
-PKK	ORGANIZATION
+PKK	O
 Kota	O
 Surabaya	LOCATION
 ,	O
 Kamis	O
 (	O
-18/2/2016	O
+1822016	O
 )	O
 .	O
 -----
@@ -8018,7 +8018,7 @@ kali	O
 hujan	O
 .	O
 -----
-Risma	PERSON
+Risma	O
 sore	O
 ini	O
 memantau	O
@@ -8058,10 +8058,10 @@ memberikan	O
 pesan	O
 perdana	O
 di	O
-Pesta	O
-Rakyat	O
+Pesta	LOCATION
+Rakyat	LOCATION
 ,	O
-Risma	PERSON
+Risma	LOCATION
 -	O
 Whisnu	PERSON
 ikut	O
@@ -8086,13 +8086,13 @@ negeri	O
 .	O
 -----
 Rencananya	O
-Khalid	PERSON
+Khalid	O
 juga	O
 akan	O
 menyampaikan	O
 langsung	O
 ke	O
-Dubes	ORGANIZATION
+Dubes	O
 Malaysia	LOCATION
 untuk	O
 Indonesia	LOCATION
@@ -8100,7 +8100,7 @@ di	O
 Jakarta	LOCATION
 soal	O
 kinerja	O
-Risma	PERSON
+Risma	LOCATION
 pada	O
 periode	O
 sebelumnya	O
@@ -8108,7 +8108,7 @@ sebelumnya	O
 -----
 Melihat	O
 kinerja	O
-Risma	PERSON
+Risma	LOCATION
 ,	O
 Khalid	PERSON
 menyebut	O
@@ -8118,8 +8118,8 @@ kerjasama	O
 pemerintah	O
 Malaysia	LOCATION
 dengan	O
-Pemkot	O
-Surabaya	LOCATION
+Pemkot	ORGANIZATION
+Surabaya	ORGANIZATION
 juga	O
 kota-kota	O
 lain	O
@@ -8127,7 +8127,7 @@ di	O
 Indonesia	LOCATION
 .	O
 -----
-Risma	PERSON
+Risma	LOCATION
 -	O
 Whisnu	PERSON
 sendiri	O
@@ -8193,7 +8193,7 @@ ribu	O
 kader	O
 PDI	ORGANIZATION
 Perjuangan	ORGANIZATION
-Surabaya	LOCATION
+Surabaya	ORGANIZATION
 akan	O
 mengantar	O
 Tri	PERSON
@@ -8212,13 +8212,13 @@ Grahadi	LOCATION
 ,	O
 Rabu	O
 (	O
-17/2/2016	O
+1722016	O
 )	O
 .	O
 -----
 Mantan	O
 Camat	O
-Sukolilo	LOCATION
+Sukolilo	PERSON
 ini	O
 menambahkan	O
 ,	O
@@ -8230,13 +8230,13 @@ sore	O
 hari	O
 dipilih	O
 karena	O
-Risma	PERSON
+Risma	LOCATION
 -	O
 Whisnu	PERSON
 akan	O
 dilantik	O
 Gubernur	O
-Jatim	LOCATION
+Jatim	PERSON
 Soekarwo	PERSON
 pada	O
 gelombang	O
@@ -8279,14 +8279,14 @@ Gubernur	O
 DKI	LOCATION
 dan	O
 menertibkan	O
-Kramat	LOCATION
-Tunggak	LOCATION
+Kramat	PERSON
+Tunggak	PERSON
 .	O
 -----
 Setelah	O
 dilantik	O
 ,	O
-Risma	PERSON
+Risma	LOCATION
 akan	O
 melanjutkan	O
 program-programnya	O
@@ -8316,7 +8316,7 @@ tinggal	O
 dikawasan	O
 eks	O
 lokalisasi	O
-Dolly	LOCATION
+Dolly	PERSON
 .	O
 -----
 Setelah	O
@@ -8336,7 +8336,7 @@ masih	O
 mengalir	O
 untuk	O
 Pemkot	O
-Surabaya	LOCATION
+Surabaya	O
 yang	O
 dpimpin	O
 Penjabat	O
@@ -8403,7 +8403,7 @@ ini	O
 terkait	O
 hasil	O
 survei	O
-CSIS	ORGANIZATION
+CSIS	O
 soal	O
 elektabilitas	O
 cagub	O
@@ -8455,7 +8455,7 @@ jauh	O
 hari	O
 sebelum	O
 Pilkada	O
-Surabaya	LOCATION
+Surabaya	O
 elektabilitasnya	O
 menyentuh	O
 70	O
@@ -8463,7 +8463,7 @@ persen	O
 .	O
 -----
 DPRD	ORGANIZATION
-Surabaya	LOCATION
+Surabaya	ORGANIZATION
 segera	O
 gelar	O
 paripurna	O
@@ -8490,7 +8490,7 @@ Kota	O
 ,	O
 Senin	O
 (	O
-1/2	O
+12	O
 )	O
 pekan	O
 depan	O
@@ -8535,7 +8535,7 @@ Menurutnya	O
 ,	O
 wacana	O
 pengusungan	O
-Risma	PERSON
+Risma	O
 ke	O
 DKI	LOCATION
 hanya	O
@@ -8563,7 +8563,7 @@ Namun	O
 Djarot	PERSON
 sudah	O
 memastikan	O
-Risma	PERSON
+Risma	LOCATION
 tak	O
 akan	O
 maju	O
@@ -8578,7 +8578,7 @@ partai	O
 untuk	O
 maju	O
 di	O
-Pilgub	O
+Pilgub	LOCATION
 ,	O
 maka	O
 dia	O
@@ -8606,14 +8606,14 @@ negara	O
 -----
 Bali	LOCATION
 -	O
-Partai	ORGANIZATION
+Partai	O
 NasDem	ORGANIZATION
 menyatakan	O
 dukungannya	O
 kepada	O
-Basuki	PERSON
-T	PERSON
-Purnama	PERSON
+Basuki	ORGANIZATION
+T	ORGANIZATION
+Purnama	ORGANIZATION
 (	O
 Ahok	PERSON
 )	O
@@ -8645,13 +8645,13 @@ sudah	O
 menyulap	O
 bangunan	O
 eks	O
-Pertokoan	LOCATION
-Siola	LOCATION
+Pertokoan	PERSON
+Siola	PERSON
 menjadi	O
 museum	O
 sejarah	O
-Pemkot	O
-Surabaya	LOCATION
+Pemkot	ORGANIZATION
+Surabaya	ORGANIZATION
 dan	O
 kantor	O
 sejumlah	O
@@ -8684,11 +8684,11 @@ Pilkada	O
 ujar	O
 Whisnu	PERSON
 kepada	O
-detikcom	O
+detikcom	ORGANIZATION
 ,	O
 Rabu	O
 (	O
-6/1/2016	O
+612016	O
 )	O
 malam	O
 .	O
@@ -8777,7 +8777,7 @@ usai	O
 penetapan	O
 di	O
 ruang	O
-Amarta	O
+Amarta	LOCATION
 ,	O
 Hotel	LOCATION
 Singgasana	LOCATION
@@ -8785,7 +8785,7 @@ Surabaya	LOCATION
 ,	O
 Selasa	O
 (	O
-22/12/2015	O
+22122015	O
 )	O
 .	O
 -----
@@ -8801,7 +8801,7 @@ karena	O
 tidak	O
 ada	O
 Bu	O
-Risma	PERSON
+Risma	LOCATION
 ,	O
 ''	O
 kata	O
@@ -8835,7 +8835,7 @@ detikcom	ORGANIZATION
 ,	O
 Sabtu	O
 (	O
-19/12/2015	O
+19122015	O
 )	O
 .	O
 -----
@@ -8843,8 +8843,8 @@ Tim	O
 paslon	O
 yang	O
 diusung	O
-Partai	ORGANIZATION
-Demokrat	ORGANIZATION
+Partai	LOCATION
+Demokrat	LOCATION
 -	O
 PAN	ORGANIZATION
 juga	O
@@ -8861,7 +8861,7 @@ buruk	O
 -----
 Tekad	O
 menghidupkan	O
-Tunjungan	LOCATION
+Tunjungan	O
 sebagai	O
 ikon	O
 Surabaya	LOCATION
@@ -8875,8 +8875,8 @@ Tri	PERSON
 Rismaharini	PERSON
 .	O
 -----
-Muhamad	PERSON
-Ketut	PERSON
+Muhamad	O
+Ketut	O
 Purnomo	PERSON
 juga	O
 bangga	O
@@ -8895,7 +8895,7 @@ dari	O
 jabatan	O
 Wali	O
 Kota	O
-Surabaya	LOCATION
+Surabaya	O
 2015	O
 .	O
 -----
@@ -8919,7 +8919,7 @@ Light	LOCATION
 ,	O
 Minggu	O
 (	O
-10/4/2016	O
+1042016	O
 )	O
 .	O
 -----
@@ -8942,7 +8942,7 @@ Leicester	LOCATION
 mencetak	O
 kedua	O
 gol	O
-Leicester	LOCATION
+Leicester	ORGANIZATION
 pada	O
 menit	O
 ke	O
@@ -9003,18 +9003,18 @@ pelaksanaan	O
 hari	O
 pertama	O
 penyelenggaraan	O
-Ujian	O
-Nasional	O
+Ujian	ORGANIZATION
+Nasional	ORGANIZATION
 (	O
-UN	O
+UN	ORGANIZATION
 )	O
 dan	O
-Ujian	O
-Nasional	O
-Berbasis	O
-Komputer	O
+Ujian	ORGANIZATION
+Nasional	ORGANIZATION
+Berbasis	ORGANIZATION
+Komputer	ORGANIZATION
 (	O
-UNBK	O
+UNBK	ORGANIZATION
 )	O
 berjalan	O
 lancar	O
@@ -9035,7 +9035,7 @@ UN	O
 di	O
 Surabaya	LOCATION
 -----
-Anies	PERSON
+Anies	O
 lantas	O
 mengapresiasi	O
 kinerja	O
@@ -9063,19 +9063,19 @@ mengatakan	O
 ,	O
 distribusi	O
 soal	O
-Ujian	O
-Nasional	O
+Ujian	ORGANIZATION
+Nasional	ORGANIZATION
 (	O
-UN	O
+UN	ORGANIZATION
 )	O
 dan	O
 persiapan	O
-Ujian	O
-Nasional	O
-Berbasis	O
-Komputer	O
+Ujian	ORGANIZATION
+Nasional	ORGANIZATION
+Berbasis	ORGANIZATION
+Komputer	ORGANIZATION
 (	O
-UNBK	O
+UNBK	ORGANIZATION
 )	O
 sudah	O
 100	O
@@ -9095,14 +9095,14 @@ para	O
 pelajar	O
 .	O
 -----
-Anies	PERSON
+Anies	O
 mengenakan	O
 pakaian	O
 adat	O
 Yogyakarta	LOCATION
 yaitu	O
 baju	O
-surjan/beskap	O
+surjanbeskap	O
 ,	O
 belangkon	O
 dan	O
@@ -9122,7 +9122,7 @@ Anies	PERSON
 menuturkan	O
 ,	O
 SMKN	ORGANIZATION
-57	ORGANIZATION
+57	O
 menjadi	O
 sekolah	O
 pertama	O
@@ -9135,7 +9135,7 @@ sinema	O
 -----
 Panglima	O
 TNI	ORGANIZATION
-Jenderal	O
+Jenderal	PERSON
 Gatot	PERSON
 Nurmantyo	PERSON
 memberikan	O
@@ -9151,7 +9151,7 @@ Poso	LOCATION
 pada	O
 Minggu	O
 (	O
-20/3	O
+203	O
 )	O
 lalu	O
 .	O
@@ -9161,7 +9161,7 @@ Presiden	O
 Jokowi	PERSON
 didampingi	O
 isteri	O
-Iriana	PERSON
+Iriana	LOCATION
 ,	O
 Menko	O
 Polhukam	O
@@ -9195,10 +9195,10 @@ Moeloek	PERSON
 ,	O
 Menteri	O
 Agama	O
-Lukman	PERSON
-Hakim	PERSON
+Lukman	O
+Hakim	O
 ,	O
-Menhan	O
+Menhan	PERSON
 Ryamizard	PERSON
 Ryacudu	PERSON
 dan	O
@@ -9212,7 +9212,7 @@ saat	O
 di	O
 Palu	LOCATION
 dan	O
-Poso	LOCATION
+Poso	PERSON
 ,	O
 dia	O
 diperintahkan	O
@@ -9227,10 +9227,10 @@ yang	O
 sedang	O
 melaksanakan	O
 operasi	O
-Tinombala	LOCATION
+Tinombala	O
 .	O
 -----
-Gatot	PERSON
+Gatot	O
 juga	O
 dikabari	O
 bahwa	O
@@ -9269,8 +9269,8 @@ Menteri	O
 Pendidikan	O
 dan	O
 Kebudayaan	O
-Anies	PERSON
-Baswedan	PERSON
+Anies	O
+Baswedan	O
 mencanangkan	O
 kebijakan	O
 baru	O
@@ -9282,7 +9282,7 @@ kantornya	O
 -----
 Para	O
 pegawai	O
-Kemdikbud	ORGANIZATION
+Kemdikbud	O
 diwajibkan	O
 mengenakan	O
 pakaian	O
@@ -9304,7 +9304,7 @@ Telkom	ORGANIZATION
 akhirnya	O
 memutuskan	O
 memblokir	O
-Netflix	ORGANIZATION
+Netflix	O
 ,	O
 Menteri	O
 Komunikasi	O
@@ -9326,10 +9326,10 @@ bisa	O
 bikin	O
 heboh	O
 Indonesia	LOCATION
-di	LOCATION
-kemudian	LOCATION
-hari	LOCATION
-.	LOCATION
+di	O
+kemudian	O
+hari	O
+.	O
 -----
 Sudah	O
 hampir	O
@@ -9339,8 +9339,8 @@ Joko	PERSON
 Widodo	PERSON
 memimpin	O
 pemerintahan	O
-Republik	LOCATION
-Indonesia	LOCATION
+Republik	ORGANIZATION
+Indonesia	ORGANIZATION
 .	O
 -----
 Presiden	O
@@ -9352,8 +9352,8 @@ menitipkan	O
 pesan	O
 kepada	O
 '	O
-anak	PERSON
-intelektual	PERSON
+anak	O
+intelektual	O
 '-nya	O
 itu	O
 .	O
@@ -9394,7 +9394,7 @@ Pusat	LOCATION
 ,	O
 Selasa	O
 (	O
-13/10/2015	O
+13102015	O
 )	O
 .	O
 -----
@@ -9437,8 +9437,8 @@ intelektual	O
 saya	O
 ini	O
 Presiden	O
-Republik	LOCATION
-Indonesia	LOCATION
+Republik	ORGANIZATION
+Indonesia	ORGANIZATION
 bahwa	O
 saya	O
 akan	O
@@ -9466,7 +9466,7 @@ ini	O
 mendatangi	O
 kompleks	O
 parlemen	O
-Senayan	LOCATION
+Senayan	O
 ,	O
 Jakarta	LOCATION
 ,	O
