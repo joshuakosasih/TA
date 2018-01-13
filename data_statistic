@@ -1,0 +1,51 @@
+Data 1 = https://github.com/yohanesgultom/nlp-experiments/tree/master/data/ner
+
+ner_train_1.txt
+
+ ['PERSON', 'ORGANIZATION', 'LOCATION']
+ [1431, 1690, 913]
+
+ Total = 4034
+ Avg = 1345
+
+ner_test_1.txt
+
+ ['PERSON', 'LOCATION', 'ORGANIZATION']
+ [439, 324, 259]
+
+ Total = 1022
+ Avg = 341
+
+ Using StanfordNER
+ >>> f1_score(y_true, y_pred, labels=['PERSON', 'LOCATION', 'ORGANIZATION'], average='micro')
+ 0.44697986577181209
+ >>> f1_score(y_true, y_pred, labels=['PERSON', 'LOCATION', 'ORGANIZATION'], average='macro')
+ 0.39056690883157624
+ >>> f1_score(y_true, y_pred, labels=['PERSON', 'LOCATION', 'ORGANIZATION'], average=None)
+ array([ 0.53522795,  0.46241135,  0.17406143])
+
+ Using Indo-StanfordNER
+         Entity	P	R	F1	TP	FP	FN
+       LOCATION	0.8375	0.7183	0.7733	232	45	91
+   ORGANIZATION	0.7117	0.7722	0.7407	200	81	59
+         PERSON	0.8928	0.8155	0.8524	358	43	81
+         Totals	0.8238	0.7738	0.7980	790	169	231
+
+
+Data 2 = https://github.com/yusufsyaifudin/indonesia-ner/tree/master/resources/ner
+
+ner_train_2.txt
+
+ ['ORGANIZATION', 'PERSON', 'TIME', 'LOCATION', 'QUANTITY']
+ [677, 1054, 359, 955, 466]
+
+ Total = 3511
+ Avg = 702
+
+ner_test_2.txt
+
+ ['PERSON', 'LOCATION', 'TIME', 'ORGANIZATION', 'QUANTITY']
+ [442, 65, 75, 146, 15]
+
+ Total = 743
+ Avg = 149
