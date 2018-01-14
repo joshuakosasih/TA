@@ -52,7 +52,7 @@ ner_test_2.txt
 
 
 Mapping POS to NER
-[PER,	LOC,	ORG,	O,	Total,	POS]
+[PER,	LOC,	ORG,	O,	Total,	 POS]
 [1,	0, 	0, 	429, 	1, 	'ADJ']
 [0,	0, 	1, 	1152, 	1, 	'ADP']
 [0,	1, 	0, 	489, 	1, 	'ADV']
