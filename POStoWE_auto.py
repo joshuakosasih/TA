@@ -18,7 +18,7 @@ from sklearn.metrics import precision_score
 Preparing file
 """
 
-name = raw_input('Enter file name: ')
+name = 'id-ud-test'
 
 myfile = open(name + '.pos', 'r')
 
@@ -77,7 +77,7 @@ Load pre-trained embedding
 """
 
 embeddings_index = {}
-GLOVE_DIR = raw_input('Enter pre-trained embedding file name: ')
+GLOVE_DIR = 'WE_w.txt'
 
 f = open(GLOVE_DIR, 'r')
 for line in f:
@@ -90,7 +90,7 @@ f.close()
 
 print('Found %s word vectors.' % len(embeddings_index))
 
-EMBEDDING_DIM = raw_input('Enter embedding dimensions: ')
+EMBEDDING_DIM = 200
 
 notfound = 0
 notfoundwords = [] # list kata yang tidak terdapat dalam embedding
