@@ -7,9 +7,12 @@ from keras.layers import Embedding
 from keras.layers import Dense
 from keras.layers import Input
 from keras.layers import Flatten
+from keras.layers import GRU
+from keras.layers import Bidirectional
 from keras.utils import to_categorical
 from keras.utils import plot_model
 from keras.preprocessing.sequence import pad_sequences
+from keras_contrib.layers import CRF
 from sklearn.metrics import f1_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
@@ -134,7 +137,7 @@ y_trimmed = []
 for sent in y_encoded:
     y_token = []
     for token in sent:
-        y_token.append(token[1:])
+        y_token.append(token)
     y_trimmed.append(y_token)
 
 y_trimmed = np.array(y_trimmed)
@@ -155,7 +158,11 @@ sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
 
 embedded_sequences = embedding_layer(sequence_input)
 
-preds = Dense(len(labels_index), activation='softmax')(embedded_sequences)
+gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode='concat', weights=None)(embedded_sequences)
+
+crf = CRF(len(labels_index)+1)(gru_kata)
+
+preds = Dense(len(labels_index)+1, activation='softmax')(gru_kata)
 
 model = Model(sequence_input, preds)
 model.summary()
@@ -165,4 +172,38 @@ model.compile(loss='categorical_crossentropy',
 
 plot_model(model, to_file='model.png')
 
-model.fit(x_padded, y_trimmed, epochs=10, batch_size=128)
+model.fit(x_padded, y_trimmed, epochs=20, batch_size=128)
+
+"""
+Predict function
+"""
+
+def predict(sentence):
+    sent = nltk.word_tokenize(sentence) #tokenize
+    se = []
+    for it in range(len(sent), MAX_SEQUENCE_LENGTH): #padding
+        se.append(0)
+    
+    for token in sent: #indexing
+        se.append(word_index[token])
+    
+    se = np.array([se]) #change to np array
+    
+    result = model.predict(se)[0] #get prediction result
+    res = []
+    for token in result:
+        value = np.argmax(token)
+        if value == 0:
+            res.append('~')
+        else:
+            key = labels_index.keys()[labels_index.values().index(value)]
+            res.append(key)
+    
+    print res
+    print result[157]
+    print result[158]
+    print result[159]
+
+predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua')
+
+
