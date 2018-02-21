@@ -160,11 +160,11 @@ embedded_sequences = embedding_layer(sequence_input)
 
 gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode='concat', weights=None)(embedded_sequences)
 
-crf = CRF(len(labels_index)+1)(gru_kata)
+crf = CRF(len(labels_index)+1, learn_mode='marginal')(gru_kata)
 
 preds = Dense(len(labels_index)+1, activation='softmax')(gru_kata)
 
-model = Model(sequence_input, preds)
+model = Model(sequence_input, crf)
 model.summary()
 model.compile(loss='categorical_crossentropy',
               optimizer='rmsprop',

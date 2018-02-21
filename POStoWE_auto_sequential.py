@@ -150,7 +150,7 @@ Create keras model
 
 MAX_SEQUENCE_LENGTH = len(x_padded[0])
 
-model = Sequential()#
+model = Sequential()
 
 embedding_layer = Embedding(len(word_index) + 1,
                             EMBEDDING_DIM,
@@ -158,21 +158,15 @@ embedding_layer = Embedding(len(word_index) + 1,
                             input_length=MAX_SEQUENCE_LENGTH,
                             trainable=False)
 
-#sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
+gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode='concat', weights=None)
 
-#embedded_sequences = embedding_layer(sequence_input)
-
-gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode='concat', weights=None)#(embedded_sequences)
-
-crf = CRF(len(labels_index)+1)#(gru_kata)
+crf = CRF(len(labels_index)+1)
 
 preds = Dense(len(labels_index)+1, activation='softmax')(gru_kata)
 
-#model = Model(sequence_input, crf)
-
-model.add(embedding_layer)#
-model.add(gru_kata)#
-model.add(crf)#
+model.add(embedding_layer)
+model.add(gru_kata)
+model.add(crf)
 
 model.summary()
 model.compile(loss=crf.loss_function,
