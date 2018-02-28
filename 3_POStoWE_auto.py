@@ -34,7 +34,7 @@ corpus = []
 lines = []
 
 for line in mydict:
-    if line == '-----\r\n':
+    if line == '-----\n':
         corpus.append(lines)
         lines = []
     else:
@@ -125,7 +125,7 @@ print('Padded until %s tokens.' % len(x_padded[0]))
 y = []
 for sent in labels:
     y_token = []
-    print sent
+    print(sent)
     for token in sent:
         y_token.append(labels_index[token])
     y.append(y_token)
@@ -172,7 +172,7 @@ model.compile(loss='categorical_crossentropy',
 
 plot_model(model, to_file='model.png')
 
-model.fit(x_padded, y_trimmed, epochs=5, batch_size=128)
+model.fit(x_padded, y_trimmed, epochs=20, batch_size=128)
 
 """
 Predict function
@@ -196,11 +196,11 @@ def predict(sentence):
         if value == 0:
             res.append('~')
         else:
-            key = labels_index.keys()[labels_index.values().index(value)]
+            key = list(labels_index.keys())[list(labels_index.values()).index(value)]
             res.append(key)
     
     return res
-    print res
+    print(res)
 
 predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua')
 
