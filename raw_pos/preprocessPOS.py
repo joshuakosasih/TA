@@ -11,6 +11,8 @@ myfile = open(name+'.conllu', 'r')
 
 mydict = []
 
+print "Processing..."
+
 for line in myfile:
     mydict.append(line)
 
@@ -26,14 +28,23 @@ for line in mydict:
             lines.append((nltk.word_tokenize(line)[1], nltk.word_tokenize(line)[3]))
 
 outfile = open(name+'.pos', 'w')
+wi = 1
+label_index = {}
 for sent in corpus:
     line = []
     for token in sent[:-1]:
         w = token[0].decode('utf-8','ignore').encode("utf-8")
         outfile.write(w + '\t' + token[1] + '\r\n')
+        if token[1] not in label_index:
+            label_index[token[1]] = wi
+            wi = wi + 1
     outfile.write('-----\r\n')
 
 outfile.close()
+
+print "Done!"
+print "Label Index:"
+print label_index
 
 """
 lines = []

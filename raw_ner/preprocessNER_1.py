@@ -13,6 +13,8 @@ name = raw_input('Enter file name: ')
 
 myfile = open(name+'.txt', 'r')
 
+print "Processing..."
+
 mydict = []
 
 for line in myfile:
@@ -51,13 +53,22 @@ for line in lines:
     corpus.append(structured)
 
 outfile = open(name+'.ner', 'w')
+wi = 1
+label_index = {}
 for sent in corpus:
     line = []
     for token in sent[:-1]:
         outfile.write(token[0] + '\t' + token[1] + '\r\n')
+        if token[1] not in label_index:
+            label_index[token[1]] = wi
+            wi = wi + 1
     outfile.write('-----\r\n')
 
 outfile.close()
+
+print "Done!"
+print "Label Index:"
+print label_index
 
 """
 lines = []

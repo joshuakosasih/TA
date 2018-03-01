@@ -35,6 +35,6 @@ sums = 0
 for line in mydict:
     sums = sums + enamexCounter(line)
 
-print sums
-print netype
-print necnt
+print "Sums", sums
+print "NE type", netype
+print "NE count", necnt

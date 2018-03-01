@@ -172,7 +172,7 @@ model.compile(loss='categorical_crossentropy',
 
 plot_model(model, to_file='model.png')
 
-model.fit(x_padded, y_trimmed, epochs=20, batch_size=128)
+model.fit(x_padded, y_trimmed, epochs=5, batch_size=128)
 
 """
 Predict function

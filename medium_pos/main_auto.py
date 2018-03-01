@@ -17,63 +17,26 @@ from sklearn.metrics import f1_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 
+from DataProcessor import DataLoader as DL
+from DataProcessor import DataIndexer as DI
+from DataProcessor import DataMapper as DM
+
 """
 Preparing file
 """
 
-name = 'id-ud-train'
-
-myfile = open(name + '.pos', 'r')
-
-mydict = []
-
-for line in myfile:
-    mydict.append(line)
-
-corpus = []
-lines = []
-
-for line in mydict:
-    if line == '-----\r\n':
-        corpus.append(lines)
-        lines = []
-    else:
-        lines.append((nltk.word_tokenize(line)[0], nltk.word_tokenize(line)[1]))
-
-words = []
-labels = []
-
-for sent in corpus:
-    line = []
-    y_true = []
-    for token in sent:
-        line.append(token[0])
-        y_true.append(token[1])
-    words.append(line)
-    labels.append(y_true)
+train = DL('id-ud-train')
+test = DL('id-ud-test')
 
 """
 Create Word & Label Index
 """
 
-w = 1
-word_index = {}
-for sent in words:
-    for token in sent:
-        if token not in word_index:
-            word_index[token] = w
-            w = w + 1
+word = DI([train.words, test.words])
+label = DI([train.labels])  # training label and testing label should be the same
 
-l = 1
-labels_index = {}
-for sent in labels:
-    for token in sent:
-        if token not in labels_index:
-            labels_index[token] = l
-            l = l + 1
-
-print('Found %s unique words.' % len(word_index))
-print('Found %s unique labels.' % len(labels_index))
+print 'Found', word.cnt - 1, 'unique words.'
+print 'Found', label.cnt-1, 'unique labels.'
 
 """
 Load pre-trained embedding
@@ -85,9 +48,9 @@ GLOVE_DIR = 'WE_w.txt'
 f = open(GLOVE_DIR, 'r')
 for line in f:
     values = line.split()
-    word = values[0]
+    wrd = values[0]
     coefs = np.asarray(values[1:], dtype='float32')
-    embeddings_index[word] = coefs
+    embeddings_index[wrd] = coefs
 
 f.close()
 
@@ -95,60 +58,39 @@ print('Found %s word vectors.' % len(embeddings_index))
 
 EMBEDDING_DIM = 200
 
-notfound = 0
-notfoundwords = [] # list kata yang tidak terdapat dalam embedding
-embedding_matrix = np.zeros((len(word_index) + 1, int(EMBEDDING_DIM)))
-for word, i in word_index.items():
-    embedding_vector = embeddings_index.get(word)
+notfound = []  # list kata yang tidak terdapat dalam embedding
+embedding_matrix = np.zeros((len(word.index) + 1, int(EMBEDDING_DIM)))
+for wrd, i in word.index.items():
+    embedding_vector = embeddings_index.get(wrd)
     if embedding_vector is not None:
         embedding_matrix[i] = embedding_vector
     else:
-        notfound = notfound + 1
-        notfoundwords.append(word)
+        notfound.append(wrd)
 
-print('%s words not found in embedding.' % notfound)
+print('%s words not found in embedding.' % len(notfound))
 
 """
 Converting text data to int using index
 """
 
-x = []
-for sent in words:
-    x_token = []
-    for token in sent:
-        x_token.append(word_index[token])
-    x.append(x_token)
+x_train = DM(train.words, word.index)
+x_test = DM(test.words, word.index)
 
-x_padded = pad_sequences(x)
-print('Padded until %s tokens.' % len(x_padded[0]))
+padsize = max([x_train.padsize, x_test.padsize])
+x_train.pad(padsize)
+print('Padded until %s tokens.' % padsize)
 
-y = []
-for sent in labels:
-    y_token = []
-    print sent
-    for token in sent:
-        y_token.append(labels_index[token])
-    y.append(y_token)
-
-y_padded = pad_sequences(y) # label for evaluation
-y_encoded = to_categorical(y_padded)
-
-y_trimmed = []
-for sent in y_encoded:
-    y_token = []
-    for token in sent:
-        y_token.append(token)
-    y_trimmed.append(y_token)
-
-y_trimmed = np.array(y_trimmed)
+y_train = DM(train.labels, label.index)
+y_train.pad(padsize)
+y_encoded = to_categorical(y_train.padded)
 
 """
 Create keras model
 """
 
-MAX_SEQUENCE_LENGTH = len(x_padded[0])
+MAX_SEQUENCE_LENGTH = padsize
 
-embedding_layer = Embedding(len(word_index) + 1,
+embedding_layer = Embedding(len(word.index) + 1,
                             EMBEDDING_DIM,
                             weights=[embedding_matrix],
                             input_length=MAX_SEQUENCE_LENGTH,
@@ -160,9 +102,9 @@ embedded_sequences = embedding_layer(sequence_input)
 
 gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode='concat', weights=None)(embedded_sequences)
 
-crf = CRF(len(labels_index)+1, learn_mode='marginal')(gru_kata)
+crf = CRF(len(label.index)+1, learn_mode='marginal')(gru_kata)
 
-preds = Dense(len(labels_index)+1, activation='softmax')(gru_kata)
+preds = Dense(len(label.index)+1, activation='softmax')(gru_kata)
 
 model = Model(sequence_input, crf)
 model.summary()
@@ -172,7 +114,7 @@ model.compile(loss='categorical_crossentropy',
 
 plot_model(model, to_file='model.png')
 
-model.fit(x_padded, y_trimmed, epochs=2, batch_size=128)
+model.fit(np.array(x_train.padded), np.array(y_encoded), epochs=2, batch_size=128)
 
 
 """
