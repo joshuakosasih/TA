@@ -560,7 +560,7 @@ kriteria	NOUN
 ,	PUNCT
 menulis	VERB
 :	PUNCT
-''	PUNCT
+"	PUNCT
 Jika	SCONJ
 kebanyakan	NOUN
 Robert's	PROPN
@@ -647,7 +647,7 @@ Vares	PROPN
 (	PUNCT
 lebih	ADV
 kurang	VERB
-40	amp
+40&amp;nbsp	NOUN
 ;	PUNCT
 km	SYM
 dari	ADP
@@ -895,10 +895,10 @@ dengan	ADP
 Clube	PROPN
 de	PROPN
 Futebol	PROPN
-''	PUNCT
+"	PUNCT
 Os	PROPN
 Belenenses	PROPN
-''	PUNCT
+"	PUNCT
 dan	CCONJ
 Boavista	PROPN
 Futebol	PROPN
@@ -1005,10 +1005,10 @@ sarjananya	NOUN
 Benteng	PROPN
 Lohagarh	PROPN
 (	PUNCT
-''	PUNCT
+"	PUNCT
 Benteng	PROPN
 Besi	PROPN
-''	PUNCT
+"	PUNCT
 )	PUNCT
 adalah	AUX
 benteng	NOUN
@@ -1128,7 +1128,7 @@ menyatakan	VERB
 bahwa	SCONJ
 pulau	NOUN
 itu	DET
-''	PUNCT
+"	PUNCT
 dihidupkan	VERB
 dari	ADP
 pengepungan	NOUN
@@ -1179,9 +1179,9 @@ primer	NOUN
 -----
 Nanah	NOUN
 berisi	VERB
-''	PUNCT
+"	PUNCT
 jenazah	NOUN
-''	PUNCT
+"	PUNCT
 dari	ADP
 kawan	NOUN
 dan	CCONJ
@@ -1487,10 +1487,10 @@ menggunakan	VERB
 kata	NOUN
 -	PUNCT
 kata	NOUN
-''	PUNCT
+"	PUNCT
 Maximum	PROPN
 Vegas	PROPN
-''	PUNCT
+"	PUNCT
 karena	CCONJ
 banyaknya	DET
 aktivitas	NOUN
@@ -2652,7 +2652,7 @@ Baruch	PROPN
 menyatakan	VERB
 bahwa	ADP
 :	PUNCT
-''	PUNCT
+"	PUNCT
 Janganlah	ADV
 kita	PRON
 tertipu	VERB
@@ -2701,9 +2701,9 @@ pada	ADP
 November	PROPN
 2007	NUM
 -----
-''	PUNCT
+"	PUNCT
 C	PROPN
-''	PUNCT
+"	PUNCT
 yakni	ADV
 konsekuensi	NOUN
 -	PUNCT
@@ -3130,11 +3130,11 @@ Le	PROPN
 Drapeau	PROPN
 Noir	PROPN
 (	PUNCT
-''	PUNCT
+"	PUNCT
 The	PROPN
 Black	PROPN
 Flag	PROPN
-''	PUNCT
+"	PUNCT
 )	PUNCT
 ,	PUNCT
 yang	PRON
@@ -3564,10 +3564,10 @@ tempat	NOUN
 di	ADP
 Kreta	PROPN
 menunjukkan	VERB
-''	PUNCT
+"	PUNCT
 wawasan	NOUN
 keluar	ADJ
-''	PUNCT
+"	PUNCT
 bangsa	NOUN
 ini	DET
 -----
@@ -3705,7 +3705,7 @@ sex	NOUN
 bukan	PART
 -----
 Lagu	PROPN
-''	PUNCT
+"	PUNCT
 뭘봐	PROPN
 (	PUNCT
 Close	PROPN
@@ -3713,7 +3713,7 @@ Your	PROPN
 Mouth	PROPN
 Song	PROPN
 )	PUNCT
-''	PUNCT
+"	PUNCT
 dirilis	VERB
 pada	ADP
 22	NUM
@@ -3765,7 +3765,7 @@ melaporkan	VERB
 Pemerintah	NOUN
 India	PROPN
 telah	ADV
-''	PUNCT
+"	PUNCT
 belum	ADV
 mengadili	VERB
 mereka	PRON
@@ -3775,7 +3775,7 @@ jawab	VERB
 atas	ADP
 pembunuhan	NOUN
 massal	ADJ
-''	PUNCT
+"	PUNCT
 -----
 Andi	PROPN
 Meriem	PROPN
@@ -4870,10 +4870,10 @@ Rodgers	PROPN
 memiliki	VERB
 nama	NOUN
 panggilan	NOUN
-''	PUNCT
+"	PUNCT
 Buck	PROPN
 Rodgers	PROPN
-''	PUNCT
+"	PUNCT
 ,	PUNCT
 sesuai	ADP
 sebuah	DET
@@ -5037,9 +5037,9 @@ khas	ADJ
 manta	NOUN
 adalah	AUX
 sepasang	DET
-''	PUNCT
+"	PUNCT
 tanduk	NOUN
-''	PUNCT
+"	PUNCT
 di	ADP
 dekat	ADJ
 mulutnya	NOUN
@@ -5188,17 +5188,17 @@ Oz	PROPN
 Casino	PROPN
 juga	CCONJ
 memiliki	VERB
-''	PUNCT
+"	PUNCT
 Emerald	PROPN
 City	PROPN
 Gift	PROPN
 Shop	PROPN
-''	PUNCT
+"	PUNCT
 dan	CCONJ
-''	PUNCT
+"	PUNCT
 Oz	PROPN
 Buffet	PROPN
-''	PUNCT
+"	PUNCT
 -----
 Bintang	NOUN
 ini	DET
@@ -5646,9 +5646,9 @@ tiga	NUM
 orang	NOUN
 raja	NOUN
 yang	PRON
-''	PUNCT
+"	PUNCT
 bersila	NOUN
-''	PUNCT
+"	PUNCT
 atau	CCONJ
 bertahta	VERB
 -----
@@ -5668,7 +5668,7 @@ yang	PRON
 menyebutkan	VERB
 Poseidon	PROPN
 sebagai	ADP
-''	PUNCT
+"	PUNCT
 penggerak	NOUN
 bumi	NOUN
 dan	CCONJ
@@ -5686,7 +5686,7 @@ dan	CCONJ
 Aegae	PROPN
 yang	PRON
 luas	ADJ
-''	PUNCT
+"	PUNCT
 -----
 Dia	PROPN
 adalah	AUX
@@ -5696,19 +5696,19 @@ co	NOUN
 -	PUNCT
 penulis	NOUN
 lagu	NOUN
-''	PUNCT
+"	PUNCT
 Boardmeeting	PROPN
-''	PUNCT
+"	PUNCT
 dari	ADP
 album	NOUN
 tahun	NOUN
 2007	NUM
-''	PUNCT
+"	PUNCT
 Timbaland	PROPN
 Presents	PROPN
 Shock	PROPN
 Value	PROPN
-''	PUNCT
+"	PUNCT
 -----
 Mereka	PRON
 disembah	VERB
@@ -6007,7 +6007,7 @@ sumpah	NOUN
 serapah	NOUN
 dikeluarkan	VERB
 ,	PUNCT
-Y	ko
+Yūko	PROPN
 akhirnya	ADV
 memberitahu	VERB
 Watanuki	NOUN
@@ -6022,7 +6022,7 @@ adalah	AUX
 Toko	PROPN
 '	PUNCT
 kepunyaan	NOUN
-Y	ko
+Yūko	PROPN
 -----
 Beranjak	VERB
 dewasa	ADJ
@@ -6854,7 +6854,7 @@ mengenai	ADP
 relokasi	NOUN
 bandara	NOUN
 ke	ADP
-Klyuch	vka
+Klyuchëvka	PROPN
 ,	PUNCT
 sekitar	ADP
 24	NUM
@@ -7062,14 +7062,14 @@ penyelamat	ADJ
 yang	PRON
 disalibkan	VERB
 dan	CCONJ
-''	PUNCT
+"	PUNCT
 bukan	ADV
 sebagai	ADP
 guru	NOUN
 atau	CCONJ
 pembawa	VERB
 mukjizat	NOUN
-''	PUNCT
+"	PUNCT
 -----
 Di	ADP
 Bogor	PROPN
@@ -7320,7 +7320,7 @@ memiliki	VERB
 luas	NOUN
 wilayah	NOUN
 397	NUM
-km	amp
+km&amp;sup2	NUM
 ;	PUNCT
 .	PUNCT
 Kota	NOUN
@@ -7332,7 +7332,7 @@ penduduk	NOUN
 320	NUM
 jiwa	NOUN
 /	SYM
-km	amp
+km&amp;sup2	NUM
 ;	PUNCT
 -----
 Ratu	PROPN
@@ -7507,9 +7507,9 @@ yang	PRON
 membuatnya	VERB
 mendapatkan	VERB
 julukan	NOUN
-''	PUNCT
+"	PUNCT
 Pemugar	PROPN
-''	PUNCT
+"	PUNCT
 -----
 Dan	CCONJ
 siapakah	PRON
@@ -7737,7 +7737,7 @@ dengan	ADP
 suhu	NOUN
 33	NUM
 -	PUNCT
-36	amp
+36&amp;nbsp	NUM
 ;	PUNCT
 °	SYM
 C	NUM
@@ -7852,7 +7852,7 @@ Arashi	PROPN
 NEWS	PROPN
 ,	PUNCT
 Tackey	PROPN
-&	;
+&amp;	SYM
 Tsubasa	PROPN
 ,	PUNCT
 KAT	PROPN
@@ -8118,7 +8118,7 @@ dan	CCONJ
 Sukseskan	PROPN
 Pemilu	PROPN
 1997	NUM
-&	;
+&amp;	SYM
 Sidang	PROPN
 Umum	PROPN
 MPR	PROPN
@@ -8401,15 +8401,15 @@ Pardede	PROPN
 mengemukakan	VERB
 bahwa	SCONJ
 istilah	NOUN
-''	PUNCT
+"	PUNCT
 Tanah	NOUN
 Batak	PROPN
-''	PUNCT
+"	PUNCT
 dan	CCONJ
-''	PUNCT
+"	PUNCT
 rakyat	NOUN
 Batak	PROPN
-''	PUNCT
+"	PUNCT
 diciptakan	VERB
 oleh	ADP
 pihak	NOUN
@@ -8546,7 +8546,7 @@ SOLA	PROPN
 GRACIA	PROPN
 '	PUNCT
 (	PUNCT
-''	PUNCT
+"	PUNCT
 dari	ADP
 Tuhan	NOUN
 untuk	ADP
@@ -8557,14 +8557,14 @@ dari	ADP
 kita	PRON
 untuk	ADP
 Tuhan	NOUN
-''	PUNCT
+"	PUNCT
 )	PUNCT
 Gereja	NOUN
 Duta	NOUN
 Injil	NOUN
 memiliki	VERB
 pameo	PROPN
-''	PUNCT
+"	PUNCT
 Satu	PROPN
 Duta	PROPN
 Injil	PROPN
@@ -8593,7 +8593,7 @@ bersorak	PART
 sorai	NOUN
 .	PUNCT
 .	PUNCT
-''	PUNCT
+"	PUNCT
 Dalam	ADP
 setiap	DET
 acara	NOUN
@@ -8821,7 +8821,7 @@ herus	ADV
 dilakukan	VERB
 Winnie	PROPN
 -----
-Jiāngsh	_
+Jiāngshī	PROPN
 diucapkan	VERB
 gœngsi	PROPN
 dalam	ADP
@@ -9448,7 +9448,7 @@ sandiwara	NOUN
 teater	NOUN
 dari	ADP
 Antony	PROPN
-&	;
+&amp;	SYM
 Cleopatra	PROPN
 dan	CCONJ
 The	DET
@@ -10049,7 +10049,7 @@ wilayah	NOUN
 161	NUM
 ,	PUNCT
 6	NUM
-km	amp
+km&amp;sup2	NUM
 ;	PUNCT
 .	PUNCT
 Kota	NOUN
@@ -10064,7 +10064,7 @@ sebanyak	ADP
 3	NUM
 jiwa	NOUN
 /	SYM
-km	amp
+km&amp;sup2	NUM
 ;	PUNCT
 -----
 Setelah	ADP
@@ -10087,11 +10087,11 @@ yang	PRON
 terkenal	ADJ
 dengan	ADP
 lagu	NOUN
-''	PUNCT
+"	PUNCT
 Haru	PROPN
 No	PROPN
 Umi	PROPN
-''	PUNCT
+"	PUNCT
 -----
 Sebagian	DET
 besar	ADJ
@@ -10225,19 +10225,19 @@ di	ADP
 parlemen	NOUN
 -----
 Perwakilan	PROPN
-''	PUNCT
+"	PUNCT
 fallback	NOUN
-''	PUNCT
+"	PUNCT
 adalah	AUX
 angka	NOUN
 3	NUM
 ,	PUNCT
 atau	CCONJ
 huruf	NOUN
-''	PUNCT
+"	PUNCT
 Middle	PROPN
 English	PROPN
-''	PUNCT
+"	PUNCT
 ȝ	PROPN
 Yogh	PROPN
 ;	PUNCT
@@ -11184,18 +11184,18 @@ memulai	VERB
 Album	PROPN
 studio	PROPN
 berjudul	VERB
-''	PUNCT
+"	PUNCT
 THE	PROPN
 B1A4	PROPN
 I	PROPN
 :	PUNCT
 IGNITION	PROPN
-''	PUNCT
+"	PUNCT
 atau	CCONJ
 hanya	ADV
-''	PUNCT
+"	PUNCT
 IGNITION	PROPN
-''	PUNCT
+"	PUNCT
 dijadwalkan	VERB
 untuk	ADP
 rilis	VERB

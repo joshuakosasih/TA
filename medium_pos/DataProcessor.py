@@ -1,6 +1,7 @@
 import nltk
 import numpy as np
 
+
 class DataLoader:
     """
 
@@ -13,7 +14,7 @@ class DataLoader:
         labels
     """
     def __init__(self, name):
-        print "Openning file", name, ".pos"
+        print "Opening file", name, ".pos"
         self.myfile = open(name + '.pos', 'r')
 
         print "Loading data..."
@@ -28,7 +29,7 @@ class DataLoader:
                 self.corpus.append(lines)
                 lines = []
             else:
-                lines.append((nltk.word_tokenize(line)[0], nltk.word_tokenize(line)[1]))
+                lines.append((line.split('\t')[0], line.split('\t')[1][:-2]))  # there's [:-2] to remove newline chars
         
         print "Creating words and labels..."
         self.words = []

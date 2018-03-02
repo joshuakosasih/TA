@@ -845,9 +845,9 @@ November	PROPN
 )	PUNCT
 ,	PUNCT
 dinamai	VERB
-''	PUNCT
+"	PUNCT
 Ironside	PROPN
-''	PUNCT
+"	PUNCT
 untuk	ADP
 usahanya	NOUN
 menahan	VERB
@@ -2908,11 +2908,11 @@ menjadi	VERB
 kesenian	NOUN
 yang	PRON
 disebut	VERB
-''	PUNCT
+"	PUNCT
 Sarugaku	PROPN
 no	PROPN
 Noh	PROPN
-''	PUNCT
+"	PUNCT
 -----
 Dua	NUM
 gambar	NOUN
@@ -3094,10 +3094,10 @@ jam	NOUN
 10.00	NUM
 diiringi	VERB
 lagu	NOUN
-''	PUNCT
+"	PUNCT
 Gaudeamus	PROPN
 igitur	PROPN
-''	PUNCT
+"	PUNCT
 ,	PUNCT
 anggota	NOUN
 Majelis	PROPN
@@ -3169,10 +3169,10 @@ merupakan	VERB
 kepala	NOUN
 bidang	NOUN
 dari	ADP
-''	PUNCT
+"	PUNCT
 Steering	PROPN
 Group	PROPN
-''	PUNCT
+"	PUNCT
 ,	PUNCT
 yang	PRON
 bertugas	VERB
@@ -3226,16 +3226,16 @@ Album	NOUN
 album	NOUN
 berikutnya	ADJ
 ,	PUNCT
-''	PUNCT
+"	PUNCT
 Flying	PROPN
 Colours	PROPN
-''	PUNCT
+"	PUNCT
 dan	CCONJ
-''	PUNCT
+"	PUNCT
 Into	PROPN
 the	PROPN
 Light	PROPN
-''	PUNCT
+"	PUNCT
 sampai	VERB
 di	ADP
 urutan	NOUN
@@ -3394,7 +3394,7 @@ Kimia	PROPN
 pada	ADP
 tahun	NOUN
 2006	NUM
-''	PUNCT
+"	PUNCT
 untuk	ADP
 penelitiannya	NOUN
 mengenai	VERB
@@ -3402,7 +3402,7 @@ basis	NOUN
 molekul	NOUN
 transkripsi	NOUN
 eukaryota	NOUN
-''	PUNCT
+"	PUNCT
 yang	PRON
 menjelaskan	VERB
 proses	NOUN
@@ -3704,7 +3704,7 @@ bahasa	NOUN
 Arab	PROPN
 :	PUNCT
 سدوم	PROPN
-Sad	m
+Sadūm	PROPN
 )	PUNCT
 dan	CCONJ
 Amora	PROPN
@@ -3713,7 +3713,7 @@ bahasa	NOUN
 Arab	PROPN
 :	PUNCT
 عمورة	PROPN
-ʿAm	rah
+ʿAmūrah	PROPN
 )	PUNCT
 untuk	ADP
 memperbaiki	VERB
@@ -4552,14 +4552,14 @@ Jawa	PROPN
 Pos	PROPN
 mengklaim	NOUN
 sebagai	ADP
-''	PUNCT
+"	PUNCT
 Harian	PROPN
 Nasional	PROPN
 yang	PRON
 Terbit	VERB
 dari	ADP
 Surabaya	PROPN
-''	PUNCT
+"	PUNCT
 -----
 Psoriasis	PROPN
 merupakan	VERB
@@ -5081,24 +5081,24 @@ Moto	NOUN
 Olimpiade	PROPN
 2008	NUM
 adalah	AUX
-''	PUNCT
+"	PUNCT
 Satu	PROPN
 Dunia	PROPN
 ,	PUNCT
 Satu	PROPN
 Impian	PROPN
-''	PUNCT
+"	PUNCT
 -----
 Sistem	PROPN
 angkutan	NOUN
 massal	ADJ
 Kaohsiung	PROPN
 (	PUNCT
-	�雄
+高雄	PROPN
 大眾	PROPN
 捷	PROPN
 運	PROPN
-	統
+系統	PROPN
 ,	PUNCT
 juga	ADV
 dikenal	VERB
@@ -5169,7 +5169,7 @@ dengan	ADP
 alasan	NOUN
 konyol	ADJ
 seperti	ADP
-''	PUNCT
+"	PUNCT
 Aku	PRON
 tersesat	VERB
 di	ADP
@@ -5177,9 +5177,9 @@ jalan	NOUN
 bernama	VERB
 kehidupan	NOUN
 ,	PUNCT
-''	PUNCT
+"	PUNCT
 ataupun	CCONJ
-''	PUNCT
+"	PUNCT
 Di	ADP
 jalan	NOUN
 aku	PRON
@@ -5187,7 +5187,7 @@ bertemu	VERB
 wanita	NOUN
 tua	ADJ
 ,	PUNCT
-''	PUNCT
+"	PUNCT
 .	PUNCT
 Dibalik	ADP
 itu	DET
@@ -5445,7 +5445,7 @@ pernah	ADV
 berguru	VERB
 kepada	ADP
 Hosokawa	PROPN
-Y	sai
+Yūsai	PROPN
 yang	PRON
 dikenal	VERB
 ahli	NOUN
@@ -6167,7 +6167,7 @@ Titanic	PROPN
 mengangkut	VERB
 sekitar	ADP
 2.224	NUM
-&	;
+&amp;nbsp	NOUN
 ;	PUNCT
 orang	NOUN
 ketika	SCONJ
@@ -6187,7 +6187,7 @@ pada	ADP
 hari	NOUN
 Minggu	PROPN
 ,	PUNCT
-14	amp
+14&amp;nbsp	NUM
 ;	PUNCT
 April	PROPN
 1912	NUM
@@ -6291,9 +6291,9 @@ punggung	NOUN
 3	NUM
 dan	CCONJ
 berjuluk	VERB
-''	PUNCT
+"	PUNCT
 Maza	PROPN
-''	PUNCT
+"	PUNCT
 ,	PUNCT
 karena	SCONJ
 ia	PRON
@@ -6833,7 +6833,7 @@ produk	NOUN
 -	PUNCT
 produknya	NOUN
 -----
-''	PUNCT
+"	PUNCT
 Saya	PRON
 harap	VERB
 apa	PRON
@@ -7760,7 +7760,7 @@ Lalu	CCONJ
 Allah	PROPN
 berfirman	VERB
 :	PUNCT
-''	PUNCT
+"	PUNCT
 Tulislah	VERB
 catatan	NOUN
 amal	ADJ
@@ -8592,7 +8592,7 @@ terlihat	VERB
 dari	ADP
 penggunaan	NOUN
 istilah	NOUN
-''	PUNCT
+"	PUNCT
 yang	PRON
 hidup	ADJ
 .	PUNCT
@@ -9515,7 +9515,7 @@ kebanyakan	DET
 bergabung	VERB
 dengan	ADP
 Ernst	PROPN
-&	;
+&amp;	SYM
 Young	PROPN
 dan	CCONJ
 Deloitte	PROPN
@@ -9668,9 +9668,9 @@ bentuk	NOUN
 serapannya	NOUN
 yaitu	SCONJ
 kata	NOUN
-''	PUNCT
+"	PUNCT
 umat	NOUN
-''	PUNCT
+"	PUNCT
 ,	PUNCT
 juga	ADV
 digunakan	VERB
@@ -9977,24 +9977,24 @@ edisi	NOUN
 terbatas	VERB
 ,	PUNCT
 seperti	ADP
-''	PUNCT
+"	PUNCT
 Iron	PROPN
 Cross	PROPN
-''	PUNCT
+"	PUNCT
 ,	PUNCT
-''	PUNCT
+"	PUNCT
 Desert	PROPN
 Cruiser	PROPN
-''	PUNCT
+"	PUNCT
 ,	PUNCT
-''	PUNCT
+"	PUNCT
 White	PROPN
 Skipper	PROPN
-''	PUNCT
+"	PUNCT
 dan	CCONJ
-''	PUNCT
+"	PUNCT
 Duke	PROPN
-''	PUNCT
+"	PUNCT
 -----
 Bank	PROPN
 of	PROPN
@@ -10253,19 +10253,19 @@ merilis	VERB
 OST	NOUN
 yang	PRON
 disebut	VERB
-''	PUNCT
+"	PUNCT
 Garagabana	PROPN
-''	PUNCT
+"	PUNCT
 untuk	ADP
 permainan	NOUN
 online	NOUN
-''	PUNCT
+"	PUNCT
 Bust	PROPN
 -	PUNCT
 a	PROPN
 -	PUNCT
 Move	PROPN
-''	PUNCT
+"	PUNCT
 -----
 Madrasah	PROPN
 Aliyah	PROPN
@@ -11733,10 +11733,10 @@ sesat	ADJ
 ,	PUNCT
 atau	CCONJ
 menggunakan	VERB
-''	PUNCT
+"	PUNCT
 hukum	NOUN
 rahasia	ADJ
-''	PUNCT
+"	PUNCT
 yang	PRON
 terpisah	VERB
 dari	ADP
@@ -12521,12 +12521,12 @@ Tesha	PROPN
 Be	PROPN
 -	PUNCT
 Ab	PROPN
-''	PUNCT
+"	PUNCT
 Tanggal	NOUN
 9	NUM
 bulan	NOUN
 Ab	PROPN
-''	PUNCT
+"	PUNCT
 )	PUNCT
 adalah	AUX
 hari	NOUN

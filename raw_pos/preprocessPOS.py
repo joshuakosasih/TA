@@ -1,6 +1,3 @@
-import os
-import nltk
-
 """
 Preparing file
 """
@@ -25,7 +22,7 @@ for line in mydict:
             corpus.append(lines)
             lines = []
         else:
-            lines.append((nltk.word_tokenize(line)[1], nltk.word_tokenize(line)[3]))
+            lines.append((line.split('\t')[1], line.split('\t')[3]))
 
 outfile = open(name+'.pos', 'w')
 wi = 1
