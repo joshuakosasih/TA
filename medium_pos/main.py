@@ -159,7 +159,7 @@ total_false = total_nonzero - total_true
 
 print "True", total_true
 print "False", total_false
-print "True percentage", total_true/total_nonzero
+print "True percentage", float(total_true)/float(total_nonzero)
 """
 Predict function
 """
