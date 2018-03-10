@@ -170,11 +170,15 @@ embedded_sequences = embedding_layer(sequence_input)
 """
 Create keras char model
 """
+
+
 def reshape_one(c):
     return K.reshape(c, (tf.shape(c)[0] * padsize, char_padsize, CHAR_EMBEDDING_DIM))
 
+
 def reshape_two(c):
     return K.reshape(c, (tf.shape(c)[0] / padsize, padsize, CHAR_EMBEDDING_DIM))
+
 
 MAX_WORD_LENGTH = char_padsize
 
@@ -190,7 +194,8 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
-gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False), merge_mode='sum', weights=None)(rone)
+merge_m = raw_input('Enter merge mode for GRU Karakter: ')
+gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False), merge_mode=merge_m, weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
 
@@ -198,21 +203,31 @@ rtwo = Lambda(reshape_two)(gru_karakter)
 Combine word + char model
 """
 from keras.layers import Add
+print "Model Choice:"
+model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
+merge_m = raw_input('Enter merge mode for GRU Kata: ')
 
-merge = Add()([embedded_sequences, rtwo])
-
-gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode='concat', weights=None)(
-    merge)
+if model_choice == 1:
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode=merge_m, weights=None)(
+        embedded_sequences)
+elif model_choice == 2:
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode=merge_m, weights=None)(
+        rtwo)
+else:
+    merge = Add()([embedded_sequences, rtwo])
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode=merge_m, weights=None)(
+        merge)
 
 crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 
 preds = Dense(len(label.index) + 1, activation='softmax')(gru_kata)
 
+print "Model Choice:"
 model_choice = input('Enter 1 for CRF or 2 for Dense layer: ')
 
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
-    model = Model(sequence_input, preds)
+    model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
 model.summary()
 model.compile(loss='categorical_crossentropy',
@@ -296,10 +311,32 @@ for i in range(1, len(mateval)):
 
 total_false = total_nonzero - total_true
 
+print "Manual evaluation: (didn't understand why I made this)"
 print "True", total_true
 print "False", total_false
 print "True percentage", float(total_true) / float(total_nonzero)
 
+"""
+Sklearn evaluation
+"""
+label_index = range(1, len(label.index)+1)
+label_names = []
+for key, value in sorted(label.index.iteritems(), key=lambda (k, v): (v, k)):
+    label_names.append(key)
+
+from sklearn.metrics import classification_report
+
+# flatten list for sklearn evaluation
+y_true = [item for sublist in y_test.padded for item in sublist]
+y_pred = [item for sublist in results for item in sublist]
+print "Sklearn evaluation:"
+print classification_report(y_true, y_pred, labels=label_index, target_names=label_names)
+
+from sklearn.metrics import f1_score
+f1_mac = f1_score(y_true, y_pred, labels=label_index, average='macro')
+f1_mic = f1_score(y_true, y_pred, labels=label_index, average='micro')
+print 'F-1 Score:'
+print max([f1_mac, f1_mic])
 """
 Predict function
 """
