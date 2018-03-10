@@ -124,27 +124,27 @@ def reshape_one(c):
 def reshape_two(c):
     return K.reshape(c, (tf.shape(c)[0] / padsize, padsize, len(label.index)+1))
 
-MAX_SEQUENCE_LENGTH = char_padsize
+MAX_WORD_LENGTH = char_padsize
 
-embedding_layer = Embedding(len(char.index) + 1,
+embedding_layer_c = Embedding(len(char.index) + 1,
                             CHAR_EMBEDDING_DIM,
                             weights=[char_embedding_matrix],
-                            input_length=MAX_SEQUENCE_LENGTH,
+                            input_length=MAX_WORD_LENGTH,
                             trainable=False)
 
-sequence_input = Input(shape=(padsize, MAX_SEQUENCE_LENGTH,), dtype='int32')
+sequence_input_c = Input(shape=(padsize, MAX_WORD_LENGTH,), dtype='int32')
 
-embedded_sequences = embedding_layer(sequence_input)
+embedded_sequences_c = embedding_layer_c(sequence_input_c)
 
-rone = Lambda(reshape_one)(embedded_sequences)
+rone = Lambda(reshape_one)(embedded_sequences_c)
 
-gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False), merge_mode='concat', weights=None)(rone)
+gru_karakter_c = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False), merge_mode='concat', weights=None)(rone)
 
-preds = Dense(len(label.index) + 1, activation='softmax')(gru_karakter)
+preds = Dense(len(label.index) + 1, activation='softmax')(gru_karakter_c)
 
 rtwo = Lambda(reshape_two)(preds)
 
-model = Model(sequence_input, rtwo)
+model = Model(sequence_input_c, rtwo)
 
 model.summary()
 model.compile(loss='mean_squared_error',
