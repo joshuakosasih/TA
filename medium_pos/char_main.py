@@ -9,10 +9,14 @@ from keras.layers import Dense
 from keras.layers import Embedding
 from keras.layers import GRU
 from keras.layers import Input
+from keras.layers import Lambda
 from keras.layers import Flatten
 from keras.layers import Reshape
 from keras.utils import plot_model
 from keras.utils import to_categorical
+from keras import backend as K
+import tensorflow as tf
+
 from keras_contrib.layers import CRF
 
 """
@@ -26,7 +30,7 @@ test = DL('id-ud-test')
 Create Word & Label Index
 """
 
-char = DI(train.words)
+char = DI(train.words + test.words)
 label = DI([train.labels])  # training label and testing label should be the same
 
 print 'Found', char.cnt - 1, 'unique chars.'
@@ -37,7 +41,7 @@ Load pre-trained embedding
 """
 
 char_embeddings_index = {}
-CE_DIR = 'polyglot-char.txt'
+CE_DIR = raw_input('Enter embedding file name: ')
 
 print 'Loading', CE_DIR, '...'
 f = open(CE_DIR, 'r')
@@ -69,22 +73,21 @@ Converting text data to int using index
 """
 padsize = 188
 
-x_train_tmp1 = []
+x_test_tmp1 = []
 char_padsize = 0
 for sent in train.words:
     x_map = DM(sent, char.index)
     if x_map.padsize > char_padsize :
         char_padsize = x_map.padsize
-    x_train_tmp1.append(x_map)
+    x_test_tmp1.append(x_map)
 
 # x_test = DM(test.words[0], char.index)
-
 # char_padsize = max([x_train.char_padsize, x_test.char_padsize])
 
-x_train_tmp2 = []
-for sent in x_train_tmp1:
+x_test_tmp2 = []
+for sent in x_test_tmp1:
     sent.pad(char_padsize)
-    x_train_tmp2.append(sent.padded)
+    x_test_tmp2.append(sent.padded)
 
 print('Padded until %s chars.' % char_padsize)
 
@@ -93,7 +96,7 @@ for i in range(char_padsize):
     zeroes.append(0)
 
 x_train = []
-for sent in x_train_tmp2:
+for sent in x_test_tmp2:
     padded_sent = sent
     pad = padsize - len(sent)
     for i in range(pad):
@@ -113,6 +116,14 @@ y_encoded = to_categorical(y_train.padded, num_classes=len(label.index) + 1)
 Create keras model
 """
 
+
+def reshape_one(c):
+    return K.reshape(c, (tf.shape(c)[0] * padsize, char_padsize, CHAR_EMBEDDING_DIM))
+
+
+def reshape_two(c):
+    return K.reshape(c, (tf.shape(c)[0] / padsize, padsize, len(label.index)+1))
+
 MAX_SEQUENCE_LENGTH = char_padsize
 
 embedding_layer = Embedding(len(char.index) + 1,
@@ -125,14 +136,15 @@ sequence_input = Input(shape=(padsize, MAX_SEQUENCE_LENGTH,), dtype='int32')
 
 embedded_sequences = embedding_layer(sequence_input)
 
-reshape_layer = Reshape(padsize, CHAR_EMBEDDING_DIM*char_padsize)(embedded_sequences)
+rone = Lambda(reshape_one)(embedded_sequences)
 
-gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False), merge_mode='concat', weights=None)(
-    embedded_sequences)
+gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False), merge_mode='concat', weights=None)(rone)
 
 preds = Dense(len(label.index) + 1, activation='softmax')(gru_karakter)
 
-model = Model(sequence_input, preds)
+rtwo = Lambda(reshape_two)(preds)
+
+model = Model(sequence_input, rtwo)
 
 model.summary()
 model.compile(loss='mean_squared_error',
@@ -141,9 +153,41 @@ model.compile(loss='mean_squared_error',
 
 plot_model(model, to_file='model.png')
 
-epoch = 10
-batch = 1
+epoch = 2
+batch = 8
 model.fit(np.array(x_train), np.array(y_encoded), epochs=epoch, batch_size=batch)
+
+"""
+Converting text data to int using index
+"""
+
+x_test_tmp1 = []
+for sent in test.words:
+    x_map = DM(sent, char.index)
+    if x_map.padsize > char_padsize :
+        char_padsize = x_map.padsize
+    x_test_tmp1.append(x_map)
+
+x_test_tmp2 = []
+for sent in x_test_tmp1:
+    sent.pad(char_padsize)
+    x_test_tmp2.append(sent.padded)
+
+print('Padded until %s chars.' % char_padsize)
+
+zeroes = []
+for i in range(char_padsize):
+    zeroes.append(0)
+
+x_test = []
+for sent in x_test_tmp2:
+    padded_sent = sent
+    pad = padsize - len(sent)
+    for i in range(pad):
+        padded_sent = np.vstack((zeroes, padded_sent))
+    x_test.append(padded_sent)
+
+print('Padded until %s tokens.' % padsize)
 
 """
 Evaluate
@@ -156,15 +200,17 @@ for labr in range(label.cnt):
         row.append(0)
     mateval.append(row)
 
-x_test.pad(char_padsize)
-results = []
 print "Computing..."
-result = []
-for token in raw_results:
-    value = np.argmax(token)
-    result.append(value)
+raw_results = model.predict(np.array(x_test))
+results = []
+for raw_result in raw_results:
+    result = []
+    for token in raw_result:
+        value = np.argmax(token)
+        result.append(value)
+    results.append(result)
 
-y_test.pad(char_padsize)
+y_test.pad(padsize)
 total_nonzero = 0  # to get labelled token total number
 for i, sent in enumerate(y_test.padded):
     for j, token in enumerate(sent):
@@ -183,6 +229,7 @@ total_false = total_nonzero - total_true
 print "True", total_true
 print "False", total_false
 print "True percentage", float(total_true)/float(total_nonzero)
+
 """
 Predict function
 """
