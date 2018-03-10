@@ -1,5 +1,4 @@
 import numpy as np
-import PredictModule as pm
 from DataProcessor import DataIndexer as DI
 from DataProcessor import DataLoader as DL
 from DataProcessor import DataMapper as DM
@@ -10,8 +9,6 @@ from keras.layers import Embedding
 from keras.layers import GRU
 from keras.layers import Input
 from keras.layers import Lambda
-from keras.layers import Flatten
-from keras.layers import Reshape
 from keras.utils import plot_model
 from keras.utils import to_categorical
 from keras import backend as K
@@ -77,7 +74,7 @@ x_test_tmp1 = []
 char_padsize = 0
 for sent in train.words:
     x_map = DM(sent, char.index)
-    if x_map.padsize > char_padsize :
+    if x_map.padsize > char_padsize:
         char_padsize = x_map.padsize
     x_test_tmp1.append(x_map)
 
@@ -122,15 +119,16 @@ def reshape_one(c):
 
 
 def reshape_two(c):
-    return K.reshape(c, (tf.shape(c)[0] / padsize, padsize, len(label.index)+1))
+    return K.reshape(c, (tf.shape(c)[0] / padsize, padsize, len(label.index) + 1))
+
 
 MAX_WORD_LENGTH = char_padsize
 
 embedding_layer_c = Embedding(len(char.index) + 1,
-                            CHAR_EMBEDDING_DIM,
-                            weights=[char_embedding_matrix],
-                            input_length=MAX_WORD_LENGTH,
-                            trainable=False)
+                              CHAR_EMBEDDING_DIM,
+                              weights=[char_embedding_matrix],
+                              input_length=MAX_WORD_LENGTH,
+                              trainable=False)
 
 sequence_input_c = Input(shape=(padsize, MAX_WORD_LENGTH,), dtype='int32')
 
@@ -138,9 +136,10 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
-gru_karakter_c = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False), merge_mode='concat', weights=None)(rone)
+merge_m = raw_input('Enter merge mode: ')
+gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False), merge_mode=merge_m, weights=None)(rone)
 
-preds = Dense(len(label.index) + 1, activation='softmax')(gru_karakter_c)
+preds = Dense(len(label.index) + 1, activation='softmax')(gru_karakter)
 
 rtwo = Lambda(reshape_two)(preds)
 
@@ -164,7 +163,7 @@ Converting text data to int using index
 x_test_tmp1 = []
 for sent in test.words:
     x_map = DM(sent, char.index)
-    if x_map.padsize > char_padsize :
+    if x_map.padsize > char_padsize:
         char_padsize = x_map.padsize
     x_test_tmp1.append(x_map)
 
@@ -228,7 +227,7 @@ total_false = total_nonzero - total_true
 
 print "True", total_true
 print "False", total_false
-print "True percentage", float(total_true)/float(total_nonzero)
+print "True percentage", float(total_true) / float(total_nonzero)
 
 """
 Predict function
