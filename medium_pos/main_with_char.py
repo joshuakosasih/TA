@@ -15,6 +15,25 @@ from keras_contrib.layers import CRF
 from keras import backend as K
 import tensorflow as tf
 
+trainable = False
+mask = False
+
+
+def embeddingPrompt(name):
+    global trainable
+    trainable = raw_input('Is ' + name + ' embedding trainable? ')
+    global mask
+    mask = raw_input('Use mask for zeros in ' + name + ' embedding? ')
+    if 'y' in trainable:
+        trainable = True
+    else:
+        trainable = False
+    if 'y' in mask:
+        mask = True
+    else:
+        mask = False
+
+
 """
 Preparing file
 """
@@ -124,7 +143,7 @@ Converting char text data to int using index
 x_train_tmp1 = []
 char_padsize = 0
 for sent in train.words:
-    x_map = DM(sent, char.index)
+    x_map = DM(sent, char.index, False)
     if x_map.padsize > char_padsize:
         char_padsize = x_map.padsize
     x_train_tmp1.append(x_map)
@@ -157,11 +176,13 @@ Create keras word model
 """
 MAX_SEQUENCE_LENGTH = padsize
 
+embeddingPrompt('word')
 embedding_layer = Embedding(len(word.index) + 1,
                             EMBEDDING_DIM,
                             weights=[embedding_matrix],
                             input_length=MAX_SEQUENCE_LENGTH,
-                            trainable=False)
+                            trainable=trainable,
+                            mask_zero=mask)
 
 sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
 
@@ -182,6 +203,7 @@ def reshape_two(c):
 
 MAX_WORD_LENGTH = char_padsize
 
+embeddingPrompt('char')
 embedding_layer_c = Embedding(len(char.index) + 1,
                               CHAR_EMBEDDING_DIM,
                               weights=[char_embedding_matrix],
@@ -203,6 +225,7 @@ rtwo = Lambda(reshape_two)(gru_karakter)
 Combine word + char model
 """
 from keras.layers import Add
+
 print "Model Choice:"
 model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
 merge_m = raw_input('Enter merge mode for GRU Kata: ')
@@ -247,7 +270,7 @@ Converting text data to int using index
 """
 x_test_tmp1 = []
 for sent in test.words:
-    x_map = DM(sent, char.index)
+    x_map = DM(sent, char.index, False)
     if x_map.padsize > char_padsize:
         char_padsize = x_map.padsize
     x_test_tmp1.append(x_map)
@@ -319,7 +342,7 @@ print "True percentage", float(total_true) / float(total_nonzero)
 """
 Sklearn evaluation
 """
-label_index = range(1, len(label.index)+1)
+label_index = range(1, len(label.index) + 1)
 label_names = []
 for key, value in sorted(label.index.iteritems(), key=lambda (k, v): (v, k)):
     label_names.append(key)
@@ -333,6 +356,7 @@ print "Sklearn evaluation:"
 print classification_report(y_true, y_pred, labels=label_index, target_names=label_names)
 
 from sklearn.metrics import f1_score
+
 f1_mac = f1_score(y_true, y_pred, labels=label_index, average='macro')
 f1_mic = f1_score(y_true, y_pred, labels=label_index, average='micro')
 print 'F-1 Score:'
