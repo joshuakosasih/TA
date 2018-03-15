@@ -34,6 +34,15 @@ def embeddingPrompt(name):
         mask = False
 
 
+def activationPrompt(name):
+    print "List of Activation Functions\n" \
+          "1. softmax\t\t2. elu\t\t3. selu\t\t4. softplus\t\t5. softsign\n" \
+          "6. relu\t\t7. tanh\t\t8. sigmoid\t\t9. hard_sigmoid\t\t10. linear"
+    choice = input('Enter type of activation function for ' + name + ': ')
+    activations = ['softmax', 'elu', 'selu', 'softplus', 'softsign',
+                   'relu', 'tanh', 'sigmoid', 'hard_sigmoid', 'linear']
+    return activations[choice-1]
+
 """
 Preparing file
 """
@@ -225,7 +234,7 @@ rtwo = Lambda(reshape_two)(gru_karakter)
 """
 Combine word + char model
 """
-from keras.layers import Add
+from keras.layers import Add, Subtract, Multiply, Average, Maximum
 
 print "Model Choice:"
 model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
@@ -238,7 +247,17 @@ elif model_choice == 2:
     gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode=merge_m, weights=None)(
         rtwo)
 else:
-    merge = Add()([embedded_sequences, rtwo])
+    combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
+    if combine == 2:
+        merge = Subtract()([embedded_sequences, rtwo])
+    elif combine == 3:
+        merge = Multiply()([embedded_sequences, rtwo])
+    elif combine == 4:
+        merge = Average()([embedded_sequences, rtwo])
+    elif combine == 5:
+        merge = Maximum()([embedded_sequences, rtwo])
+    else:
+        merge = Add()([embedded_sequences, rtwo])
     gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode=merge_m, weights=None)(
         merge)
 
@@ -253,9 +272,10 @@ model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
+optimizer = raw_input('Enter optimizer (default rmsprop): ')
 model.summary()
 model.compile(loss='categorical_crossentropy',
-              optimizer='rmsprop',
+              optimizer=optimizer,
               metrics=['acc'])
 
 plot_model(model, to_file='model.png')
