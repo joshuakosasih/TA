@@ -208,7 +208,8 @@ embedding_layer_c = Embedding(len(char.index) + 1,
                               CHAR_EMBEDDING_DIM,
                               weights=[char_embedding_matrix],
                               input_length=MAX_WORD_LENGTH,
-                              trainable=False)
+                              trainable=trainable,
+                              mask_zero=mask)
 
 sequence_input_c = Input(shape=(padsize, MAX_WORD_LENGTH,), dtype='int32')
 
