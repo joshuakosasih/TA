@@ -275,6 +275,7 @@ if model_choice == 2:
 
 optimizer = sys.argv[1]
 model.summary()
+print "Optimizer:", optimizer
 model.compile(loss='categorical_crossentropy',
               optimizer=optimizer,
               metrics=['acc'])
