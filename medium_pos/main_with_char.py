@@ -15,11 +15,11 @@ from keras_contrib.layers import CRF
 from keras import backend as K
 import tensorflow as tf
 
-trainable = False
-mask = False
+trainable = True  # word embedding is trainable or not
+mask = True  # mask pad (zeros) or not
 
 
-def embeddingPrompt(name):
+def embeddingPrompt(name):  # not used anymore, default is true for both trainable and mask
     global trainable
     trainable = raw_input('Is ' + name + ' embedding trainable? ')
     global mask
@@ -185,7 +185,7 @@ Create keras word model
 """
 MAX_SEQUENCE_LENGTH = padsize
 
-embeddingPrompt('word')
+# embeddingPrompt('word')
 embedding_layer = Embedding(len(word.index) + 1,
                             EMBEDDING_DIM,
                             weights=[embedding_matrix],
@@ -212,7 +212,7 @@ def reshape_two(c):
 
 MAX_WORD_LENGTH = char_padsize
 
-embeddingPrompt('char')
+# embeddingPrompt('char')
 embedding_layer_c = Embedding(len(char.index) + 1,
                               CHAR_EMBEDDING_DIM,
                               weights=[char_embedding_matrix],
@@ -273,8 +273,9 @@ if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
 optimizer = raw_input('Enter optimizer (default rmsprop): ')
+loss = raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
-model.compile(loss='categorical_crossentropy',
+model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['acc'])
 
