@@ -14,25 +14,16 @@ from keras.utils import to_categorical
 from keras_contrib.layers import CRF
 from keras import backend as K
 import tensorflow as tf
+
 import sys
 
-trainable = True
-mask = True
+trainable = True  # word embedding is trainable or not
+mask = True  # mask pad (zeros) or not
 
-
-def embeddingPrompt(name):
-    global trainable
-    trainable = raw_input('Is ' + name + ' embedding trainable? ')
-    global mask
-    mask = raw_input('Use mask for zeros in ' + name + ' embedding? ')
-    if 'y' in trainable:
-        trainable = True
-    else:
-        trainable = False
-    if 'y' in mask:
-        mask = True
-    else:
-        mask = False
+loss_func = ['categorical_crossentropy', 'categorical_hinge', 'sparse_categorical_crossentropy',
+             'binary_crossentropy', 'kullback_leibler_divergence', 'poisson', 'cosine_proximity',
+             'logcosh', 'mean_squared_error', 'mean_absolute_error', 'mean_absolute_percentage_error',
+             'mean_squared_logarithmic_error', 'squared_hinge', 'hinge']
 
 
 def activationPrompt(name):
@@ -133,15 +124,15 @@ print('%s unique chars not found in embedding.' % len(char_notfound))
 Converting word text data to int using index
 """
 
-x_train = DM(train.words, word.index)
-x_test = DM(test.words, word.index)
+x_train = DM(train.words, word.index, False)
+x_test = DM(test.words, word.index, False)
 
 padsize = max([x_train.padsize, x_test.padsize])
 x_train.pad(padsize)
 print('Padded until %s tokens.' % padsize)
 
-y_train = DM(train.labels, label.index)
-y_test = DM(test.labels, label.index)
+y_train = DM(train.labels, label.index, False)
+y_test = DM(test.labels, label.index, False)
 
 y_train.pad(padsize)
 y_encoded = to_categorical(y_train.padded)
@@ -274,14 +265,15 @@ if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
 optimizer = sys.argv[1]
+loss = loss_func[int(sys.argv[2])]
 model.summary()
-print "Optimizer:", optimizer
-model.compile(loss='categorical_crossentropy',
+model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['acc'])
 
-plot_model(model, to_file='model.png')
-
+# plot_model(model, to_file='model.png')
+print "|- Optimizer:", optimizer
+print "|- Loss function:", loss
 epoch = 3
 batch = 8
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
