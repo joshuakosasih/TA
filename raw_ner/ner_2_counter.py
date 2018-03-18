@@ -1,6 +1,6 @@
 import os
 
-myfile = open('ner_test_2.txt', 'r')
+myfile = open('ner_2_test.txt', 'r')
 
 netype = []
 necnt = []

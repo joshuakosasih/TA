@@ -48,8 +48,8 @@ def activationPrompt(name):
 Preparing file
 """
 
-train = DL('id-ud-train')
-test = DL('id-ud-test')
+train = DL('ner_2_train')
+test = DL('ner_2_test')
 
 """
 Create Word & Label Index
@@ -68,8 +68,8 @@ Load pre-trained word embedding
 """
 
 embeddings_index = {}
-WE_DIR = raw_input('Enter word embedding file name: ')
-# WE_DIR = 'polyglot.txt'
+# WE_DIR = raw_input('Enter word embedding file name: ')
+WE_DIR = 'polyglot.txt'
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -101,8 +101,8 @@ Load pre-trained char embedding
 """
 
 char_embeddings_index = {}
-CE_DIR = raw_input('Enter char embedding file name: ')
-# CE_DIR = 'polyglot-char.txt'
+# CE_DIR = raw_input('Enter char embedding file name: ')
+CE_DIR = 'polyglot-char.txt'
 
 print 'Loading', CE_DIR, '...'
 f = open(CE_DIR, 'r')
@@ -136,7 +136,7 @@ Converting word text data to int using index
 x_train = DM(train.words, word.index)
 x_test = DM(test.words, word.index)
 
-padsize = max([x_train.padsize, x_test.padsize])
+padsize = 188 # max([x_train.padsize, x_test.padsize])
 x_train.pad(padsize)
 print('Padded until %s tokens.' % padsize)
 
@@ -151,7 +151,7 @@ Converting char text data to int using index
 """
 
 x_train_tmp1 = []
-char_padsize = 0
+char_padsize = 25
 for sent in train.words:
     x_map = DM(sent, char.index, False)
     if x_map.padsize > char_padsize:
@@ -175,9 +175,10 @@ x_train_char = []
 for sent in x_train_tmp2:
     padded_sent = sent
     pad = padsize - len(sent)
-    for i in range(pad):
-        padded_sent = np.vstack((zeroes, padded_sent))
-    x_train_char.append(padded_sent)
+    if len(padded_sent) > 0:
+        for i in range(pad):
+            padded_sent = np.vstack((zeroes, padded_sent))
+        x_train_char.append(padded_sent)
 
 print('Padded until %s tokens.' % padsize)
 
@@ -228,8 +229,10 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
 merge_m = raw_input('Enter merge mode for GRU Karakter: ')
-dropout = input('Enter GRU Karakter dropout: ')
-rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
+# dropout = input('Enter GRU Karakter dropout: ')
+# rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
+dropout = 0.1
+rec_dropout = 0.1
 gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
@@ -242,8 +245,8 @@ from keras.layers import Add, Subtract, Multiply, Average, Maximum
 print "Model Choice:"
 model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
 merge_m = raw_input('Enter merge mode for GRU Kata: ')
-dropout = input('Enter GRU Karakter dropout: ')
-rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
+# dropout = input('Enter GRU Karakter dropout: ')
+# rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 if model_choice == 1:
     gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
         embedded_sequences)
@@ -290,7 +293,6 @@ batch = input('Enter number of batch size: ')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
           epochs=epoch, batch_size=batch)
-
 
 """
 Converting text data to int using index
@@ -369,7 +371,7 @@ print "True percentage", float(total_true) / float(total_nonzero)
 """
 Sklearn evaluation
 """
-label_index = range(1, len(label.index) + 1)
+label_index = range(2, len(label.index) + 1)
 label_names = []
 for key, value in sorted(label.index.iteritems(), key=lambda (k, v): (v, k)):
     label_names.append(key)
@@ -380,7 +382,7 @@ from sklearn.metrics import classification_report
 y_true = [item for sublist in y_test.padded for item in sublist]
 y_pred = [item for sublist in results for item in sublist]
 print "Sklearn evaluation:"
-print classification_report(y_true, y_pred, labels=label_index, target_names=label_names)
+print classification_report(y_true, y_pred, labels=label_index, target_names=label_names[1:])
 
 from sklearn.metrics import f1_score
 
