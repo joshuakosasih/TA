@@ -15,24 +15,10 @@ from keras_contrib.layers import CRF
 from keras import backend as K
 from keras.models import load_model
 import tensorflow as tf
+import sys
 
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
-
-
-def embeddingPrompt(name):  # not used anymore, default is true for both trainable and mask
-    global trainable
-    trainable = raw_input('Is ' + name + ' embedding trainable? ')
-    global mask
-    mask = raw_input('Use mask for zeros in ' + name + ' embedding? ')
-    if 'y' in trainable:
-        trainable = True
-    else:
-        trainable = False
-    if 'y' in mask:
-        mask = True
-    else:
-        mask = False
 
 
 def activationPrompt(name):
@@ -56,8 +42,8 @@ Load pre-trained word embedding
 """
 
 embeddings_index = {}
-WE_DIR = raw_input('Enter word embedding file name: ')
-# WE_DIR = 'polyglot.txt'
+# WE_DIR = raw_input('Enter word embedding file name: ')
+WE_DIR = sys.argv[1]
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -80,8 +66,8 @@ Load pre-trained char embedding
 """
 
 char_embeddings_index = {}
-CE_DIR = raw_input('Enter char embedding file name: ')
-# CE_DIR = 'polyglot-char.txt'
+# CE_DIR = raw_input('Enter char embedding file name: ')
+CE_DIR = sys.argv[2]
 
 print 'Loading', CE_DIR, '...'
 f = open(CE_DIR, 'r')
@@ -243,9 +229,12 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
-merge_m = raw_input('Enter merge mode for GRU Karakter: ')
-dropout = input('Enter GRU Karakter dropout: ')
-rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
+# merge_m = raw_input('Enter merge mode for GRU Karakter: ')
+merge_m = 'sum'
+# dropout = input('Enter GRU Karakter dropout: ')
+dropout = 0.1
+# rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
+rec_dropout = 0.1
 gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
@@ -256,18 +245,24 @@ Combine word + char model
 from keras.layers import Add, Subtract, Multiply, Average, Maximum
 
 print "Model Choice:"
-model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
-merge_m = raw_input('Enter merge mode for GRU Kata: ')
-dropout = input('Enter GRU Karakter dropout: ')
-rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
+# model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
+model_choice = sys.argv[3]
+# merge_m = raw_input('Enter merge mode for GRU Kata: ')
+merge_m = 'concat'
+# dropout = input('Enter GRU Karakter dropout: ')
+# rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 if model_choice == 1:
+    print 'WE only'
     gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
         embedded_sequences)
 elif model_choice == 2:
+    print 'CE only'
     gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
         rtwo)
 else:
-    combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
+    # combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
+    combine = 1
+    print 'Both WE & CE'
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
     elif combine == 3:
@@ -286,23 +281,28 @@ crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 preds = Dense(len(label.index) + 1, activation='softmax')(gru_kata)
 
 print "Model Choice:"
-model_choice = input('Enter 1 for CRF or 2 for Dense layer: ')
+# model_choice = input('Enter 1 for CRF or 2 for Dense layer: ')
+model_choice = 1
 
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
-optimizer = raw_input('Enter optimizer (default rmsprop): ')
-loss = raw_input('Enter loss function (default categorical_crossentropy): ')
+# optimizer = raw_input('Enter optimizer (default rmsprop): ')
+optimizer = 'adagrad'
+# loss = raw_input('Enter loss function (default categorical_crossentropy): ')
+loss = 'categorical_crossentropy'
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['acc'])
 
-plot_model(model, to_file='model.png')
+# plot_model(model, to_file='model.png')
 
-epoch = input('Enter number of epochs: ')
-batch = input('Enter number of batch size: ')
+# epoch = input('Enter number of epochs: ')
+epoch = 3
+# batch = input('Enter number of batch size: ')
+batch = 8
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
           epochs=epoch, batch_size=batch)
