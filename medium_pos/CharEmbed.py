@@ -18,7 +18,7 @@ with open(file_path, 'rb') as f:
                 else:
                     vectors[char] = (vec, 1)
 
-base_name = os.path.splitext(os.path.basename(file_path))[0] + '-char.txt'
+base_name = os.path.splitext(os.path.basename(file_path))[0] + '-char.vec'
 with open(base_name, 'wb') as f2:
     for word in vectors:
         avg_vector = np.round(

@@ -90,7 +90,10 @@ class DataMapper:
         for sent in data:
             tokens = []
             for token in sent:
-                tokens.append(index[token])
+                try:
+                    tokens.append(index[token])
+                except KeyError:
+                    tokens.append(0)
             self.mapped.append(tokens)
             if len(tokens) > self.padsize:
                 self.padsize = len(tokens)
