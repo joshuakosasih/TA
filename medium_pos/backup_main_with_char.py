@@ -103,8 +103,8 @@ for chr in char_embeddings_index:
 Create Word & Label Index
 """
 
-char = DI(train.words + ce_words)
-word = DI([train.words, [we_words]])
+char = DI(train.words + test.words)
+word = DI([train.words, test.words])
 label = DI([train.labels])  # training label and testing label should be the same
 
 print 'Found', word.cnt - 1, 'unique words.'

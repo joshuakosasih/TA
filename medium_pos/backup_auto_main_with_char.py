@@ -13,26 +13,17 @@ from keras.utils import plot_model
 from keras.utils import to_categorical
 from keras_contrib.layers import CRF
 from keras import backend as K
-from keras.models import load_model
 import tensorflow as tf
+
+import sys
 
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
 
-
-def embeddingPrompt(name):  # not used anymore, default is true for both trainable and mask
-    global trainable
-    trainable = raw_input('Is ' + name + ' embedding trainable? ')
-    global mask
-    mask = raw_input('Use mask for zeros in ' + name + ' embedding? ')
-    if 'y' in trainable:
-        trainable = True
-    else:
-        trainable = False
-    if 'y' in mask:
-        mask = True
-    else:
-        mask = False
+loss_func = ['categorical_crossentropy', 'categorical_hinge', 'sparse_categorical_crossentropy',
+             'binary_crossentropy', 'kullback_leibler_divergence', 'poisson', 'cosine_proximity',
+             'logcosh', 'mean_squared_error', 'mean_absolute_error', 'mean_absolute_percentage_error',
+             'mean_squared_logarithmic_error', 'squared_hinge', 'hinge']
 
 
 def activationPrompt(name):
@@ -52,12 +43,24 @@ train = DL('id-ud-train')
 test = DL('id-ud-test')
 
 """
+Create Word & Label Index
+"""
+
+char = DI(train.words + test.words)
+word = DI([train.words, test.words])
+label = DI([train.labels])  # training label and testing label should be the same
+
+print 'Found', word.cnt - 1, 'unique words.'
+print 'Found', char.cnt - 1, 'unique chars.'
+print 'Found', label.cnt - 1, 'unique labels.'
+
+"""
 Load pre-trained word embedding
 """
 
 embeddings_index = {}
-WE_DIR = raw_input('Enter word embedding file name: ')
-# WE_DIR = 'polyglot.txt'
+# WE_DIR = raw_input('Enter word embedding file name: ')
+WE_DIR = 'polyglot.txt'
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -70,50 +73,6 @@ for line in f:
 f.close()
 
 print('Found %s word vectors.' % len(embeddings_index))
-
-we_words = []
-for wrd in embeddings_index:
-    we_words.append(wrd)
-
-"""
-Load pre-trained char embedding
-"""
-
-char_embeddings_index = {}
-CE_DIR = raw_input('Enter char embedding file name: ')
-# CE_DIR = 'polyglot-char.txt'
-
-print 'Loading', CE_DIR, '...'
-f = open(CE_DIR, 'r')
-for line in f:
-    values = line.split()
-    chars = values[0]
-    coefs = np.asarray(values[1:], dtype='float32')
-    char_embeddings_index[chars] = coefs
-
-f.close()
-
-print('Found %s char vectors.' % len(char_embeddings_index))
-
-ce_words = []
-for chr in char_embeddings_index:
-    ce_words.append(chr)
-
-"""
-Create Word & Label Index
-"""
-
-char = DI(train.words + ce_words)
-word = DI([train.words, [we_words]])
-label = DI([train.labels])  # training label and testing label should be the same
-
-print 'Found', word.cnt - 1, 'unique words.'
-print 'Found', char.cnt - 1, 'unique chars.'
-print 'Found', label.cnt - 1, 'unique labels.'
-
-"""
-Create word embedding matrix
-"""
 
 EMBEDDING_DIM = len(coefs)
 
@@ -129,8 +88,24 @@ for wrd, i in word.index.items():
 print('%s unique words not found in embedding.' % len(notfound))
 
 """
-Create char embedding matrix
+Load pre-trained char embedding
 """
+
+char_embeddings_index = {}
+# CE_DIR = raw_input('Enter char embedding file name: ')
+CE_DIR = 'polyglot-char.txt'
+
+print 'Loading', CE_DIR, '...'
+f = open(CE_DIR, 'r')
+for line in f:
+    values = line.split()
+    chars = values[0]
+    coefs = np.asarray(values[1:], dtype='float32')
+    char_embeddings_index[chars] = coefs
+
+f.close()
+
+print('Found %s char vectors.' % len(char_embeddings_index))
 
 CHAR_EMBEDDING_DIM = len(coefs)
 
@@ -149,15 +124,15 @@ print('%s unique chars not found in embedding.' % len(char_notfound))
 Converting word text data to int using index
 """
 
-x_train = DM(train.words, word.index)
-x_test = DM(test.words, word.index)
+x_train = DM(train.words, word.index, False)
+x_test = DM(test.words, word.index, False)
 
 padsize = max([x_train.padsize, x_test.padsize])
 x_train.pad(padsize)
 print('Padded until %s tokens.' % padsize)
 
-y_train = DM(train.labels, label.index)
-y_test = DM(test.labels, label.index)
+y_train = DM(train.labels, label.index, False)
+y_test = DM(test.labels, label.index, False)
 
 y_train.pad(padsize)
 y_encoded = to_categorical(y_train.padded)
@@ -243,10 +218,8 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
-merge_m = raw_input('Enter merge mode for GRU Karakter: ')
-dropout = input('Enter GRU Karakter dropout: ')
-rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
-gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
+merge_m = 'sum'
+gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False), merge_mode=merge_m, weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
 
@@ -256,18 +229,17 @@ Combine word + char model
 from keras.layers import Add, Subtract, Multiply, Average, Maximum
 
 print "Model Choice:"
-model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
-merge_m = raw_input('Enter merge mode for GRU Kata: ')
-dropout = input('Enter GRU Karakter dropout: ')
-rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
+model_choice = 3
+merge_m = 'concat'
+
 if model_choice == 1:
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode=merge_m, weights=None)(
         embedded_sequences)
 elif model_choice == 2:
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode=merge_m, weights=None)(
         rtwo)
 else:
-    combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
+    combine = 1
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
     elif combine == 3:
@@ -278,7 +250,7 @@ else:
         merge = Maximum()([embedded_sequences, rtwo])
     else:
         merge = Add()([embedded_sequences, rtwo])
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True), merge_mode=merge_m, weights=None)(
         merge)
 
 crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
@@ -286,27 +258,27 @@ crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 preds = Dense(len(label.index) + 1, activation='softmax')(gru_kata)
 
 print "Model Choice:"
-model_choice = input('Enter 1 for CRF or 2 for Dense layer: ')
+model_choice = 1
 
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
-optimizer = raw_input('Enter optimizer (default rmsprop): ')
-loss = raw_input('Enter loss function (default categorical_crossentropy): ')
+optimizer = sys.argv[1]
+loss = loss_func[int(sys.argv[2])]
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['acc'])
 
-plot_model(model, to_file='model.png')
-
-epoch = input('Enter number of epochs: ')
-batch = input('Enter number of batch size: ')
+# plot_model(model, to_file='model.png')
+print "|- Optimizer:", optimizer
+print "|- Loss function:", loss
+epoch = 3
+batch = 8
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
           epochs=epoch, batch_size=batch)
-
 
 """
 Converting text data to int using index
