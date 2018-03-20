@@ -246,7 +246,7 @@ from keras.layers import Add, Subtract, Multiply, Average, Maximum
 
 print "Model Choice:"
 # model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
-model_choice = sys.argv[3]
+model_choice = int(sys.argv[3])
 # merge_m = raw_input('Enter merge mode for GRU Kata: ')
 merge_m = 'concat'
 # dropout = input('Enter GRU Karakter dropout: ')
