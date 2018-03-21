@@ -87,6 +87,7 @@ class DataMapper:
         self.padsize = 0
         self.mapped = []
         self.padded = []
+        self.oov = 0
         for sent in data:
             tokens = []
             for token in sent:
@@ -94,6 +95,7 @@ class DataMapper:
                     tokens.append(index[token])
                 except KeyError:
                     tokens.append(0)
+                    self.oov = self.oov + 1
             self.mapped.append(tokens)
             if len(tokens) > self.padsize:
                 self.padsize = len(tokens)

@@ -151,6 +151,7 @@ Converting word text data to int using index
 
 x_train = DM(train.words, word.index)
 x_test = DM(test.words, word.index)
+print "OOV:", x_test.oov
 
 padsize = max([x_train.padsize, x_test.padsize])
 x_train.pad(padsize)
