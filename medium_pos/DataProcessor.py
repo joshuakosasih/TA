@@ -79,6 +79,9 @@ class DataMapper:
         mapped
         padded
         padsize
+
+        oov
+        oov_index
     """
     def __init__(self, data, index, verbose=True):
         self.verbose = verbose
@@ -87,6 +90,7 @@ class DataMapper:
         self.padsize = 0
         self.mapped = []
         self.padded = []
+        self.oov_index = []
         self.oov = 0
         for sent in data:
             tokens = []
@@ -96,6 +100,8 @@ class DataMapper:
                 except KeyError:
                     tokens.append(0)
                     self.oov = self.oov + 1
+                    if token not in self.oov_index:
+                        self.oov_index.append(token)
             self.mapped.append(tokens)
             if len(tokens) > self.padsize:
                 self.padsize = len(tokens)

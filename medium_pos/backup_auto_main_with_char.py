@@ -60,7 +60,7 @@ Load pre-trained word embedding
 
 embeddings_index = {}
 # WE_DIR = raw_input('Enter word embedding file name: ')
-WE_DIR = 'polyglot.txt'
+WE_DIR = 'polyglot.vec'
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -93,7 +93,7 @@ Load pre-trained char embedding
 
 char_embeddings_index = {}
 # CE_DIR = raw_input('Enter char embedding file name: ')
-CE_DIR = 'polyglot-char.txt'
+CE_DIR = 'polyglot-char.vec'
 
 print 'Loading', CE_DIR, '...'
 f = open(CE_DIR, 'r')
@@ -280,6 +280,16 @@ model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
           epochs=epoch, batch_size=batch)
 
+import pickle
+for i in range(len(model.layers)):
+    with open('weights-'+str(i)+'.wgt', 'wb') as fp:
+        pickle.dump(model.layers[i].get_weights(), fp)
+
+for i in range(len(model.layers)):
+    with open("weights-"+str(i)+".wgt", "rb") as fp:
+        w = pickle.load(fp)
+        model.layers[i].set_weights(w)
+
 """
 Converting text data to int using index
 """
@@ -381,3 +391,6 @@ Predict function
 """
 
 # pm.predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua', padsize)
+
+
+# 1 epoch, f-1 0.921678695536
