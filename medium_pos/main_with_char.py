@@ -406,8 +406,16 @@ f1_mac = f1_score(y_true, y_pred, labels=label_index, average='macro')
 f1_mic = f1_score(y_true, y_pred, labels=label_index, average='micro')
 print 'F-1 Score:'
 print max([f1_mac, f1_mic])
+
 """
-Predict function
+Save weight
 """
+
+w_name = raw_input('Enter file name to save weights:')
+
+import pickle
+for i in range(len(model.layers)):
+    with open(w_name+'-'+str(i)+'.wgt', 'wb') as fp:
+        pickle.dump(model.layers[i].get_weights(), fp)
 
 # pm.predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua', padsize)
