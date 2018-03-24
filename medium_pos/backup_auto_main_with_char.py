@@ -264,8 +264,8 @@ model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
-optimizer = sys.argv[1]
-loss = loss_func[int(sys.argv[2])]
+optimizer = 'adagrad'
+loss = 'categorical_crossentropy'
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,

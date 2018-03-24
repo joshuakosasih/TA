@@ -57,7 +57,7 @@ Load pre-trained word embedding
 
 embeddings_index = {}
 WE_DIR = raw_input('Enter word embedding file name: ')
-# WE_DIR = 'polyglot.txt'
+# WE_DIR = 'polyglot.vec'
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -81,7 +81,7 @@ Load pre-trained char embedding
 
 char_embeddings_index = {}
 CE_DIR = raw_input('Enter char embedding file name: ')
-# CE_DIR = 'polyglot-char.txt'
+# CE_DIR = 'polyglot-char.vec'
 
 print 'Loading', CE_DIR, '...'
 f = open(CE_DIR, 'r')
@@ -303,6 +303,19 @@ model.compile(loss=loss,
 
 plot_model(model, to_file='model.png')
 
+import pickle
+load_m = raw_input('Do you want to load model weight? ')
+if 'y' in load_m:
+    w_name = raw_input('Enter file name to load weights: ')
+    load_c = raw_input('Do you want to load CRF weight too? ')
+    m_layers_len = len(model.layers)
+    if 'n' in load_c:
+        m_layers_len = m_layers_len - 1
+    for i in range(m_layers_len):
+        with open(w_name + "-" + str(i) + ".wgt", "rb") as fp:
+            w = pickle.load(fp)
+            model.layers[i].set_weights(w)
+
 epoch = input('Enter number of epochs: ')
 batch = input('Enter number of batch size: ')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
@@ -410,12 +423,12 @@ print max([f1_mac, f1_mic])
 """
 Save weight
 """
+save_m = raw_input('Do you want to save model weight? ')
+if 'y' in save_m:
+    w_name = raw_input('Enter file name to save weights: ')
+    for i in range(len(model.layers)):
+        with open(w_name+'-'+str(i)+'.wgt', 'wb') as fp:
+            pickle.dump(model.layers[i].get_weights(), fp)
 
-w_name = raw_input('Enter file name to save weights:')
-
-import pickle
-for i in range(len(model.layers)):
-    with open(w_name+'-'+str(i)+'.wgt', 'wb') as fp:
-        pickle.dump(model.layers[i].get_weights(), fp)
 
 # pm.predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua', padsize)
