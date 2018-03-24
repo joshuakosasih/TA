@@ -20,21 +20,6 @@ trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
 
 
-def embeddingPrompt(name):  # not used anymore, default is true for both trainable and mask
-    global trainable
-    trainable = raw_input('Is ' + name + ' embedding trainable? ')
-    global mask
-    mask = raw_input('Use mask for zeros in ' + name + ' embedding? ')
-    if 'y' in trainable:
-        trainable = True
-    else:
-        trainable = False
-    if 'y' in mask:
-        mask = True
-    else:
-        mask = False
-
-
 def activationPrompt(name):
     print "List of Activation Functions\n" \
           "1. softmax\t\t2. elu\t\t3. selu\t\t4. softplus\t\t5. softsign\n" \
@@ -49,27 +34,18 @@ Preparing file
 """
 
 train = DL('ner_2_train')
+percentage = input('Enter percentage of data to take: ')
+seed = input('Enter seed for slicing data: ')
+train.slice(percentage, seed)
 test = DL('ner_2_test')
-
-"""
-Create Word & Label Index
-"""
-
-char = DI(train.words + test.words)
-word = DI([train.words, test.words])
-label = DI([train.labels])  # training label and testing label should be the same
-
-print 'Found', word.cnt - 1, 'unique words.'
-print 'Found', char.cnt - 1, 'unique chars.'
-print 'Found', label.cnt - 1, 'unique labels.'
 
 """
 Load pre-trained word embedding
 """
 
 embeddings_index = {}
-# WE_DIR = raw_input('Enter word embedding file name: ')
-WE_DIR = 'polyglot.txt'
+WE_DIR = raw_input('Enter word embedding file name: ')
+# WE_DIR = 'polyglot.vec'
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -82,6 +58,50 @@ for line in f:
 f.close()
 
 print('Found %s word vectors.' % len(embeddings_index))
+
+we_words = []
+for wrd in embeddings_index:
+    we_words.append(wrd)
+
+"""
+Load pre-trained char embedding
+"""
+
+char_embeddings_index = {}
+CE_DIR = raw_input('Enter char embedding file name: ')
+# CE_DIR = 'polyglot-char.vec'
+
+print 'Loading', CE_DIR, '...'
+f = open(CE_DIR, 'r')
+for line in f:
+    values = line.split()
+    chars = values[0]
+    coefs = np.asarray(values[1:], dtype='float32')
+    char_embeddings_index[chars] = coefs
+
+f.close()
+
+print('Found %s char vectors.' % len(char_embeddings_index))
+
+ce_words = []
+for chr in char_embeddings_index:
+    ce_words.append(chr)
+
+"""
+Create Word & Label Index
+"""
+
+char = DI(train.words + ce_words)
+word = DI([train.words, [we_words]])
+label = DI([train.labels])  # training label and testing label should be the same
+
+print 'Found', word.cnt - 1, 'unique words.'
+print 'Found', char.cnt - 1, 'unique chars.'
+print 'Found', label.cnt - 1, 'unique labels.'
+
+"""
+Create word embedding matrix
+"""
 
 EMBEDDING_DIM = len(coefs)
 
@@ -97,24 +117,8 @@ for wrd, i in word.index.items():
 print('%s unique words not found in embedding.' % len(notfound))
 
 """
-Load pre-trained char embedding
+Create char embedding matrix
 """
-
-char_embeddings_index = {}
-# CE_DIR = raw_input('Enter char embedding file name: ')
-CE_DIR = 'polyglot-char.txt'
-
-print 'Loading', CE_DIR, '...'
-f = open(CE_DIR, 'r')
-for line in f:
-    values = line.split()
-    chars = values[0]
-    coefs = np.asarray(values[1:], dtype='float32')
-    char_embeddings_index[chars] = coefs
-
-f.close()
-
-print('Found %s char vectors.' % len(char_embeddings_index))
 
 CHAR_EMBEDDING_DIM = len(coefs)
 
@@ -135,8 +139,10 @@ Converting word text data to int using index
 
 x_train = DM(train.words, word.index)
 x_test = DM(test.words, word.index)
+print "Number of OOV:", len(x_test.oov_index)
+print "OOV word occurences:", x_test.oov
 
-padsize = 188 # max([x_train.padsize, x_test.padsize])
+padsize = max([x_train.padsize, x_test.padsize])
 x_train.pad(padsize)
 print('Padded until %s tokens.' % padsize)
 
@@ -151,7 +157,7 @@ Converting char text data to int using index
 """
 
 x_train_tmp1 = []
-char_padsize = 25
+char_padsize = 0
 for sent in train.words:
     x_map = DM(sent, char.index, False)
     if x_map.padsize > char_padsize:
@@ -175,10 +181,9 @@ x_train_char = []
 for sent in x_train_tmp2:
     padded_sent = sent
     pad = padsize - len(sent)
-    if len(padded_sent) > 0:
-        for i in range(pad):
-            padded_sent = np.vstack((zeroes, padded_sent))
-        x_train_char.append(padded_sent)
+    for i in range(pad):
+        padded_sent = np.vstack((zeroes, padded_sent))
+    x_train_char.append(padded_sent)
 
 print('Padded until %s tokens.' % padsize)
 
@@ -229,10 +234,8 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
 merge_m = raw_input('Enter merge mode for GRU Karakter: ')
-# dropout = input('Enter GRU Karakter dropout: ')
-# rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
-dropout = 0.1
-rec_dropout = 0.1
+dropout = input('Enter dropout for GRU: ')
+rec_dropout = dropout # input('Enter GRU Karakter recurrent dropout: ')
 gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
@@ -288,11 +291,25 @@ model.compile(loss=loss,
 
 plot_model(model, to_file='model.png')
 
+import pickle
+load_m = raw_input('Do you want to load model weight? ')
+if 'y' in load_m:
+    w_name = raw_input('Enter file name to load weights: ')
+    load_c = raw_input('Do you want to load CRF weight too? ')
+    m_layers_len = len(model.layers)
+    if 'n' in load_c:
+        m_layers_len = m_layers_len - 1
+    for i in range(m_layers_len):
+        with open(w_name + "-" + str(i) + ".wgt", "rb") as fp:
+            w = pickle.load(fp)
+            model.layers[i].set_weights(w)
+
 epoch = input('Enter number of epochs: ')
 batch = input('Enter number of batch size: ')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
           epochs=epoch, batch_size=batch)
+
 
 """
 Converting text data to int using index
@@ -371,7 +388,7 @@ print "True percentage", float(total_true) / float(total_nonzero)
 """
 Sklearn evaluation
 """
-label_index = range(2, len(label.index) + 1)
+label_index = range(1, len(label.index) + 1)
 label_names = []
 for key, value in sorted(label.index.iteritems(), key=lambda (k, v): (v, k)):
     label_names.append(key)
@@ -382,16 +399,24 @@ from sklearn.metrics import classification_report
 y_true = [item for sublist in y_test.padded for item in sublist]
 y_pred = [item for sublist in results for item in sublist]
 print "Sklearn evaluation:"
-print classification_report(y_true, y_pred, labels=label_index, target_names=label_names[1:])
+print classification_report(y_true, y_pred, labels=label_index, target_names=label_names)
 
 from sklearn.metrics import f1_score
 
-f1_mac = f1_score(y_true, y_pred, labels=label_index, average='macro')
-f1_mic = f1_score(y_true, y_pred, labels=label_index, average='micro')
-print 'F-1 Score:'
+f1_mac = f1_score(y_true, y_pred, labels=label_index[1:], average='macro')
+f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
+print 'F-1 Score (without O):'
 print max([f1_mac, f1_mic])
+
 """
-Predict function
+Save weight
 """
+save_m = raw_input('Do you want to save model weight? ')
+if 'y' in save_m:
+    w_name = raw_input('Enter file name to save weights: ')
+    for i in range(len(model.layers)):
+        with open(w_name+'-'+str(i)+'.wgt', 'wb') as fp:
+            pickle.dump(model.layers[i].get_weights(), fp)
+
 
 # pm.predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua', padsize)

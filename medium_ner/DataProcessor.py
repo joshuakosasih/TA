@@ -1,11 +1,12 @@
 import nltk
 import numpy as np
+import random
 
 
 class DataLoader:
     """
 
-    Initialize with a string of file name (without .pos)
+    Initialize with a string of file name (without .ner)
     ex: DataLoader('filename')
 
     Attributes:
@@ -14,10 +15,10 @@ class DataLoader:
         labels
     """
     def __init__(self, name):
-        print("Opening file", name, ".ner")
+        print "Opening file", name, ".ner"
         self.myfile = open(name + '.ner', 'r')
 
-        print("Loading data...")
+        print "Loading data..."
         self.mydict = []
         self.corpus = []
         lines = []
@@ -31,7 +32,7 @@ class DataLoader:
             else:
                 lines.append((line.split('\t')[0], line.split('\t')[1][:-2]))  # there's [:-2] to remove newline chars
         
-        print("Creating words and labels...")
+        print "Creating words and labels..."
         self.words = []
         self.labels = []
         
@@ -43,7 +44,21 @@ class DataLoader:
                 y_true.append(token[1])
             self.words.append(line)
             self.labels.append(y_true)
-        print("Data loaded!", len(self.corpus), "sentences!")
+        print "Data loaded!", len(self.corpus), "sentences!"
+
+    def slice(self, percent, seed):
+        random.seed(seed)
+        random.shuffle(self.words)
+        random.seed(seed)
+        random.shuffle(self.labels)
+        random.seed(seed)
+        random.shuffle(self.corpus)
+
+        num_item = int(percent * len(self.labels))
+        self.corpus = self.corpus[:num_item]
+        self.words = self.words[:num_item]
+        self.labels = self.labels[:num_item]
+        print "Data sliced!", len(self.corpus), "sentences!"
 
 
 class DataIndexer:
@@ -57,7 +72,7 @@ class DataIndexer:
         cnt
     """
     def __init__(self, data=[]):
-        print("Indexing...")
+        print "Indexing..."
         self.cnt = 1
         self.index = {}
         for datum in data:
@@ -66,7 +81,7 @@ class DataIndexer:
                     if token not in self.index:
                         self.index[token] = self.cnt
                         self.cnt = self.cnt + 1
-        print("Data indexed!")
+        print "Data indexed!"
 
 
 class DataMapper:
@@ -79,30 +94,41 @@ class DataMapper:
         mapped
         padded
         padsize
+
+        oov
+        oov_index
     """
     def __init__(self, data, index, verbose=True):
         self.verbose = verbose
         if verbose:
-            print("Mapping...")
+            print "Mapping..."
         self.padsize = 0
         self.mapped = []
         self.padded = []
+        self.oov_index = []
+        self.oov = 0
         for sent in data:
             tokens = []
             for token in sent:
-                tokens.append(index[token])
+                try:
+                    tokens.append(index[token])
+                except KeyError:
+                    tokens.append(0)
+                    self.oov = self.oov + 1
+                    if token not in self.oov_index:
+                        self.oov_index.append(token)
             self.mapped.append(tokens)
             if len(tokens) > self.padsize:
                 self.padsize = len(tokens)
         if verbose:
-            print("Data mapped!")
+            print "Data mapped!"
 
     def pad(self, size):
         if self.verbose:
-            print("Padding...")
+            print "Padding..."
         for sent in self.mapped:
             sub = size-len(sent)
             new = np.pad(sent, (sub, 0), 'constant')
             self.padded.append(new)
         if self.verbose:
-            print("Data padded!")
+            print "Data padded!"

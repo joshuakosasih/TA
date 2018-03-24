@@ -246,8 +246,8 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
 merge_m = raw_input('Enter merge mode for GRU Karakter: ')
-dropout = input('Enter GRU Karakter dropout: ')
-rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
+dropout = input('Enter dropout for GRU: ')
+rec_dropout = dropout
 gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
@@ -260,8 +260,8 @@ from keras.layers import Add, Subtract, Multiply, Average, Maximum
 print "Model Choice:"
 model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
 merge_m = raw_input('Enter merge mode for GRU Kata: ')
-dropout = input('Enter GRU Karakter dropout: ')
-rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
+# dropout = input('Enter GRU Karakter dropout: ')
+# rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 if model_choice == 1:
     gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
         embedded_sequences)
