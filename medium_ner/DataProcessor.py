@@ -1,12 +1,13 @@
 import nltk
 import numpy as np
 import random
+import pickle
 
 
 class DataLoader:
     """
 
-    Initialize with a string of file name (without .ner)
+    Initialize with a string of file name
     ex: DataLoader('filename')
 
     Attributes:
@@ -15,8 +16,8 @@ class DataLoader:
         labels
     """
     def __init__(self, name):
-        print "Opening file", name, ".ner"
-        self.myfile = open(name + '.ner', 'r')
+        print "Opening file", name
+        self.myfile = open(name, 'r')
 
         print "Loading data..."
         self.mydict = []
@@ -83,6 +84,15 @@ class DataIndexer:
                         self.cnt = self.cnt + 1
         print "Data indexed!"
 
+    def save(self, name):
+        with open(name + '.idx', 'wb') as fp:
+            pickle.dump((self.index, self.cnt), fp)
+        print "Index saved!"
+
+    def load(self, name):
+        with open(name + '.idx', 'rb') as fp:
+            (self.index, self.cnt) = pickle.load(fp)
+        print "Index loaded!"
 
 class DataMapper:
     """

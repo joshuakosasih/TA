@@ -48,8 +48,8 @@ def activationPrompt(name):
 Preparing file
 """
 
-train = DL('id-ud-train')
-test = DL('id-ud-test')
+train = DL('id-ud-train.pos')
+test = DL('id-ud-test.pos')
 
 """
 Load pre-trained word embedding
@@ -104,7 +104,9 @@ Create Word & Label Index
 """
 
 char = DI(train.words + ce_words)
+char.save('char')
 word = DI([train.words, [we_words]])
+word.save('word')
 label = DI([train.labels])  # training label and testing label should be the same
 
 print 'Found', word.cnt - 1, 'unique words.'
