@@ -15,6 +15,7 @@ from keras_contrib.layers import CRF
 from keras import backend as K
 from keras.models import load_model
 import tensorflow as tf
+import sys
 
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
@@ -44,8 +45,8 @@ Load pre-trained word embedding
 """
 
 embeddings_index = {}
-WE_DIR = raw_input('Enter word embedding file name: ')
-# WE_DIR = 'polyglot.vec'
+# WE_DIR = raw_input('Enter word embedding file name: ')
+WE_DIR = 'polyglot.vec'
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -68,8 +69,8 @@ Load pre-trained char embedding
 """
 
 char_embeddings_index = {}
-CE_DIR = raw_input('Enter char embedding file name: ')
-# CE_DIR = 'polyglot-char.vec'
+# CE_DIR = raw_input('Enter char embedding file name: ')
+CE_DIR = 'polyglot-char.vec'
 
 print 'Loading', CE_DIR, '...'
 f = open(CE_DIR, 'r')
@@ -91,12 +92,8 @@ for chr in char_embeddings_index:
 Create Word & Label Index
 """
 
-# char = DI(train.words + ce_words)
-char = DI()
-char.load('char')
-# word = DI([train.words, [we_words]])
-word = DI()
-word.load('word')
+char = DI(train.words + ce_words)
+word = DI([train.words, [we_words]])
 label = DI([train.labels])  # training label and testing label should be the same
 
 print 'Found', word.cnt - 1, 'unique words.'
@@ -142,13 +139,11 @@ Converting word text data to int using index
 """
 
 x_train = DM(train.words, word.index)
-print "Number of train OOV:", len(x_train.oov_index)
-print "OOV word occurences in train:", x_train.oov
 x_test = DM(test.words, word.index)
-print "Number of test OOV:", len(x_test.oov_index)
-print "OOV word occurences: in test", x_test.oov
+print "Number of OOV:", len(x_test.oov_index)
+print "OOV word occurences:", x_test.oov
 
-padsize = 188  # max([x_train.padsize, x_test.padsize])
+padsize = max([x_train.padsize, x_test.padsize])
 x_train.pad(padsize)
 print('Padded until %s tokens.' % padsize)
 
@@ -163,7 +158,7 @@ Converting char text data to int using index
 """
 
 x_train_tmp1 = []
-char_padsize = 25  # 0
+char_padsize = 0
 for sent in train.words:
     x_map = DM(sent, char.index, False)
     if x_map.padsize > char_padsize:
@@ -239,8 +234,8 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
-merge_m = raw_input('Enter merge mode for GRU Karakter: ')
-dropout = input('Enter dropout for GRU: ')
+merge_m = 'sum' # raw_input('Enter merge mode for GRU Karakter: ')
+dropout = 0.2 # input('Enter dropout for GRU: ')
 rec_dropout = dropout # input('Enter GRU Karakter recurrent dropout: ')
 gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
 
@@ -252,8 +247,8 @@ Combine word + char model
 from keras.layers import Add, Subtract, Multiply, Average, Maximum
 
 print "Model Choice:"
-model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
-merge_m = raw_input('Enter merge mode for GRU Kata: ')
+model_choice = 3 # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
+merge_m = 'concat' # raw_input('Enter merge mode for GRU Kata: ')
 # dropout = input('Enter GRU Karakter dropout: ')
 # rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 if model_choice == 1:
@@ -263,7 +258,7 @@ elif model_choice == 2:
     gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
         rtwo)
 else:
-    combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
+    combine = 1 # input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
     elif combine == 3:
@@ -282,40 +277,46 @@ crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 preds = Dense(len(label.index) + 1, activation='softmax')(gru_kata)
 
 print "Model Choice:"
-model_choice = input('Enter 1 for CRF or 2 for Dense layer: ')
+model_choice = 1 # input('Enter 1 for CRF or 2 for Dense layer: ')
 
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
-optimizer = raw_input('Enter optimizer (default rmsprop): ')
-loss = raw_input('Enter loss function (default categorical_crossentropy): ')
+optimizer = 'adagrad' # raw_input('Enter optimizer (default rmsprop): ')
+loss = 'categorical_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
-              metrics=['acc'])
+              metrics=['acc'],
+              sample_weight_mode="temporal")
 
-plot_model(model, to_file='model.png')
+from sklearn.utils import class_weight as cw
+flat_y = [item for sublist in y_train.padded for item in sublist]
+ocw = cw.compute_class_weight('balanced', np.unique(flat_y), flat_y)
+ccw = []
+mult = sys.argv[1]
+print "Multiplier", mult
+for w in ocw:
+    if w > 1:
+        x = w * float(mult)
+    else:
+        x = w
+    ccw.append(x)
 
-import pickle
-load_m = raw_input('Do you want to load model weight? ')
-if 'y' in load_m:
-    w_name = raw_input('Enter file name to load weights: ')
-    load_c = raw_input('Do you want to load CRF weight too? ')
-    m_layers_len = len(model.layers)
-    if 'n' in load_c:
-        m_layers_len = m_layers_len - 1
-    for i in range(m_layers_len):
-        with open(w_name + "-" + str(i) + ".wgt", "rb") as fp:
-            w = pickle.load(fp)
-            model.layers[i].set_weights(w)
+print "Class Weights", ccw
+csw = []
+for i in range(len(y_train.padded)):
+    sw = []
+    for j in range(len(y_train.padded[i])):
+        sw.append(ccw[y_train.padded[i][j]])
+    csw.append(sw)
 
-epoch = input('Enter number of epochs: ')
-batch = input('Enter number of batch size: ')
+epoch = 8 # input('Enter number of epochs: ')
+batch = 12 # input('Enter number of batch size: ')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
-          epochs=epoch, batch_size=batch)
-
+          epochs=epoch, batch_size=batch, sample_weight=np.array(csw))
 
 """
 Converting text data to int using index
@@ -413,16 +414,3 @@ f1_mac = f1_score(y_true, y_pred, labels=label_index[1:], average='macro')
 f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
 print 'F-1 Score (without O):'
 print max([f1_mac, f1_mic])
-
-"""
-Save weight
-"""
-save_m = raw_input('Do you want to save model weight? ')
-if 'y' in save_m:
-    w_name = raw_input('Enter file name to save weights: ')
-    for i in range(len(model.layers)):
-        with open(w_name+'-'+str(i)+'.wgt', 'wb') as fp:
-            pickle.dump(model.layers[i].get_weights(), fp)
-
-
-# pm.predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua', padsize)

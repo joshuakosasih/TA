@@ -308,7 +308,7 @@ epoch = input('Enter number of epochs: ')
 batch = input('Enter number of batch size: ')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
-          epochs=epoch, batch_size=batch)
+          epochs=epoch, batch_size=batch, class_weight=class_weight)
 
 
 """
