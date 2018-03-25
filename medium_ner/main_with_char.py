@@ -33,11 +33,11 @@ def activationPrompt(name):
 Preparing file
 """
 
-train = DL('ner_2_train')
+train = DL('ner_2_train.ner')
 percentage = input('Enter percentage of data to take: ')
 seed = input('Enter seed for slicing data: ')
 train.slice(percentage, seed)
-test = DL('ner_2_test')
+test = DL('ner_2_test.ner')
 
 """
 Load pre-trained word embedding
