@@ -296,15 +296,39 @@ loss = 'categorical_crossentropy' # raw_input('Enter loss function (default cate
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
-              metrics=['acc'])
+              metrics=['acc'],
+              sample_weight_mode="temporal")
 
 # plot_model(model, to_file='model.png')
 
+# class_weighting = 'y' # raw_input('Do you want to use weighting for balancing data? ')
+# if 'y' in class_weighting:
+from sklearn.utils import class_weight as cw
+flat_y = [item for sublist in y_train.padded for item in sublist]
+ocw = cw.compute_class_weight('balanced', np.unique(flat_y), flat_y)
+ccw = []
+mult = 0.05
+print "Multiplier", mult
+for w in ocw:
+    if w > 1:
+        x = w * float(mult)
+    else:
+        x = w
+    ccw.append(x)
+
+print "Class Weights", ccw
+csw = []
+for i in range(len(y_train.padded)):
+    sw = []
+    for j in range(len(y_train.padded[i])):
+        sw.append(ccw[y_train.padded[i][j]])
+    csw.append(sw)
+
 import pickle
-load_m = 'y' #raw_input('Do you want to load model weight? ')
+load_m = 'y' # raw_input('Do you want to load model weight? ')
 if 'y' in load_m:
-    w_name = raw_input('Enter file name to load weights: ')
-    load_c = raw_input('Do you want to load CRF weight too? ')
+    w_name = 'w918' # raw_input('Enter file name to load weights: ')
+    load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
     m_layers_len = len(model.layers)
     if 'n' in load_c:
         m_layers_len = m_layers_len - 1
@@ -321,13 +345,19 @@ if 'y' in load_m:
                 model.layers[i].set_weights([new_w])
 
 
-epoch = input('Enter number of epochs: ')
-batch = input('Enter number of batch size: ')
+epoch = 100 # input('Enter number of epochs: ')
+batch = 16 # input('Enter number of batch size: ')
+
+from keras.callbacks import EarlyStopping
+callback = EarlyStopping(monitor='loss', min_delta=0.005, patience=2, verbose=0, mode='auto')
+
+t = time()
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
-          [np.array(y_encoded)],
-          epochs=epoch, batch_size=batch)
+          [np.array(y_encoded)], callbacks=[callback],
+          epochs=epoch, batch_size=batch, sample_weight=np.array(csw))
 
-
+duration = t-time()
+print "Time to train:", duration
 """
 Converting text data to int using index
 """
@@ -425,6 +455,7 @@ f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
 print 'F-1 Score (without O):'
 print max([f1_mac, f1_mic])
 
+print "Time to train:", duration
 """
 Save weight
 """
