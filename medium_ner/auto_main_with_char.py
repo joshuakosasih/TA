@@ -15,7 +15,7 @@ from keras_contrib.layers import CRF
 from keras import backend as K
 from keras.models import load_model
 import tensorflow as tf
-import sys
+from time import time
 
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
@@ -295,7 +295,7 @@ from sklearn.utils import class_weight as cw
 flat_y = [item for sublist in y_train.padded for item in sublist]
 ocw = cw.compute_class_weight('balanced', np.unique(flat_y), flat_y)
 ccw = []
-mult = sys.argv[1]
+mult = 0.05
 print "Multiplier", mult
 for w in ocw:
     if w > 1:
@@ -312,11 +312,19 @@ for i in range(len(y_train.padded)):
         sw.append(ccw[y_train.padded[i][j]])
     csw.append(sw)
 
-epoch = 8 # input('Enter number of epochs: ')
-batch = 12 # input('Enter number of batch size: ')
+epoch = 100 # input('Enter number of epochs: ')
+batch = 16 # input('Enter number of batch size: ')
+
+from keras.callbacks import EarlyStopping
+callback = EarlyStopping(monitor='loss', min_delta=0.005, patience=2, verbose=0, mode='auto')
+
+t = time()
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
-          [np.array(y_encoded)],
+          [np.array(y_encoded)], callbacks=[callback],
           epochs=epoch, batch_size=batch, sample_weight=np.array(csw))
+
+duration = t-time()
+print "Time to train:", duration
 
 """
 Converting text data to int using index
@@ -414,3 +422,5 @@ f1_mac = f1_score(y_true, y_pred, labels=label_index[1:], average='macro')
 f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
 print 'F-1 Score (without O):'
 print max([f1_mac, f1_mic])
+
+print "Time to train:", duration
