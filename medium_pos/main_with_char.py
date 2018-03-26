@@ -50,6 +50,7 @@ Preparing file
 
 train = DL('id-ud-train.pos')
 test = DL('id-ud-test.pos')
+train.add('id-ud-dev.pos')
 
 """
 Load pre-trained word embedding

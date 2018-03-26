@@ -44,8 +44,8 @@ Load pre-trained word embedding
 """
 
 embeddings_index = {}
-WE_DIR = raw_input('Enter word embedding file name: ')
-# WE_DIR = 'polyglot.vec'
+# WE_DIR = raw_input('Enter word embedding file name: ')
+WE_DIR = 'polyglot.vec'
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -68,8 +68,8 @@ Load pre-trained char embedding
 """
 
 char_embeddings_index = {}
-CE_DIR = raw_input('Enter char embedding file name: ')
-# CE_DIR = 'polyglot-char.vec'
+# CE_DIR = raw_input('Enter char embedding file name: ')
+CE_DIR = 'polyglot-char.vec'
 
 print 'Loading', CE_DIR, '...'
 f = open(CE_DIR, 'r')
@@ -102,6 +102,9 @@ label = DI([train.labels])  # training label and testing label should be the sam
 print 'Found', word.cnt - 1, 'unique words.'
 print 'Found', char.cnt - 1, 'unique chars.'
 print 'Found', label.cnt - 1, 'unique labels.'
+
+word.add([train.words])
+print 'Found', word.cnt - 1, 'unique words.'
 
 """
 Create word embedding matrix
@@ -239,8 +242,8 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
-merge_m = raw_input('Enter merge mode for GRU Karakter: ')
-dropout = input('Enter dropout for GRU: ')
+merge_m = 'sum' # raw_input('Enter merge mode for GRU Karakter: ')
+dropout = 0.2 # input('Enter dropout for GRU: ')
 rec_dropout = dropout # input('Enter GRU Karakter recurrent dropout: ')
 gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
 
@@ -252,8 +255,8 @@ Combine word + char model
 from keras.layers import Add, Subtract, Multiply, Average, Maximum
 
 print "Model Choice:"
-model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
-merge_m = raw_input('Enter merge mode for GRU Kata: ')
+model_choice = 3 # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
+merge_m = 'concat' # raw_input('Enter merge mode for GRU Kata: ')
 # dropout = input('Enter GRU Karakter dropout: ')
 # rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 if model_choice == 1:
@@ -263,7 +266,7 @@ elif model_choice == 2:
     gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
         rtwo)
 else:
-    combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
+    combine = 5 # input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
     elif combine == 3:
@@ -282,14 +285,14 @@ crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 preds = Dense(len(label.index) + 1, activation='softmax')(gru_kata)
 
 print "Model Choice:"
-model_choice = input('Enter 1 for CRF or 2 for Dense layer: ')
+model_choice = 1 # input('Enter 1 for CRF or 2 for Dense layer: ')
 
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
-optimizer = raw_input('Enter optimizer (default rmsprop): ')
-loss = raw_input('Enter loss function (default categorical_crossentropy): ')
+optimizer = 'adagrad' # raw_input('Enter optimizer (default rmsprop): ')
+loss = 'categorical_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
@@ -298,7 +301,7 @@ model.compile(loss=loss,
 plot_model(model, to_file='model.png')
 
 import pickle
-load_m = raw_input('Do you want to load model weight? ')
+load_m = 'y' #raw_input('Do you want to load model weight? ')
 if 'y' in load_m:
     w_name = raw_input('Enter file name to load weights: ')
     load_c = raw_input('Do you want to load CRF weight too? ')
@@ -306,9 +309,17 @@ if 'y' in load_m:
     if 'n' in load_c:
         m_layers_len = m_layers_len - 1
     for i in range(m_layers_len):
-        with open(w_name + "-" + str(i) + ".wgt", "rb") as fp:
-            w = pickle.load(fp)
-            model.layers[i].set_weights(w)
+        if i != 5:
+            with open(w_name + "-" + str(i) + ".wgt", "rb") as fp:
+                w = pickle.load(fp)
+                model.layers[i].set_weights(w)                
+        else:
+            with open(w_name + "-" + str(5) + ".wgt", "rb") as fp:
+                w = pickle.load(fp)
+                w_zeroes = np.zeros((word.added, int(EMBEDDING_DIM)))
+                new_w = np.concatenate((w[0], w_zeroes), axis=0)
+                model.layers[i].set_weights([new_w])
+
 
 epoch = input('Enter number of epochs: ')
 batch = input('Enter number of batch size: ')

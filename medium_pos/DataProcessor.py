@@ -61,6 +61,35 @@ class DataLoader:
         self.labels = self.labels[:num_item]
         print "Data sliced!", len(self.corpus), "sentences!"
 
+    def add(self, name):
+        print "Opening file", name
+        myfile = open(name, 'r')
+
+        print "Loading data..."
+        mydict = []
+        corpus = []
+        lines = []
+        for line in myfile:
+            mydict.append(line)
+
+        for line in mydict:
+            if line == '-----\r\n':
+                corpus.append(lines)
+                self.corpus.append(lines)
+                lines = []
+            else:
+                lines.append((line.split('\t')[0], line.split('\t')[1][:-2]))  # there's [:-2] to remove newline chars
+
+        print "Adding words and labels..."
+        for sent in corpus:
+            line = []
+            y_true = []
+            for token in sent:
+                line.append(token[0])
+                y_true.append(token[1])
+            self.words.append(line)
+            self.labels.append(y_true)
+        print "Data added!", len(self.corpus), "sentences!"
 
 class DataIndexer:
     """
@@ -83,6 +112,16 @@ class DataIndexer:
                         self.index[token] = self.cnt
                         self.cnt = self.cnt + 1
         print "Data indexed!"
+
+    def add(self, data=[]):
+        print "Indexing..."
+        for datum in data:
+            for sent in datum:
+                for token in sent:
+                    if token not in self.index:
+                        self.index[token] = self.cnt
+                        self.cnt = self.cnt + 1
+        print "Index added!"
 
     def save(self, name):
         with open(name + '.idx', 'wb') as fp:
