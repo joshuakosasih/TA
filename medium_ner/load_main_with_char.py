@@ -349,7 +349,7 @@ epoch = 100 # input('Enter number of epochs: ')
 batch = 16 # input('Enter number of batch size: ')
 
 from keras.callbacks import EarlyStopping
-callback = EarlyStopping(monitor='loss', min_delta=0.07, patience=2, verbose=0, mode='auto')
+callback = EarlyStopping(monitor='loss', min_delta=0.01, patience=2, verbose=0, mode='auto')
 
 t = time()
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
