@@ -323,7 +323,7 @@ model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)], callbacks=[callback],
           epochs=epoch, batch_size=batch, sample_weight=np.array(csw))
 
-duration = t-time()
+duration = time()-t
 print "Time to train:", duration
 
 """

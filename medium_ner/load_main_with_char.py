@@ -15,6 +15,7 @@ from keras_contrib.layers import CRF
 from keras import backend as K
 from keras.models import load_model
 import tensorflow as tf
+from time import time
 
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
@@ -356,7 +357,7 @@ model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)], callbacks=[callback],
           epochs=epoch, batch_size=batch, sample_weight=np.array(csw))
 
-duration = t-time()
+duration = time()-t
 print "Time to train:", duration
 """
 Converting text data to int using index
