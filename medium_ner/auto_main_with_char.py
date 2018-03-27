@@ -303,7 +303,7 @@ for w in ocw:
     else:
         x = w
     ccw.append(x)
-
+ccw = [0.2, 0.9, 0.9, 0.8, 1.64, 0.97, 1.1]
 print "Class Weights", ccw
 csw = []
 for i in range(len(y_train.padded)):
