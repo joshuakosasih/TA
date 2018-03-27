@@ -152,7 +152,7 @@ x_test = DM(test.words, word.index)
 print "Number of test OOV:", len(x_test.oov_index)
 print "OOV word occurences: in test", x_test.oov
 
-padsize = 188  # max([x_train.padsize, x_test.padsize])
+padsize = 152  # max([x_train.padsize, x_test.padsize])
 x_train.pad(padsize)
 print('Padded until %s tokens.' % padsize)
 
@@ -302,7 +302,7 @@ model.compile(loss=loss,
 
 # plot_model(model, to_file='model.png')
 
-class_weighting = 'y' # raw_input('Do you want to use weighting for balancing data? ')
+class_weighting = raw_input('Do you want to use weighting for balancing data? ')
 if 'y' in class_weighting:
     from sklearn.utils import class_weight as cw
     flat_y = [item for sublist in y_train.padded for item in sublist]
@@ -316,6 +316,8 @@ if 'y' in class_weighting:
         else:
             x = w
         ccw.append(x)
+    ccw = [0.17791823648864832, 0.878231160961774, 0.9858176555716354, 0.7916327716443928,
+           1.6394705174488569, 0.9759312320916905, 1.1067424857839157]
 
     print "Class Weights", ccw
     csw = []
