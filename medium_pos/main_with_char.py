@@ -304,7 +304,7 @@ model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['acc'])
 
-plot_model(model, to_file='model.png')
+# plot_model(model, to_file='model.png')
 
 import pickle
 load_m = raw_input('Do you want to load model weight? ')
