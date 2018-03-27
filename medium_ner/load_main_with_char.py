@@ -304,21 +304,8 @@ model.compile(loss=loss,
 
 class_weighting = raw_input('Do you want to use weighting for balancing data? ')
 if 'y' in class_weighting:
-    from sklearn.utils import class_weight as cw
-    flat_y = [item for sublist in y_train.padded for item in sublist]
-    ocw = cw.compute_class_weight('balanced', np.unique(flat_y), flat_y)
-    ccw = []
-    mult = 0.05
-    print "Multiplier", mult
-    for w in ocw:
-        if w > 1:
-            x = w * float(mult)
-        else:
-            x = w
-        ccw.append(x)
-    ccw = [0.17791823648864832, 0.878231160961774, 0.9858176555716354, 0.7916327716443928,
-           1.6394705174488569, 0.9759312320916905, 1.1067424857839157]
-
+    ccw = [0.2, 0.9, 0.9, 0.8,
+           1.64, 0.97, 1.1]
     print "Class Weights", ccw
     csw = []
     for i in range(len(y_train.padded)):
