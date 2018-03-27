@@ -302,28 +302,28 @@ model.compile(loss=loss,
 
 # plot_model(model, to_file='model.png')
 
-# class_weighting = 'y' # raw_input('Do you want to use weighting for balancing data? ')
-# if 'y' in class_weighting:
-from sklearn.utils import class_weight as cw
-flat_y = [item for sublist in y_train.padded for item in sublist]
-ocw = cw.compute_class_weight('balanced', np.unique(flat_y), flat_y)
-ccw = []
-mult = 0.05
-print "Multiplier", mult
-for w in ocw:
-    if w > 1:
-        x = w * float(mult)
-    else:
-        x = w
-    ccw.append(x)
+class_weighting = 'y' # raw_input('Do you want to use weighting for balancing data? ')
+if 'y' in class_weighting:
+    from sklearn.utils import class_weight as cw
+    flat_y = [item for sublist in y_train.padded for item in sublist]
+    ocw = cw.compute_class_weight('balanced', np.unique(flat_y), flat_y)
+    ccw = []
+    mult = 0.05
+    print "Multiplier", mult
+    for w in ocw:
+        if w > 1:
+            x = w * float(mult)
+        else:
+            x = w
+        ccw.append(x)
 
-print "Class Weights", ccw
-csw = []
-for i in range(len(y_train.padded)):
-    sw = []
-    for j in range(len(y_train.padded[i])):
-        sw.append(ccw[y_train.padded[i][j]])
-    csw.append(sw)
+    print "Class Weights", ccw
+    csw = []
+    for i in range(len(y_train.padded)):
+        sw = []
+        for j in range(len(y_train.padded[i])):
+            sw.append(ccw[y_train.padded[i][j]])
+        csw.append(sw)
 
 import pickle
 load_m = 'y' # raw_input('Do you want to load model weight? ')
@@ -346,16 +346,36 @@ if 'y' in load_m:
                 model.layers[i].set_weights([new_w])
 
 
-epoch = 100 # input('Enter number of epochs: ')
-batch = 16 # input('Enter number of batch size: ')
-
+use_callback = raw_input('Do you want to use callback? ')
 from keras.callbacks import EarlyStopping
 callback = EarlyStopping(monitor='loss', min_delta=0.01, patience=2, verbose=0, mode='auto')
 
+if 'n' in use_callback:
+    epoch = input('Enter number of epochs: ')
+else:
+    epoch = 100
+
+batch = input('Enter number of batch size: ')
+
 t = time()
-model.fit([np.array(x_train.padded), np.array(x_train_char)],
-          [np.array(y_encoded)], callbacks=[callback],
-          epochs=epoch, batch_size=batch, sample_weight=np.array(csw))
+if 'y' in use_callback:
+    if 'y' in class_weighting:
+        model.fit([np.array(x_train.padded), np.array(x_train_char)],
+                  [np.array(y_encoded)], callbacks=[callback],
+                  epochs=epoch, batch_size=batch, sample_weight=np.array(csw))
+    else:
+        model.fit([np.array(x_train.padded), np.array(x_train_char)],
+                  [np.array(y_encoded)], callbacks=[callback],
+                  epochs=epoch, batch_size=batch)
+else:
+    if 'y' in class_weighting:
+        model.fit([np.array(x_train.padded), np.array(x_train_char)],
+                  [np.array(y_encoded)],
+                  epochs=epoch, batch_size=batch, sample_weight=np.array(csw))
+    else:
+        model.fit([np.array(x_train.padded), np.array(x_train_char)],
+                  [np.array(y_encoded)],
+                  epochs=epoch, batch_size=batch)
 
 duration = time()-t
 print "Time to train:", duration
