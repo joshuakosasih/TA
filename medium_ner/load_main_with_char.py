@@ -152,7 +152,7 @@ x_test = DM(test.words, word.index)
 print "Number of test OOV:", len(x_test.oov_index)
 print "OOV word occurences: in test", x_test.oov
 
-padsize = 152  # max([x_train.padsize, x_test.padsize])
+padsize = max([x_train.padsize, x_test.padsize])
 x_train.pad(padsize)
 print('Padded until %s tokens.' % padsize)
 
@@ -167,7 +167,7 @@ Converting char text data to int using index
 """
 
 x_train_tmp1 = []
-char_padsize = 25  # 0
+char_padsize = 0
 for sent in train.words:
     x_map = DM(sent, char.index, False)
     if x_map.padsize > char_padsize:
