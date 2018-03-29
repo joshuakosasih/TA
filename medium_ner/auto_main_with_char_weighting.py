@@ -303,7 +303,8 @@ for w in ocw:
     else:
         x = w
     ccw.append(x)
-ccw = [0.2, 0.9, 0.9, 0.8, 1.64, 0.97, 1.1]
+
+ccw = [0.2, 0.9, 0.6, 0.8, 1.64, 0.97, 1.1]
 print "Class Weights", ccw
 csw = []
 for i in range(len(y_train.padded)):
@@ -316,7 +317,7 @@ epoch = 100 # input('Enter number of epochs: ')
 batch = 16 # input('Enter number of batch size: ')
 
 from keras.callbacks import EarlyStopping
-callback = EarlyStopping(monitor='loss', min_delta=0.01, patience=2, verbose=0, mode='auto')
+callback = EarlyStopping(monitor='loss', min_delta=0.02, patience=2, verbose=0, mode='auto')
 
 t = time()
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
