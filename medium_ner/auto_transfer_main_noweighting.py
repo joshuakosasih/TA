@@ -16,6 +16,7 @@ from keras import backend as K
 from keras.models import load_model
 import tensorflow as tf
 from time import time
+import sys
 
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
@@ -33,12 +34,12 @@ def activationPrompt(name):
 """
 Preparing file
 """
-train_name = raw_input('Enter training file name: ')
+train_name = sys.argv[1]
 train = DL(train_name)
 # percentage = input('Enter percentage of data to take: ')
 # seed = input('Enter seed for slicing data: ')
 # train.slice(percentage, seed)
-test_name = raw_input('Enter testing file name: ')
+test_name = sys.argv[2]
 test = DL(test_name)
 
 """
@@ -325,8 +326,8 @@ for i in range(m_layers_len):
 """
 Training
 """
-epoch = input('Enter number of epochs: ')
-batch = input('Enter number of batch size: ')
+epoch = int(sys.argv[3])
+batch = int(sys.argv[4])
 
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
@@ -429,10 +430,9 @@ f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
 print 'F-1 Score (without O):'
 print max([f1_mac, f1_mic])
 
-print "Time to train:", duration
 """
 Save weight
-"""
+
 save_m = raw_input('Do you want to save model weight? ')
 if 'y' in save_m:
     w_name = raw_input('Enter file name to save weights: ')
@@ -440,5 +440,5 @@ if 'y' in save_m:
         with open(w_name+'-'+str(i)+'.wgt', 'wb') as fp:
             pickle.dump(model.layers[i].get_weights(), fp)
 
-
+"""
 # pm.predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua', padsize)

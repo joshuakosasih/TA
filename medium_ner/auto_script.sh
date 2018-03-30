@@ -1,15 +1,18 @@
 #!/bin/bash
-echo "1  - 0.8"
-python auto_main_with_char.py 1 >> log4.txt
-python auto_main_with_char.py 0.9 >> log4.txt
-python auto_main_with_char.py 0.8 >> log4.txt
-echo "0.7 - 0.5"
-python auto_main_with_char.py 0.7 >> log4.txt
-python auto_main_with_char.py 0.6 >> log4.txt
-python auto_main_with_char.py 0.5 >> log4.txt
-echo "0.4 - 0.1"
-python auto_main_with_char.py 0.4 >> log4.txt
-python auto_main_with_char.py 0.3 >> log4.txt
-python auto_main_with_char.py 0.2 >> log4.txt
-python auto_main_with_char.py 0.1 >> log4.txt
+echo "epoch 2 - 8"
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 2 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 3 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 4 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 5 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 6 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 7 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 8 16 >> logTnW3.txt
+echo "epoch 9 - 15"
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 9 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 10 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 11 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 12 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 13 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 14 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 15 16 >> logTnW3.txt
 echo "done!"
