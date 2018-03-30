@@ -1,0 +1,1337 @@
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/2
+
+1674/1674 [==============================] - 125s 75ms/step - loss: 0.4363 - acc: 0.8651
+Epoch 2/2
+
+1674/1674 [==============================] - 116s 69ms/step - loss: 0.2540 - acc: 0.9228
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8019
+False 1052
+True percentage 0.884026016977
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.87      0.75      0.81       438
+      I-PER       0.74      0.63      0.68       214
+      B-ORG       0.56      0.73      0.64       296
+      I-ORG       0.29      0.66      0.40       151
+      B-LOC       0.79      0.63      0.70       218
+      I-LOC       0.85      0.25      0.38       141
+     B-MISC       0.20      0.01      0.01       141
+     I-MISC       0.28      0.03      0.06       154
+
+avg / total       0.91      0.88      0.89      9071
+
+F-1 Score (without O):
+0.584043848965
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/3
+
+1674/1674 [==============================] - 125s 75ms/step - loss: 0.4275 - acc: 0.8666
+Epoch 2/3
+
+1674/1674 [==============================] - 116s 69ms/step - loss: 0.2571 - acc: 0.9226
+Epoch 3/3
+
+1674/1674 [==============================] - 115s 69ms/step - loss: 0.1976 - acc: 0.9405
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8123
+False 948
+True percentage 0.895491125565
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.88      0.80      0.84       438
+      I-PER       0.90      0.61      0.73       214
+      B-ORG       0.66      0.73      0.69       296
+      I-ORG       0.40      0.56      0.47       151
+      B-LOC       0.76      0.67      0.72       218
+      I-LOC       0.77      0.51      0.61       141
+     B-MISC       0.29      0.07      0.11       141
+     I-MISC       0.37      0.32      0.34       154
+
+avg / total       0.92      0.90      0.91      9071
+
+F-1 Score (without O):
+0.645004555117
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/4
+
+1674/1674 [==============================] - 126s 75ms/step - loss: 0.4191 - acc: 0.8699
+Epoch 2/4
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.2523 - acc: 0.9222
+Epoch 3/4
+
+1674/1674 [==============================] - 115s 69ms/step - loss: 0.1977 - acc: 0.9409
+Epoch 4/4
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.1667 - acc: 0.9509
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8160
+False 911
+True percentage 0.899570058428
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.97      0.97      7318
+      B-PER       0.88      0.81      0.84       438
+      I-PER       0.86      0.64      0.73       214
+      B-ORG       0.69      0.74      0.72       296
+      I-ORG       0.41      0.58      0.48       151
+      B-LOC       0.71      0.71      0.71       218
+      I-LOC       0.73      0.65      0.69       141
+     B-MISC       0.47      0.13      0.20       141
+     I-MISC       0.38      0.18      0.25       154
+
+avg / total       0.93      0.90      0.91      9071
+
+F-1 Score (without O):
+0.661617691609
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/5
+
+1674/1674 [==============================] - 126s 75ms/step - loss: 0.4198 - acc: 0.8701
+Epoch 2/5
+
+1674/1674 [==============================] - 116s 69ms/step - loss: 0.2531 - acc: 0.9216
+Epoch 3/5
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.2005 - acc: 0.9396
+Epoch 4/5
+
+1674/1674 [==============================] - 119s 71ms/step - loss: 0.1657 - acc: 0.9508
+Epoch 5/5
+
+1674/1674 [==============================] - 118s 70ms/step - loss: 0.1424 - acc: 0.9580
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8195
+False 876
+True percentage 0.903428508433
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.97      0.97      7318
+      B-PER       0.90      0.81      0.86       438
+      I-PER       0.92      0.63      0.74       214
+      B-ORG       0.77      0.72      0.74       296
+      I-ORG       0.49      0.60      0.54       151
+      B-LOC       0.71      0.72      0.72       218
+      I-LOC       0.65      0.77      0.70       141
+     B-MISC       0.37      0.18      0.24       141
+     I-MISC       0.49      0.23      0.32       154
+
+avg / total       0.93      0.90      0.91      9071
+
+F-1 Score (without O):
+0.682080924855
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/6
+
+1674/1674 [==============================] - 128s 76ms/step - loss: 0.4098 - acc: 0.8736
+Epoch 2/6
+
+1674/1674 [==============================] - 118s 71ms/step - loss: 0.2411 - acc: 0.9277
+Epoch 3/6
+
+1674/1674 [==============================] - 119s 71ms/step - loss: 0.1927 - acc: 0.9429
+Epoch 4/6
+
+1674/1674 [==============================] - 118s 70ms/step - loss: 0.1604 - acc: 0.9526
+Epoch 5/6
+
+1674/1674 [==============================] - 118s 70ms/step - loss: 0.1386 - acc: 0.9610
+Epoch 6/6
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.1220 - acc: 0.9650
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8192
+False 879
+True percentage 0.903097784147
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.97      0.97      7318
+      B-PER       0.90      0.82      0.86       438
+      I-PER       0.89      0.65      0.75       214
+      B-ORG       0.73      0.75      0.74       296
+      I-ORG       0.47      0.58      0.51       151
+      B-LOC       0.71      0.72      0.71       218
+      I-LOC       0.67      0.76      0.71       141
+     B-MISC       0.47      0.19      0.27       141
+     I-MISC       0.40      0.19      0.26       154
+
+avg / total       0.93      0.90      0.91      9071
+
+F-1 Score (without O):
+0.680555555556
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/7
+
+1674/1674 [==============================] - 125s 75ms/step - loss: 0.4401 - acc: 0.8667
+Epoch 2/7
+
+1674/1674 [==============================] - 116s 69ms/step - loss: 0.2519 - acc: 0.9253
+Epoch 3/7
+
+1674/1674 [==============================] - 118s 70ms/step - loss: 0.1948 - acc: 0.9428
+Epoch 4/7
+
+1674/1674 [==============================] - 116s 69ms/step - loss: 0.1597 - acc: 0.9542
+Epoch 5/7
+
+1674/1674 [==============================] - 113s 67ms/step - loss: 0.1374 - acc: 0.9604
+Epoch 6/7
+
+1674/1674 [==============================] - 116s 69ms/step - loss: 0.1234 - acc: 0.9656
+Epoch 7/7
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.1070 - acc: 0.9703
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8208
+False 863
+True percentage 0.904861647007
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.91      0.80      0.85       438
+      I-PER       0.86      0.64      0.74       214
+      B-ORG       0.71      0.75      0.73       296
+      I-ORG       0.59      0.59      0.59       151
+      B-LOC       0.73      0.73      0.73       218
+      I-LOC       0.69      0.75      0.72       141
+     B-MISC       0.46      0.26      0.33       141
+     I-MISC       0.49      0.36      0.41       154
+
+avg / total       0.93      0.90      0.92      9071
+
+F-1 Score (without O):
+0.69450285371
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/8
+
+1674/1674 [==============================] - 128s 76ms/step - loss: 0.4349 - acc: 0.8657
+Epoch 2/8
+
+1674/1674 [==============================] - 119s 71ms/step - loss: 0.2526 - acc: 0.9232
+Epoch 3/8
+
+1674/1674 [==============================] - 119s 71ms/step - loss: 0.1972 - acc: 0.9409
+Epoch 4/8
+
+1674/1674 [==============================] - 120s 72ms/step - loss: 0.1668 - acc: 0.9510
+Epoch 5/8
+
+1674/1674 [==============================] - 116s 69ms/step - loss: 0.1419 - acc: 0.9594
+Epoch 6/8
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.1250 - acc: 0.9642
+Epoch 7/8
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.1129 - acc: 0.9687
+Epoch 8/8
+
+1674/1674 [==============================] - 119s 71ms/step - loss: 0.0979 - acc: 0.9728
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8212
+False 859
+True percentage 0.905302612722
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.92      0.83      0.87       438
+      I-PER       0.88      0.64      0.74       214
+      B-ORG       0.70      0.73      0.72       296
+      I-ORG       0.56      0.61      0.59       151
+      B-LOC       0.72      0.73      0.73       218
+      I-LOC       0.71      0.76      0.74       141
+     B-MISC       0.45      0.24      0.31       141
+     I-MISC       0.47      0.36      0.41       154
+
+avg / total       0.93      0.91      0.92      9071
+
+F-1 Score (without O):
+0.697451274363
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/9
+
+1674/1674 [==============================] - 129s 77ms/step - loss: 0.4279 - acc: 0.8694
+Epoch 2/9
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.2543 - acc: 0.9223
+Epoch 3/9
+
+1674/1674 [==============================] - 118s 70ms/step - loss: 0.2010 - acc: 0.9396
+Epoch 4/9
+
+1674/1674 [==============================] - 119s 71ms/step - loss: 0.1665 - acc: 0.9514
+Epoch 5/9
+
+1674/1674 [==============================] - 118s 71ms/step - loss: 0.1414 - acc: 0.9591
+Epoch 6/9
+
+1674/1674 [==============================] - 137s 82ms/step - loss: 0.1268 - acc: 0.9640
+Epoch 7/9
+
+1674/1674 [==============================] - 165s 99ms/step - loss: 0.1112 - acc: 0.9685
+Epoch 8/9
+
+1674/1674 [==============================] - 169s 101ms/step - loss: 0.0987 - acc: 0.9723
+Epoch 9/9
+
+1674/1674 [==============================] - 169s 101ms/step - loss: 0.0903 - acc: 0.9751
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8216
+False 855
+True percentage 0.905743578437
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.90      0.83      0.86       438
+      I-PER       0.93      0.65      0.76       214
+      B-ORG       0.71      0.75      0.73       296
+      I-ORG       0.53      0.69      0.60       151
+      B-LOC       0.73      0.72      0.73       218
+      I-LOC       0.76      0.72      0.74       141
+     B-MISC       0.48      0.21      0.29       141
+     I-MISC       0.48      0.37      0.42       154
+
+avg / total       0.94      0.91      0.92      9071
+
+F-1 Score (without O):
+0.702573309396
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/10
+
+1674/1674 [==============================] - 205s 122ms/step - loss: 0.4262 - acc: 0.8678
+Epoch 2/10
+
+1674/1674 [==============================] - 177s 106ms/step - loss: 0.2520 - acc: 0.9225
+Epoch 3/10
+
+1674/1674 [==============================] - 179s 107ms/step - loss: 0.1979 - acc: 0.9417
+Epoch 4/10
+
+1674/1674 [==============================] - 175s 105ms/step - loss: 0.1654 - acc: 0.9520
+Epoch 5/10
+
+1674/1674 [==============================] - 176s 105ms/step - loss: 0.1426 - acc: 0.9595
+Epoch 6/10
+
+1674/1674 [==============================] - 177s 106ms/step - loss: 0.1263 - acc: 0.9637
+Epoch 7/10
+
+1674/1674 [==============================] - 176s 105ms/step - loss: 0.1113 - acc: 0.9687
+Epoch 8/10
+
+1674/1674 [==============================] - 172s 103ms/step - loss: 0.0998 - acc: 0.9718
+Epoch 9/10
+
+1674/1674 [==============================] - 174s 104ms/step - loss: 0.0887 - acc: 0.9752
+Epoch 10/10
+
+1674/1674 [==============================] - 174s 104ms/step - loss: 0.0818 - acc: 0.9778
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8231
+False 840
+True percentage 0.907397199868
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.97      0.97      7318
+      B-PER       0.91      0.83      0.87       438
+      I-PER       0.92      0.64      0.76       214
+      B-ORG       0.76      0.73      0.75       296
+      I-ORG       0.53      0.52      0.52       151
+      B-LOC       0.74      0.73      0.74       218
+      I-LOC       0.74      0.70      0.72       141
+     B-MISC       0.51      0.28      0.36       141
+     I-MISC       0.47      0.40      0.44       154
+
+avg / total       0.94      0.91      0.92      9071
+
+F-1 Score (without O):
+0.702702702703
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/11
+
+1674/1674 [==============================] - 182s 109ms/step - loss: 0.4046 - acc: 0.8776
+Epoch 2/11
+
+1674/1674 [==============================] - 153s 91ms/step - loss: 0.2389 - acc: 0.9279
+Epoch 3/11
+
+1674/1674 [==============================] - 154s 92ms/step - loss: 0.1868 - acc: 0.9446
+Epoch 4/11
+
+1674/1674 [==============================] - 152s 91ms/step - loss: 0.1563 - acc: 0.9547
+Epoch 5/11
+
+1674/1674 [==============================] - 154s 92ms/step - loss: 0.1341 - acc: 0.9603
+Epoch 6/11
+
+1674/1674 [==============================] - 153s 91ms/step - loss: 0.1180 - acc: 0.9663
+Epoch 7/11
+
+1674/1674 [==============================] - 145s 87ms/step - loss: 0.1055 - acc: 0.9696
+Epoch 8/11
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.0935 - acc: 0.9730
+Epoch 9/11
+
+1674/1674 [==============================] - 140s 84ms/step - loss: 0.0832 - acc: 0.9776
+Epoch 10/11
+
+1674/1674 [==============================] - 138s 82ms/step - loss: 0.0771 - acc: 0.9785
+Epoch 11/11
+
+1674/1674 [==============================] - 140s 84ms/step - loss: 0.0717 - acc: 0.9801
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8226
+False 845
+True percentage 0.906845992724
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.91      0.82      0.86       438
+      I-PER       0.84      0.64      0.73       214
+      B-ORG       0.74      0.75      0.74       296
+      I-ORG       0.65      0.56      0.60       151
+      B-LOC       0.73      0.72      0.73       218
+      I-LOC       0.73      0.74      0.73       141
+     B-MISC       0.43      0.26      0.32       141
+     I-MISC       0.49      0.40      0.44       154
+
+avg / total       0.93      0.91      0.92      9071
+
+F-1 Score (without O):
+0.702653799759
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/12
+
+1674/1674 [==============================] - 153s 91ms/step - loss: 0.4438 - acc: 0.8671
+Epoch 2/12
+
+1674/1674 [==============================] - 136s 81ms/step - loss: 0.2599 - acc: 0.9209
+Epoch 3/12
+
+1674/1674 [==============================] - 138s 83ms/step - loss: 0.2047 - acc: 0.9404
+Epoch 4/12
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.1685 - acc: 0.9510
+Epoch 5/12
+
+1674/1674 [==============================] - 140s 83ms/step - loss: 0.1464 - acc: 0.9576
+Epoch 6/12
+
+1674/1674 [==============================] - 140s 83ms/step - loss: 0.1292 - acc: 0.9638
+Epoch 7/12
+
+1674/1674 [==============================] - 138s 83ms/step - loss: 0.1149 - acc: 0.9674
+Epoch 8/12
+
+1674/1674 [==============================] - 140s 84ms/step - loss: 0.1018 - acc: 0.9709
+Epoch 9/12
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.0935 - acc: 0.9733
+Epoch 10/12
+
+1674/1674 [==============================] - 141s 84ms/step - loss: 0.0866 - acc: 0.9750
+Epoch 11/12
+
+1674/1674 [==============================] - 138s 83ms/step - loss: 0.0774 - acc: 0.9783
+Epoch 12/12
+
+1674/1674 [==============================] - 138s 82ms/step - loss: 0.0733 - acc: 0.9794
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8232
+False 839
+True percentage 0.907507441296
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.91      0.83      0.86       438
+      I-PER       0.89      0.66      0.76       214
+      B-ORG       0.75      0.74      0.75       296
+      I-ORG       0.64      0.59      0.62       151
+      B-LOC       0.72      0.74      0.73       218
+      I-LOC       0.69      0.75      0.72       141
+     B-MISC       0.48      0.29      0.36       141
+     I-MISC       0.45      0.42      0.43       154
+
+avg / total       0.94      0.91      0.92      9071
+
+F-1 Score (without O):
+0.707287933094
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/13
+
+1674/1674 [==============================] - 149s 89ms/step - loss: 0.4040 - acc: 0.8780
+Epoch 2/13
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.2432 - acc: 0.9271
+Epoch 3/13
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.1914 - acc: 0.9436
+Epoch 4/13
+
+1674/1674 [==============================] - 140s 84ms/step - loss: 0.1629 - acc: 0.9527
+Epoch 5/13
+
+1674/1674 [==============================] - 140s 83ms/step - loss: 0.1385 - acc: 0.9606
+Epoch 6/13
+
+1674/1674 [==============================] - 140s 83ms/step - loss: 0.1223 - acc: 0.9651
+Epoch 7/13
+
+1674/1674 [==============================] - 143s 86ms/step - loss: 0.1096 - acc: 0.9682
+Epoch 8/13
+
+1674/1674 [==============================] - 138s 82ms/step - loss: 0.0975 - acc: 0.9726
+Epoch 9/13
+
+1674/1674 [==============================] - 140s 83ms/step - loss: 0.0877 - acc: 0.9765
+Epoch 10/13
+
+1674/1674 [==============================] - 138s 82ms/step - loss: 0.0813 - acc: 0.9772
+Epoch 11/13
+
+1674/1674 [==============================] - 141s 84ms/step - loss: 0.0753 - acc: 0.9787
+Epoch 12/13
+
+1674/1674 [==============================] - 142s 85ms/step - loss: 0.0697 - acc: 0.9808
+Epoch 13/13
+
+1674/1674 [==============================] - 141s 84ms/step - loss: 0.0653 - acc: 0.9825
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8240
+False 831
+True percentage 0.908389372726
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.89      0.83      0.86       438
+      I-PER       0.90      0.64      0.75       214
+      B-ORG       0.77      0.73      0.75       296
+      I-ORG       0.63      0.56      0.59       151
+      B-LOC       0.73      0.74      0.74       218
+      I-LOC       0.70      0.78      0.74       141
+     B-MISC       0.47      0.33      0.39       141
+     I-MISC       0.49      0.45      0.47       154
+
+avg / total       0.94      0.91      0.92      9071
+
+F-1 Score (without O):
+0.710062705285
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/14
+
+1674/1674 [==============================] - 152s 91ms/step - loss: 0.4328 - acc: 0.8684
+Epoch 2/14
+
+1674/1674 [==============================] - 138s 82ms/step - loss: 0.2503 - acc: 0.9236
+Epoch 3/14
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.1966 - acc: 0.9426
+Epoch 4/14
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.1649 - acc: 0.9524
+Epoch 5/14
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.1427 - acc: 0.9587
+Epoch 6/14
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.1216 - acc: 0.9660
+Epoch 7/14
+
+1674/1674 [==============================] - 140s 84ms/step - loss: 0.1103 - acc: 0.9683
+Epoch 8/14
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.0991 - acc: 0.9719
+Epoch 9/14
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.0910 - acc: 0.9743
+Epoch 10/14
+
+1674/1674 [==============================] - 138s 83ms/step - loss: 0.0827 - acc: 0.9774
+Epoch 11/14
+
+1674/1674 [==============================] - 140s 83ms/step - loss: 0.0753 - acc: 0.9784
+Epoch 12/14
+
+1674/1674 [==============================] - 140s 83ms/step - loss: 0.0695 - acc: 0.9805
+Epoch 13/14
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.0663 - acc: 0.9806
+Epoch 14/14
+
+1674/1674 [==============================] - 140s 84ms/step - loss: 0.0610 - acc: 0.9822
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8238
+False 833
+True percentage 0.908168889869
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.91      0.83      0.87       438
+      I-PER       0.88      0.67      0.76       214
+      B-ORG       0.72      0.74      0.73       296
+      I-ORG       0.64      0.61      0.62       151
+      B-LOC       0.74      0.71      0.72       218
+      I-LOC       0.76      0.74      0.75       141
+     B-MISC       0.41      0.28      0.34       141
+     I-MISC       0.50      0.42      0.46       154
+
+avg / total       0.94      0.91      0.92      9071
+
+F-1 Score (without O):
+0.709483793517
+Opening file ner_3_train.ner
+Opening file ner_3_test.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105288 unique words.
+5284 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 230
+OOV word occurences: in test 314
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6738496     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,850,626
+Trainable params: 6,850,626
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Epoch 1/15
+
+1674/1674 [==============================] - 153s 91ms/step - loss: 0.4409 - acc: 0.8662
+Epoch 2/15
+
+1674/1674 [==============================] - 139s 83ms/step - loss: 0.2569 - acc: 0.9228
+Epoch 3/15
+
+1674/1674 [==============================] - 118s 70ms/step - loss: 0.2030 - acc: 0.9399
+Epoch 4/15
+
+1674/1674 [==============================] - 118s 70ms/step - loss: 0.1679 - acc: 0.9518
+Epoch 5/15
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.1459 - acc: 0.9576
+Epoch 6/15
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.1234 - acc: 0.9650
+Epoch 7/15
+
+1674/1674 [==============================] - 115s 69ms/step - loss: 0.1125 - acc: 0.9687
+Epoch 8/15
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.0994 - acc: 0.9722
+Epoch 9/15
+
+1674/1674 [==============================] - 116s 69ms/step - loss: 0.0899 - acc: 0.9750
+Epoch 10/15
+
+1674/1674 [==============================] - 118s 70ms/step - loss: 0.0818 - acc: 0.9780
+Epoch 11/15
+
+1674/1674 [==============================] - 118s 70ms/step - loss: 0.0743 - acc: 0.9798
+Epoch 12/15
+
+1674/1674 [==============================] - 118s 70ms/step - loss: 0.0693 - acc: 0.9805
+Epoch 13/15
+
+1674/1674 [==============================] - 120s 72ms/step - loss: 0.0656 - acc: 0.9816
+Epoch 14/15
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.0606 - acc: 0.9833
+Epoch 15/15
+
+1674/1674 [==============================] - 117s 70ms/step - loss: 0.0574 - acc: 0.9843
+Padded until 24 chars.
+Padded until 83 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 8265
+False 806
+True percentage 0.911145408444
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.92      0.83      0.88       438
+      I-PER       0.91      0.67      0.77       214
+      B-ORG       0.76      0.73      0.74       296
+      I-ORG       0.66      0.62      0.64       151
+      B-LOC       0.76      0.75      0.75       218
+      I-LOC       0.72      0.78      0.75       141
+     B-MISC       0.46      0.35      0.40       141
+     I-MISC       0.53      0.45      0.48       154
+
+avg / total       0.94      0.91      0.93      9071
+
+F-1 Score (without O):
+0.724003596044
