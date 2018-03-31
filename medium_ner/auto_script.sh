@@ -1,18 +1,18 @@
 #!/bin/bash
-echo "epoch 2 - 8"
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 2 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 3 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 4 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 5 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 6 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 7 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 8 16 >> lognTnW3.txt
-echo "epoch 9 - 15"
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 9 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 10 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 11 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 12 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 13 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 14 16 >> lognTnW3.txt
-python auto_main_noweighting.py ner_3_train.ner ner_3_test.ner 15 16 >> lognTnW3.txt
+echo "epoch 16 - 22"
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 16 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 17 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 18 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 19 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 20 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 21 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 22 16 >> logTnW3.txt
+echo "epoch 23 - 29"
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 23 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 24 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 25 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 26 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 27 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 28 16 >> logTnW3.txt
+python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 29 16 >> logTnW3.txt
 echo "done!"
