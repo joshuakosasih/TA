@@ -1,18 +1,31 @@
 #!/bin/bash
-echo "epoch 16 - 22"
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 16 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 17 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 18 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 19 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 20 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 21 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 22 16 >> logTnW3.txt
-echo "epoch 23 - 29"
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 23 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 24 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 25 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 26 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 27 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 28 16 >> logTnW3.txt
-python auto_transfer_main_noweighting.py ner_3_train.ner ner_3_test.ner 29 16 >> logTnW3.txt
+echo "data 100% - 10%"
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 1 0 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 1 1 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.5 0 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.5 1 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.2 0 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.2 1 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.1 0 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.1 1 >> logTnW3.txt
+echo "data 5% - 1%"
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.05 0 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.05 1 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.05 2 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.02 0 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.02 1 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.02 2 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.01 0 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.01 1 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.01 2 >> logTnW3.txt
+echo "data 0.5% - 0.1%"
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.005 0 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.005 1 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.005 2 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.002 0 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.002 1 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.002 2 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.001 0 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.001 1 >> logTnW3.txt
+python auto_main_noweighting_cut.py ner_3_train.ner ner_3_test.ner 12 16 0.001 2 >> logTnW3.txt
 echo "done!"
