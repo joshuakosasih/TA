@@ -36,7 +36,7 @@ Preparing file
 """
 train_name = sys.argv[1]
 train = DL(train_name)
-percentage = sys.argv[5]  # input('Enter percentage of data to take: ')
+percentage = float(sys.argv[5])  # input('Enter percentage of data to take: ')
 seed = sys.argv[6]  # input('Enter seed for slicing data: ')
 train.slice(percentage, seed)
 test_name = sys.argv[2]
