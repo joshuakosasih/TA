@@ -41,6 +41,7 @@ seed = sys.argv[6]  # input('Enter seed for slicing data: ')
 train.slice(percentage, seed)
 test_name = sys.argv[2]
 test = DL(test_name)
+print "Cut percentage", percentage, "with seed", seed
 
 """
 Load pre-trained word embedding
