@@ -155,6 +155,9 @@ print "Number of test OOV:", len(x_test.oov_index)
 print "OOV word occurences: in test", x_test.oov
 
 padsize = max([x_train.padsize, x_test.padsize])
+if padsize < 83:
+    padsize = 83
+
 x_train.pad(padsize)
 print('Padded until %s tokens.' % padsize)
 
@@ -306,7 +309,7 @@ model.compile(loss=loss,
 Loading Weight (Transfer Weight)
 """
 import pickle
-w_name = 'w918' # raw_input('Enter file name to load weights: ')
+w_name = 'w916' # raw_input('Enter file name to load weights: ')
 load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
 m_layers_len = len(model.layers)
 if 'n' in load_c:
