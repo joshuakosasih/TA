@@ -17,6 +17,8 @@ from keras.models import load_model
 import tensorflow as tf
 from time import time
 import sys
+from sklearn.metrics import classification_report
+from sklearn.metrics import f1_score
 
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
@@ -29,7 +31,8 @@ def activationPrompt(name):
     choice = input('Enter type of activation function for ' + name + ': ')
     activations = ['softmax', 'elu', 'selu', 'softplus', 'softsign',
                    'relu', 'tanh', 'sigmoid', 'hard_sigmoid', 'linear']
-    return activations[choice-1]
+    return activations[choice - 1]
+
 
 """
 Preparing file
@@ -245,10 +248,12 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
-merge_m = 'sum' # raw_input('Enter merge mode for GRU Karakter: ')
-dropout = 0.2 # input('Enter dropout for GRU: ')
-rec_dropout = dropout # input('Enter GRU Karakter recurrent dropout: ')
-gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
+merge_m = 'sum'  # raw_input('Enter merge mode for GRU Karakter: ')
+dropout = 0.2  # input('Enter dropout for GRU: ')
+rec_dropout = dropout  # input('Enter GRU Karakter recurrent dropout: ')
+gru_karakter = Bidirectional(
+    GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m,
+    weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
 
@@ -258,18 +263,20 @@ Combine word + char model
 from keras.layers import Add, Subtract, Multiply, Average, Maximum
 
 print "Model Choice:"
-model_choice = 3 # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
-merge_m = 'concat' # raw_input('Enter merge mode for GRU Kata: ')
+model_choice = 3  # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
+merge_m = 'concat'  # raw_input('Enter merge mode for GRU Kata: ')
 # dropout = input('Enter GRU Karakter dropout: ')
 # rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 if model_choice == 1:
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout),
+                             merge_mode=merge_m, weights=None)(
         embedded_sequences)
 elif model_choice == 2:
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout),
+                             merge_mode=merge_m, weights=None)(
         rtwo)
 else:
-    combine = 5 # input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
+    combine = 5  # input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
     elif combine == 3:
@@ -280,7 +287,8 @@ else:
         merge = Maximum()([embedded_sequences, rtwo])
     else:
         merge = Add()([embedded_sequences, rtwo])
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout),
+                             merge_mode=merge_m, weights=None)(
         merge)
 
 crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
@@ -288,14 +296,14 @@ crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 preds = Dense(len(label.index) + 1, activation='softmax')(gru_kata)
 
 print "Model Choice:"
-model_choice = 1 # input('Enter 1 for CRF or 2 for Dense layer: ')
+model_choice = 1  # input('Enter 1 for CRF or 2 for Dense layer: ')
 
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
-optimizer = 'adagrad' # raw_input('Enter optimizer (default rmsprop): ')
-loss = 'categorical_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
+optimizer = 'adagrad'  # raw_input('Enter optimizer (default rmsprop): ')
+loss = 'categorical_crossentropy'  # raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
@@ -306,8 +314,9 @@ model.compile(loss=loss,
 Loading Weight (Transfer Weight)
 """
 import pickle
-w_name = 'w918' # raw_input('Enter file name to load weights: ')
-load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
+
+w_name = 'w918'  # raw_input('Enter file name to load weights: ')
+load_c = 'n'  # raw_input('Do you want to load CRF weight too? ')
 m_layers_len = len(model.layers)
 if 'n' in load_c:
     m_layers_len = m_layers_len - 1
@@ -323,19 +332,13 @@ for i in range(m_layers_len):
             new_w = np.concatenate((w[0], w_zeroes), axis=0)
             model.layers[i].set_weights([new_w])
 
+print 'Weight loaded!'
 """
-Training
+Converting testing text data to int using index
 """
-epoch = int(sys.argv[3])
-batch = int(sys.argv[4])
+x_test.pad(padsize)
+y_test.pad(padsize)
 
-model.fit([np.array(x_train.padded), np.array(x_train_char)],
-          [np.array(y_encoded)],
-          epochs=epoch, batch_size=batch)
-
-"""
-Converting text data to int using index
-"""
 x_test_tmp1 = []
 for sent in test.words:
     x_map = DM(sent, char.index, False)
@@ -363,6 +366,38 @@ for sent in x_test_tmp2:
     x_test_char.append(padded_sent)
 
 print('Padded until %s tokens.' % padsize)
+
+label_index = range(1, len(label.index) + 1)
+label_names = []
+for key, value in sorted(label.index.iteritems(), key=lambda (k, v): (v, k)):
+    label_names.append(key)
+
+"""
+Training
+"""
+epoch = 1
+batch = int(sys.argv[4])
+for ep in range(int(sys.argv[3])):
+    print 'Epoch:', ep+1
+    model.fit([np.array(x_train.padded), np.array(x_train_char)],
+              [np.array(y_encoded)],
+              epochs=epoch, batch_size=batch)
+    results = []
+    raw_results = model.predict([np.array(x_test.padded), np.array(x_test_char)])
+    for raw_result in raw_results:
+        result = []
+        for token in raw_result:
+            value = np.argmax(token)
+            result.append(value)
+        results.append(result)
+    y_true = [item for sublist in y_test.padded for item in sublist]  # flatten list for sklearn evaluation
+    y_pred = [item for sublist in results for item in sublist]
+    print "Sklearn evaluation from epoch:", ep+1
+    print classification_report(y_true, y_pred, labels=label_index, target_names=label_names)
+    f1_mac = f1_score(y_true, y_pred, labels=label_index[1:], average='macro')
+    f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
+    print 'F-1 Score (without O) from epoch:', ep+1
+    print max([f1_mac, f1_mic])
 
 """
 Evaluate
@@ -410,25 +445,8 @@ print "True percentage", float(total_true) / float(total_nonzero)
 """
 Sklearn evaluation
 """
-label_index = range(1, len(label.index) + 1)
-label_names = []
-for key, value in sorted(label.index.iteritems(), key=lambda (k, v): (v, k)):
-    label_names.append(key)
 
-from sklearn.metrics import classification_report
 
-# flatten list for sklearn evaluation
-y_true = [item for sublist in y_test.padded for item in sublist]
-y_pred = [item for sublist in results for item in sublist]
-print "Sklearn evaluation:"
-print classification_report(y_true, y_pred, labels=label_index, target_names=label_names)
-
-from sklearn.metrics import f1_score
-
-f1_mac = f1_score(y_true, y_pred, labels=label_index[1:], average='macro')
-f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
-print 'F-1 Score (without O):'
-print max([f1_mac, f1_mic])
 
 """
 Save weight
