@@ -61,6 +61,20 @@ class DataLoader:
         self.labels = self.labels[:num_item]
         print "Data sliced!", len(self.corpus), "sentences!"
 
+    def antislice(self, percent, seed):
+        random.seed(seed)
+        random.shuffle(self.words)
+        random.seed(seed)
+        random.shuffle(self.labels)
+        random.seed(seed)
+        random.shuffle(self.corpus)
+
+        num_item = int(percent * len(self.labels))
+        self.corpus = self.corpus[num_item:]
+        self.words = self.words[num_item:]
+        self.labels = self.labels[num_item:]
+        print "Data sliced!", len(self.corpus), "sentences!"
+
     def add(self, name):
         print "Opening file", name
         myfile = open(name, 'r')
