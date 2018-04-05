@@ -279,7 +279,7 @@ elif model_choice == 2:
                              merge_mode=merge_m, weights=None)(
         rtwo)
 else:
-    combine = 5  # input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
+    combine = 1  # input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
     elif combine == 3:

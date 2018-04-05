@@ -34,11 +34,11 @@ def activationPrompt(name):
 Preparing file
 """
 
-train = DL('ner_2_train.ner')
+train = DL('ner_3_train.ner')
 # percentage = input('Enter percentage of data to take: ')
 # seed = input('Enter seed for slicing data: ')
 # train.slice(percentage, seed)
-test = DL('ner_2_test.ner')
+test = DL('ner_3_test.ner')
 
 """
 Load pre-trained word embedding
@@ -158,7 +158,7 @@ Converting char text data to int using index
 """
 
 x_train_tmp1 = []
-char_padsize = 0
+char_padsize = 24
 for sent in train.words:
     x_map = DM(sent, char.index, False)
     if x_map.padsize > char_padsize:
@@ -292,40 +292,17 @@ model.compile(loss=loss,
               sample_weight_mode="temporal")
 
 from sklearn.utils import class_weight as cw
-flat_y = [item for sublist in y_train.padded for item in sublist]
-ocw = cw.compute_class_weight('balanced', np.unique(flat_y), flat_y)
-ccw = []
-mult = 0.05
-print "Multiplier", mult
-for w in ocw:
-    if w > 1:
-        x = w * float(mult)
-    else:
-        x = w
-    ccw.append(x)
-
-ccw = [0.2, 0.9, 0.6, 0.8, 1.64, 0.97, 1.1]
-print "Class Weights", ccw
 csw = []
-for i in range(len(y_train.padded)):
-    sw = []
-    for j in range(len(y_train.padded[i])):
-        sw.append(ccw[y_train.padded[i][j]])
+for sent in y_train.padded:
+    sw = cw.compute_sample_weight('balanced', sent)
     csw.append(sw)
 
-epoch = 100 # input('Enter number of epochs: ')
-batch = 16 # input('Enter number of batch size: ')
+epoch = 3 # input('Enter number of epochs: ')
+batch = 8 # input('Enter number of batch size: ')
 
-from keras.callbacks import EarlyStopping
-callback = EarlyStopping(monitor='loss', min_delta=0.02, patience=2, verbose=0, mode='auto')
-
-t = time()
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
-          [np.array(y_encoded)], callbacks=[callback],
+          [np.array(y_encoded)], #callbacks=[callback],
           epochs=epoch, batch_size=batch, sample_weight=np.array(csw))
-
-duration = time()-t
-print "Time to train:", duration
 
 """
 Converting text data to int using index
@@ -424,4 +401,3 @@ f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
 print 'F-1 Score (without O):'
 print max([f1_mac, f1_mic])
 
-print "Time to train:", duration

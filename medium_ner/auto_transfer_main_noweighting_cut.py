@@ -36,7 +36,7 @@ Preparing file
 """
 train_name = sys.argv[1]
 train = DL(train_name)
-percentage = sys.argv[5]  # input('Enter percentage of data to take: ')
+percentage = float(sys.argv[5])  # input('Enter percentage of data to take: ')
 seed = sys.argv[6]  # input('Enter seed for slicing data: ')
 train.slice(percentage, seed)
 test_name = sys.argv[2]
@@ -273,7 +273,7 @@ elif model_choice == 2:
     gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
         rtwo)
 else:
-    combine = 5 # input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
+    combine = 1 # input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
     elif combine == 3:
@@ -433,16 +433,3 @@ f1_mac = f1_score(y_true, y_pred, labels=label_index[1:], average='macro')
 f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
 print 'F-1 Score (without O):'
 print max([f1_mac, f1_mic])
-
-"""
-Save weight
-
-save_m = raw_input('Do you want to save model weight? ')
-if 'y' in save_m:
-    w_name = raw_input('Enter file name to save weights: ')
-    for i in range(len(model.layers)):
-        with open(w_name+'-'+str(i)+'.wgt', 'wb') as fp:
-            pickle.dump(model.layers[i].get_weights(), fp)
-
-"""
-# pm.predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua', padsize)

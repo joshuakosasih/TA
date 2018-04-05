@@ -276,7 +276,7 @@ elif model_choice == 2:
                              merge_mode=merge_m, weights=None)(
         rtwo)
 else:
-    combine = 5  # input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
+    combine = 1  # input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
     elif combine == 3:
@@ -402,45 +402,6 @@ for ep in range(int(sys.argv[3])):
 """
 Evaluate
 """
-
-mateval = []
-for labr in range(label.cnt):
-    row = []
-    for labc in range(label.cnt):
-        row.append(0)
-    mateval.append(row)
-
-x_test.pad(padsize)
-results = []
-print "Computing..."
-raw_results = model.predict([np.array(x_test.padded), np.array(x_test_char)])
-for raw_result in raw_results:
-    result = []
-    for token in raw_result:
-        value = np.argmax(token)
-        result.append(value)
-    results.append(result)
-
-y_test.pad(padsize)
-total_nonzero = 0  # to get labelled token total number
-for i, sent in enumerate(y_test.padded):
-    for j, token in enumerate(sent):
-        pred = results[i][j]
-        answ = token
-        mateval[answ][pred] = mateval[answ][pred] + 1  # row shows label and column shows prediction given
-        if not answ == 0:
-            total_nonzero = total_nonzero + 1
-
-total_true = 0
-for i in range(1, len(mateval)):
-    total_true = total_true + mateval[i][i]
-
-total_false = total_nonzero - total_true
-
-print "Manual evaluation: (didn't understand why I made this)"
-print "True", total_true
-print "False", total_false
-print "True percentage", float(total_true) / float(total_nonzero)
 
 """
 Sklearn evaluation
