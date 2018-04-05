@@ -1,0 +1,238 @@
+Ambiguitas
+
+Antara dan antara
+
+Di	O
+depan	O
+rumah	B-LOC
+Wali	I-LOC
+Kota	I-LOC
+Surabaya	B-LOC
+
+PWNU	B-ORG
+Jatim	I-ORG
+di	O
+Hotel	B-LOC
+Mercure	I-LOC
+Surabaya	I-LOC
+
+menantang	O
+para	O
+PNS	O
+di	O
+DKI	B-ORG <-- BUKAN LOKASI, TAPI ORG
+
+menghadiri	O
+Munas	B-MISC
+Surabaya	I-MISC
+Community	I-MISC
+
+
+Cyrus	B-ORG
+Network	I-ORG  <-- segment
+Hasan	B-PER
+Nasbi	I-PER
+
+menempuh	O
+pendidikan	O
+tinggi	O
+di	O
+Universitas	B-ORG  <-- BUKAN LOC
+Harvard	I-ORG
+
+
+investasi	O
+Swiss	B-MISC
+di	O
+Indonesia	B-LOC
+
+
+maju	O
+di	O
+ajang	O
+pilpres	I-MISC  <-- huruf kecil
+
+Samsung	B-MISC
+galaxy	I-MISC
+tab	I-MISC
+
+
+Manajer	O
+Liverpool	B-ORG
+Juergen	B-PER
+Klopp	I-PER
+
+direksi	O
+Asosiasi	B-ORG
+Sepakbola	I-ORG
+Inggris	I-ORG
+
+
+Bintara	B-MISC
+Khusus	I-MISC
+Penyidik	I-MISC
+Pembantu	I-MISC
+dan	O
+Tamtama	B-MISC
+Polri	I-MISC
+
+
+tampil	O
+oke	O
+di	O
+Piala	B-MISC
+Eropa	I-MISC
+
+
+Antonio	B-PER
+Conte	I-PER
+dilaporkan	O
+menginginkan	O
+Arturo	B-PER
+Vidal	I-PER
+di	O
+Chelsea	B-ORG <--
+
+
+oleh	O
+pebalap	O
+Honda	B-ORG
+Repsol	I-ORG
+Marc	B-PER
+Marquez	I-PER
+
+Nvidia	B-MISC <--- 
+Tegra	I-MISC
+
+
+Akhir	O
+pekan	O
+lalu	O
+tersebar	O
+rumor	O
+di	O
+Wall	B-LOC
+Street	I-LOC
+
+
+Untuk	O
+kategori	O
+Asia	B-MISC <---
+
+tegas	O
+Mega	B-PER
+dalam	O
+pidatonya	O
+di	O
+depan	O
+sekitar	O
+1.000	O
+warga	O
+Blora	B-LOC  <-- memang loc
+
+Bukan lokasi
+Istana	B-ORG
+Kepresidenan	I-ORG
+RI	I-ORG
+menyambut	O
+baik	O
+
+
+indikasi	O
+semakin	O
+harmonisnya	O
+hubungan	O
+PDIP	B-ORG
+dengan	O
+Istana	B-ORG <-- ORG
+
+
+Muktamar	O
+itu	O
+digelar	O
+oleh	O
+kepengurusan	O
+hasil	O
+Mukmatar	B-MISC
+Bandung	I-MISC  <--- LOKASI
+
+
+sekretaris	O
+Fraksi	O
+PAN	B-ORG
+DPR	B-ORG
+
+
+daftar	O
+Panama	B-MISC
+Papers	I-MISC
+
+Badrodin	B-PER
+mengatakan	O
+operasi	B-MISC  <-- huruf besar kecil
+bersinar	B-MISC
+ini	O
+merupakan	O
+perintah	O
+
+Korea	B-ORG
+Tourism	I-ORG
+Organization	I-ORG
+
+
+Kalau	O
+ada	O
+komunikasi	O
+pihak	O
+Istana	B-ORG  <-- lok atau org
+
+di	O
+Gedung	B-LOC
+DPR	I-LOC  <--loc bukan org
+
+menambah	O
+koleksi	O
+Disney	B-MISC
+-nya	O
+
+
+terhadap	O
+dolar	O
+AS	B-MISC
+dalam	O
+jangka	O
+
+
+menjuarai	O
+Australia	B-MISC
+Terbuka	I-MISC
+
+yang	O
+pertama	O
+di	O
+Ronald	B-LOC
+Garros	I-LOC
+
+
+keponakan	O
+Walt	B-PER
+Disney	I-PER
+sekaligus	O
+salah	O
+satu	O
+pemilik	O
+saham	O
+terbesar	O
+The	B-ORG
+Walt	I-ORG
+Disney	I-ORG
+Company	I-ORG
+
+
+Toyota	B-MISC
+Crown	I-MISC
+RI	B-MISC
+36	I-MISC
+
+manajer	O
+Indonesia	B-MISC
