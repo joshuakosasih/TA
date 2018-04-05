@@ -1,0 +1,4249 @@
+Opening file ner_3_train.ner
+Opening file ner_3_train.ner
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 104036 unique words.
+Found 181 unique chars.
+Found 9 unique labels.
+Found 105194 unique words.
+5190 unique words not found in embedding.
+97 unique chars not found in embedding.
+Number of train OOV: 0
+OOV word occurences in train: 0
+Number of test OOV: 94
+OOV word occurences: in test 95
+Padded until 83 tokens.
+Padded until 24 chars.
+Padded until 83 tokens.
+Model Choice:
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 83, 24)       0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 24, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 24, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 83)           0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 83, 64)       6732480     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 83, 64)       0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+maximum_1 (Maximum)             (None, 83, 64)       0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 83, 128)      49536       maximum_1[0][0]                  
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 83, 10)       1410        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,844,610
+Trainable params: 6,844,610
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Padded until 24 chars.
+Padded until 83 tokens.
+Epoch: 1
+Epoch 1/1
+
+1506/1506 [==============================] - 78s 52ms/step - loss: 0.5459 - acc: 0.8434
+Sklearn evaluation from epoch: 1
+             precision    recall  f1-score   support
+
+          O       0.98      0.97      0.97      2890
+      B-PER       0.88      0.72      0.79       139
+      B-ORG       0.65      0.76      0.70       143
+      I-ORG       0.49      0.56      0.52        77
+     B-MISC       0.69      0.17      0.28        64
+     I-MISC       0.29      0.03      0.06        61
+      I-PER       0.52      0.87      0.65        53
+      B-LOC       0.64      0.70      0.67        67
+      I-LOC       0.59      0.56      0.57        43
+
+avg / total       0.92      0.90      0.90      3537
+
+F-1 Score (without O) from epoch: 1
+0.615632554392
+Epoch: 2
+Epoch 1/1
+
+1506/1506 [==============================] - 73s 49ms/step - loss: 0.2735 - acc: 0.9194
+Sklearn evaluation from epoch: 2
+             precision    recall  f1-score   support
+
+          O       0.98      0.97      0.98      2890
+      B-PER       0.88      0.91      0.90       139
+      B-ORG       0.71      0.79      0.75       143
+      I-ORG       0.55      0.65      0.60        77
+     B-MISC       0.73      0.12      0.21        64
+     I-MISC       0.75      0.05      0.09        61
+      I-PER       0.72      0.89      0.80        53
+      B-LOC       0.70      0.81      0.75        67
+      I-LOC       0.71      0.70      0.71        43
+
+avg / total       0.94      0.91      0.92      3537
+
+F-1 Score (without O) from epoch: 2
+0.696774193548
+Epoch: 3
+Epoch 1/1
+
+1506/1506 [==============================] - 73s 49ms/step - loss: 0.2129 - acc: 0.9372
+Sklearn evaluation from epoch: 3
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.92      0.94      0.93       139
+      B-ORG       0.72      0.85      0.78       143
+      I-ORG       0.51      0.78      0.62        77
+     B-MISC       0.75      0.23      0.36        64
+     I-MISC       0.64      0.11      0.19        61
+      I-PER       0.85      0.89      0.87        53
+      B-LOC       0.79      0.85      0.82        67
+      I-LOC       0.81      0.81      0.81        43
+
+avg / total       0.95      0.92      0.93      3537
+
+F-1 Score (without O) from epoch: 3
+0.740392156863
+Epoch: 4
+Epoch 1/1
+
+1506/1506 [==============================] - 72s 48ms/step - loss: 0.1769 - acc: 0.9491
+Sklearn evaluation from epoch: 4
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.88      0.96      0.92       139
+      B-ORG       0.78      0.80      0.79       143
+      I-ORG       0.71      0.75      0.73        77
+     B-MISC       0.70      0.30      0.42        64
+     I-MISC       0.81      0.34      0.48        61
+      I-PER       0.85      0.89      0.87        53
+      B-LOC       0.74      0.88      0.80        67
+      I-LOC       0.81      0.81      0.81        43
+
+avg / total       0.95      0.93      0.94      3537
+
+F-1 Score (without O) from epoch: 4
+0.774603174603
+Epoch: 5
+Epoch 1/1
+
+1506/1506 [==============================] - 73s 48ms/step - loss: 0.1531 - acc: 0.9564
+Sklearn evaluation from epoch: 5
+             precision    recall  f1-score   support
+
+          O       0.98      0.97      0.98      2890
+      B-PER       0.92      0.97      0.95       139
+      B-ORG       0.81      0.83      0.82       143
+      I-ORG       0.75      0.73      0.74        77
+     B-MISC       0.71      0.38      0.49        64
+     I-MISC       0.68      0.34      0.46        61
+      I-PER       0.89      0.91      0.90        53
+      B-LOC       0.89      0.82      0.85        67
+      I-LOC       0.88      0.81      0.84        43
+
+avg / total       0.95      0.93      0.94      3537
+
+F-1 Score (without O) from epoch: 5
+0.796761133603
+Epoch: 6
+Epoch 1/1
+
+1506/1506 [==============================] - 71s 47ms/step - loss: 0.1322 - acc: 0.9627
+Sklearn evaluation from epoch: 6
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.96      0.96      0.96       139
+      B-ORG       0.72      0.88      0.79       143
+      I-ORG       0.68      0.79      0.73        77
+     B-MISC       0.81      0.41      0.54        64
+     I-MISC       0.79      0.51      0.62        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.93      0.82      0.87        67
+      I-LOC       0.92      0.77      0.84        43
+
+avg / total       0.97      0.94      0.95      3537
+
+F-1 Score (without O) from epoch: 6
+0.809148264984
+Epoch: 7
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 47ms/step - loss: 0.1185 - acc: 0.9674
+Sklearn evaluation from epoch: 7
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.81      0.84      0.82       143
+      I-ORG       0.81      0.75      0.78        77
+     B-MISC       0.74      0.48      0.58        64
+     I-MISC       0.72      0.59      0.65        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.86      0.86      0.86        43
+
+avg / total       0.97      0.94      0.95      3537
+
+F-1 Score (without O) from epoch: 7
+0.830427892235
+Epoch: 8
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.1094 - acc: 0.9699
+Sklearn evaluation from epoch: 8
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.81      0.87      0.84       143
+      I-ORG       0.80      0.79      0.80        77
+     B-MISC       0.78      0.44      0.56        64
+     I-MISC       0.80      0.54      0.65        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.88      0.87      0.87        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.95      3537
+
+F-1 Score (without O) from epoch: 8
+0.838915470494
+Epoch: 9
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0998 - acc: 0.9724
+Sklearn evaluation from epoch: 9
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.82      0.87      0.84       143
+      I-ORG       0.83      0.78      0.81        77
+     B-MISC       0.76      0.44      0.55        64
+     I-MISC       0.81      0.56      0.66        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.86      0.88      0.87        67
+      I-LOC       0.88      0.86      0.87        43
+
+avg / total       0.97      0.94      0.95      3537
+
+F-1 Score (without O) from epoch: 9
+0.839171974522
+Epoch: 10
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0912 - acc: 0.9749
+Sklearn evaluation from epoch: 10
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.83      0.87      0.85       143
+      I-ORG       0.85      0.78      0.81        77
+     B-MISC       0.76      0.48      0.59        64
+     I-MISC       0.77      0.59      0.67        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.88      0.87      0.87        67
+      I-LOC       0.90      0.86      0.88        43
+
+avg / total       0.97      0.94      0.95      3537
+
+F-1 Score (without O) from epoch: 10
+0.844197138315
+Epoch: 11
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0842 - acc: 0.9768
+Sklearn evaluation from epoch: 11
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.83      0.88      0.85       143
+      I-ORG       0.86      0.78      0.82        77
+     B-MISC       0.80      0.56      0.66        64
+     I-MISC       0.78      0.59      0.67        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.90      0.86      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 11
+0.853057982526
+Epoch: 12
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0794 - acc: 0.9778
+Sklearn evaluation from epoch: 12
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.83      0.88      0.85       143
+      I-ORG       0.83      0.78      0.81        77
+     B-MISC       0.80      0.50      0.62        64
+     I-MISC       0.77      0.59      0.67        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.85      0.87        67
+      I-LOC       0.90      0.86      0.88        43
+
+avg / total       0.97      0.94      0.95      3537
+
+F-1 Score (without O) from epoch: 12
+0.84645982498
+Epoch: 13
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0727 - acc: 0.9805
+Sklearn evaluation from epoch: 13
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.84      0.74      0.79        77
+     B-MISC       0.75      0.59      0.66        64
+     I-MISC       0.73      0.61      0.66        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.85      0.87        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 13
+0.849880857824
+Epoch: 14
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0676 - acc: 0.9807
+Sklearn evaluation from epoch: 14
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.84      0.88      0.86       143
+      I-ORG       0.85      0.79      0.82        77
+     B-MISC       0.77      0.58      0.66        64
+     I-MISC       0.76      0.61      0.67        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.85      0.87        67
+      I-LOC       0.90      0.86      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 14
+0.852848101266
+Epoch: 15
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0667 - acc: 0.9816
+Sklearn evaluation from epoch: 15
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.84      0.88      0.86       143
+      I-ORG       0.87      0.77      0.81        77
+     B-MISC       0.76      0.55      0.64        64
+     I-MISC       0.75      0.66      0.70        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.85      0.87        67
+      I-LOC       0.95      0.86      0.90        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 15
+0.852614896989
+Epoch: 16
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0611 - acc: 0.9831
+Sklearn evaluation from epoch: 16
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.85      0.88      0.87       143
+      I-ORG       0.85      0.78      0.81        77
+     B-MISC       0.78      0.61      0.68        64
+     I-MISC       0.74      0.64      0.68        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.95      0.86      0.90        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 16
+0.857819905213
+Epoch: 17
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0566 - acc: 0.9840
+Sklearn evaluation from epoch: 17
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.88      0.87       143
+      I-ORG       0.87      0.75      0.81        77
+     B-MISC       0.78      0.62      0.70        64
+     I-MISC       0.73      0.66      0.69        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.88      0.88      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 17
+0.859399684044
+Epoch: 18
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0546 - acc: 0.9842
+Sklearn evaluation from epoch: 18
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.88      0.88      0.88       143
+      I-ORG       0.86      0.74      0.80        77
+     B-MISC       0.77      0.62      0.69        64
+     I-MISC       0.71      0.66      0.68        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.88      0.88      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 18
+0.858498023715
+Epoch: 19
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0504 - acc: 0.9859
+Sklearn evaluation from epoch: 19
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.88      0.87       143
+      I-ORG       0.86      0.73      0.79        77
+     B-MISC       0.78      0.66      0.71        64
+     I-MISC       0.71      0.67      0.69        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 19
+0.858721389108
+Epoch: 20
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0492 - acc: 0.9858
+Sklearn evaluation from epoch: 20
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.88      0.88      0.88       143
+      I-ORG       0.86      0.74      0.80        77
+     B-MISC       0.78      0.66      0.71        64
+     I-MISC       0.71      0.66      0.68        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.88      0.88      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 20
+0.860299921073
+Epoch: 21
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0463 - acc: 0.9865
+Sklearn evaluation from epoch: 21
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.89      0.87      0.88       143
+      I-ORG       0.90      0.73      0.81        77
+     B-MISC       0.76      0.70      0.73        64
+     I-MISC       0.71      0.72      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.88      0.88      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 21
+0.866141732283
+Epoch: 22
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0450 - acc: 0.9874
+Sklearn evaluation from epoch: 22
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.88      0.87       143
+      I-ORG       0.92      0.73      0.81        77
+     B-MISC       0.79      0.69      0.73        64
+     I-MISC       0.70      0.70      0.70        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.90      0.85      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 22
+0.863456985004
+Epoch: 23
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0417 - acc: 0.9883
+Sklearn evaluation from epoch: 23
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.88      0.87       143
+      I-ORG       0.84      0.77      0.80        77
+     B-MISC       0.77      0.67      0.72        64
+     I-MISC       0.77      0.70      0.74        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.88      0.88      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 23
+0.863636363636
+Epoch: 24
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0403 - acc: 0.9880
+Sklearn evaluation from epoch: 24
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.89      0.88      0.88       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.79      0.64      0.71        64
+     I-MISC       0.75      0.67      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.87      0.88      0.87        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 24
+0.86460807601
+Epoch: 25
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0391 - acc: 0.9888
+Sklearn evaluation from epoch: 25
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.88      0.88      0.88       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.81      0.66      0.72        64
+     I-MISC       0.76      0.69      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 25
+0.868462757528
+Epoch: 26
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0381 - acc: 0.9898
+Sklearn evaluation from epoch: 26
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.88      0.87       143
+      I-ORG       0.85      0.75      0.80        77
+     B-MISC       0.79      0.66      0.72        64
+     I-MISC       0.77      0.67      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 26
+0.864139020537
+Epoch: 27
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0363 - acc: 0.9901
+Sklearn evaluation from epoch: 27
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.88      0.88      0.88       143
+      I-ORG       0.90      0.74      0.81        77
+     B-MISC       0.77      0.67      0.72        64
+     I-MISC       0.71      0.72      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 27
+0.865460267506
+Epoch: 28
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0352 - acc: 0.9902
+Sklearn evaluation from epoch: 28
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.88      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.79      0.66      0.72        64
+     I-MISC       0.76      0.69      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 28
+0.867088607595
+Epoch: 29
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0337 - acc: 0.9899
+Sklearn evaluation from epoch: 29
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.77      0.83        77
+     B-MISC       0.80      0.67      0.73        64
+     I-MISC       0.75      0.69      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 29
+0.868670886076
+Epoch: 30
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0324 - acc: 0.9905
+Sklearn evaluation from epoch: 30
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.88      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.77      0.67      0.72        64
+     I-MISC       0.78      0.69      0.73        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 30
+0.865718799368
+Epoch: 31
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0306 - acc: 0.9913
+Sklearn evaluation from epoch: 31
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.88      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.75      0.67      0.71        64
+     I-MISC       0.76      0.67      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 31
+0.862559241706
+Epoch: 32
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0294 - acc: 0.9918
+Sklearn evaluation from epoch: 32
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.88      0.88      0.88       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.74      0.67      0.70        64
+     I-MISC       0.76      0.69      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 32
+0.865930599369
+Epoch: 33
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0281 - acc: 0.9922
+Sklearn evaluation from epoch: 33
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.79      0.64      0.71        64
+     I-MISC       0.79      0.69      0.74        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 33
+0.867143993636
+Epoch: 34
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0277 - acc: 0.9920
+Sklearn evaluation from epoch: 34
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.88      0.88      0.88       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.77      0.67      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.88      0.90      0.89        67
+      I-LOC       0.90      0.86      0.88        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 34
+0.864353312303
+Epoch: 35
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0260 - acc: 0.9929
+Sklearn evaluation from epoch: 35
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.88      0.87       143
+      I-ORG       0.87      0.75      0.81        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.88      0.87      0.87        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 35
+0.859621451104
+Epoch: 36
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0260 - acc: 0.9929
+Sklearn evaluation from epoch: 36
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.88      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.75      0.67      0.71        64
+     I-MISC       0.76      0.67      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 36
+0.863241106719
+Epoch: 37
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0260 - acc: 0.9922
+Sklearn evaluation from epoch: 37
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.87      0.77      0.81        77
+     B-MISC       0.76      0.66      0.71        64
+     I-MISC       0.81      0.69      0.74        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.88      0.87      0.87        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 37
+0.863241106719
+Epoch: 38
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0245 - acc: 0.9931
+Sklearn evaluation from epoch: 38
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.88      0.87      0.88       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.77      0.67      0.72        64
+     I-MISC       0.78      0.69      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 38
+0.866191607284
+Epoch: 39
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0237 - acc: 0.9935
+Sklearn evaluation from epoch: 39
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.88      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.77      0.67      0.72        64
+     I-MISC       0.76      0.69      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 39
+0.864139020537
+Epoch: 40
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0232 - acc: 0.9929
+Sklearn evaluation from epoch: 40
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.88      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.73      0.67      0.70        64
+     I-MISC       0.78      0.69      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 40
+0.862096138692
+Epoch: 41
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0233 - acc: 0.9934
+Sklearn evaluation from epoch: 41
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.89      0.87      0.88       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.75      0.67      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.87      0.90      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 41
+0.862776025237
+Epoch: 42
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0215 - acc: 0.9939
+Sklearn evaluation from epoch: 42
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.89      0.87       143
+      I-ORG       0.86      0.77      0.81        77
+     B-MISC       0.75      0.67      0.71        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 42
+0.865035516969
+Epoch: 43
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0221 - acc: 0.9934
+Sklearn evaluation from epoch: 43
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.89      0.88       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.75      0.67      0.71        64
+     I-MISC       0.77      0.67      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 43
+0.864139020537
+Epoch: 44
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0218 - acc: 0.9934
+Sklearn evaluation from epoch: 44
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.85      0.89      0.87       143
+      I-ORG       0.87      0.77      0.81        77
+     B-MISC       0.77      0.67      0.72        64
+     I-MISC       0.82      0.67      0.74        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 44
+0.866403162055
+Epoch: 45
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0204 - acc: 0.9942
+Sklearn evaluation from epoch: 45
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.89      0.88       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.72      0.67      0.69        64
+     I-MISC       0.77      0.67      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 45
+0.862096138692
+Epoch: 46
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0199 - acc: 0.9942
+Sklearn evaluation from epoch: 46
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.89      0.88       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.66      0.70        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.88      0.87      0.87        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 46
+0.863456985004
+Epoch: 47
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0195 - acc: 0.9939
+Sklearn evaluation from epoch: 47
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.73      0.69      0.71        64
+     I-MISC       0.77      0.67      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 47
+0.863456985004
+Epoch: 48
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0184 - acc: 0.9952
+Sklearn evaluation from epoch: 48
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.89      0.88       143
+      I-ORG       0.87      0.77      0.81        77
+     B-MISC       0.74      0.67      0.70        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.87      0.87      0.87        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 48
+0.862992125984
+Epoch: 49
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0195 - acc: 0.9945
+Sklearn evaluation from epoch: 49
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.88      0.88      0.88       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.70      0.73        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.88      0.88      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 49
+0.867507886435
+Epoch: 50
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0189 - acc: 0.9946
+Sklearn evaluation from epoch: 50
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.87      0.77      0.81        77
+     B-MISC       0.76      0.69      0.72        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 50
+0.865506329114
+Epoch: 51
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0176 - acc: 0.9947
+Sklearn evaluation from epoch: 51
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.75      0.70      0.73        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 51
+0.864822134387
+Epoch: 52
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0160 - acc: 0.9956
+Sklearn evaluation from epoch: 52
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.87      0.86       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.69      0.72        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 52
+0.863241106719
+Epoch: 53
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0173 - acc: 0.9949
+Sklearn evaluation from epoch: 53
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.89      0.88       143
+      I-ORG       0.87      0.77      0.81        77
+     B-MISC       0.72      0.69      0.70        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 53
+0.865460267506
+Epoch: 54
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0160 - acc: 0.9954
+Sklearn evaluation from epoch: 54
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.85      0.89      0.87       143
+      I-ORG       0.86      0.77      0.81        77
+     B-MISC       0.76      0.69      0.72        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 54
+0.86524822695
+Epoch: 55
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0167 - acc: 0.9954
+Sklearn evaluation from epoch: 55
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.70      0.73        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 55
+0.866403162055
+Epoch: 56
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0169 - acc: 0.9953
+Sklearn evaluation from epoch: 56
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.91      0.87      0.89       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.74      0.70      0.72        64
+     I-MISC       0.77      0.67      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.90      0.90      0.90        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 56
+0.86887835703
+Epoch: 57
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0154 - acc: 0.9958
+Sklearn evaluation from epoch: 57
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.91      0.87      0.89       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.77      0.72      0.74        64
+     I-MISC       0.77      0.67      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 57
+0.870737509913
+Epoch: 58
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0157 - acc: 0.9958
+Sklearn evaluation from epoch: 58
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.76      0.70      0.73        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 58
+0.868670886076
+Epoch: 59
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0150 - acc: 0.9962
+Sklearn evaluation from epoch: 59
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.76      0.69      0.72        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 59
+0.866877971474
+Epoch: 60
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0156 - acc: 0.9952
+Sklearn evaluation from epoch: 60
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.67      0.70        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 60
+0.865506329114
+Epoch: 61
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0150 - acc: 0.9959
+Sklearn evaluation from epoch: 61
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.76      0.69      0.72        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 61
+0.864139020537
+Epoch: 62
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0135 - acc: 0.9962
+Sklearn evaluation from epoch: 62
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.67      0.71        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 62
+0.863924050633
+Epoch: 63
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0134 - acc: 0.9962
+Sklearn evaluation from epoch: 63
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.70      0.72        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 63
+0.865035516969
+Epoch: 64
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0144 - acc: 0.9961
+Sklearn evaluation from epoch: 64
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.89      0.87      0.88       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.70      0.72        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 64
+0.8681925809
+Epoch: 65
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0133 - acc: 0.9962
+Sklearn evaluation from epoch: 65
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.73      0.69      0.71        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 65
+0.865718799368
+Epoch: 66
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0133 - acc: 0.9965
+Sklearn evaluation from epoch: 66
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.88      0.88      0.88       143
+      I-ORG       0.87      0.77      0.81        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.86      0.88      0.87        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 66
+0.862992125984
+Epoch: 67
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0135 - acc: 0.9962
+Sklearn evaluation from epoch: 67
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.88       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.70      0.72        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 67
+0.867507886435
+Epoch: 68
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0128 - acc: 0.9962
+Sklearn evaluation from epoch: 68
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.87      0.77      0.81        77
+     B-MISC       0.74      0.70      0.72        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 68
+0.863672182821
+Epoch: 69
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0128 - acc: 0.9964
+Sklearn evaluation from epoch: 69
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.87      0.87       143
+      I-ORG       0.87      0.77      0.81        77
+     B-MISC       0.73      0.69      0.71        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 69
+0.862096138692
+Epoch: 70
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0120 - acc: 0.9968
+Sklearn evaluation from epoch: 70
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.70      0.72        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 70
+0.865930599369
+Epoch: 71
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0126 - acc: 0.9964
+Sklearn evaluation from epoch: 71
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.88       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.73      0.69      0.71        64
+     I-MISC       0.79      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 71
+0.866614048934
+Epoch: 72
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0120 - acc: 0.9967
+Sklearn evaluation from epoch: 72
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.77      0.67      0.72        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 72
+0.865506329114
+Epoch: 73
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0109 - acc: 0.9972
+Sklearn evaluation from epoch: 73
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.89      0.87      0.88       143
+      I-ORG       0.91      0.77      0.83        77
+     B-MISC       0.76      0.69      0.72        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 73
+0.871428571429
+Epoch: 74
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0111 - acc: 0.9970
+Sklearn evaluation from epoch: 74
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.70      0.72        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 74
+0.866614048934
+Epoch: 75
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0111 - acc: 0.9970
+Sklearn evaluation from epoch: 75
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.70      0.73        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 75
+0.866614048934
+Epoch: 76
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0118 - acc: 0.9965
+Sklearn evaluation from epoch: 76
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.67      0.70        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.88      0.87      0.87        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 76
+0.861878453039
+Epoch: 77
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0121 - acc: 0.9960
+Sklearn evaluation from epoch: 77
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.70      0.73        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 77
+0.866614048934
+Epoch: 78
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0115 - acc: 0.9965
+Sklearn evaluation from epoch: 78
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.70      0.73        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 78
+0.8681925809
+Epoch: 79
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0106 - acc: 0.9972
+Sklearn evaluation from epoch: 79
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.69      0.72        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 79
+0.865035516969
+Epoch: 80
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0111 - acc: 0.9972
+Sklearn evaluation from epoch: 80
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.69      0.72        64
+     I-MISC       0.82      0.66      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 80
+0.864822134387
+Epoch: 81
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0109 - acc: 0.9970
+Sklearn evaluation from epoch: 81
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.75      0.67      0.71        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 81
+0.865506329114
+Epoch: 82
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0103 - acc: 0.9970
+Sklearn evaluation from epoch: 82
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.73      0.69      0.71        64
+     I-MISC       0.80      0.67      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 82
+0.865035516969
+Epoch: 83
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0094 - acc: 0.9976
+Sklearn evaluation from epoch: 83
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.77      0.83        77
+     B-MISC       0.76      0.70      0.73        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 83
+0.868670886076
+Epoch: 84
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0095 - acc: 0.9975
+Sklearn evaluation from epoch: 84
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.70      0.73        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 84
+0.865718799368
+Epoch: 85
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0102 - acc: 0.9974
+Sklearn evaluation from epoch: 85
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.88      0.87      0.87        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 85
+0.861660079051
+Epoch: 86
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0104 - acc: 0.9971
+Sklearn evaluation from epoch: 86
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.71      0.70      0.71        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 86
+0.863456985004
+Epoch: 87
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0100 - acc: 0.9972
+Sklearn evaluation from epoch: 87
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.67      0.71        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 87
+0.863924050633
+Epoch: 88
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0095 - acc: 0.9974
+Sklearn evaluation from epoch: 88
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.67      0.70        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 88
+0.864822134387
+Epoch: 89
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0094 - acc: 0.9974
+Sklearn evaluation from epoch: 89
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.67      0.71        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 89
+0.863924050633
+Epoch: 90
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0089 - acc: 0.9977
+Sklearn evaluation from epoch: 90
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.67      0.70        64
+     I-MISC       0.82      0.66      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 90
+0.863924050633
+Epoch: 91
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0094 - acc: 0.9973
+Sklearn evaluation from epoch: 91
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.74      0.67      0.70        64
+     I-MISC       0.82      0.66      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 91
+0.86529318542
+Epoch: 92
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0097 - acc: 0.9971
+Sklearn evaluation from epoch: 92
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.72      0.74        64
+     I-MISC       0.82      0.66      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 92
+0.867984189723
+Epoch: 93
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0088 - acc: 0.9976
+Sklearn evaluation from epoch: 93
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.73      0.69      0.71        64
+     I-MISC       0.82      0.66      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 93
+0.865718799368
+Epoch: 94
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0093 - acc: 0.9973
+Sklearn evaluation from epoch: 94
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.72      0.69      0.70        64
+     I-MISC       0.82      0.66      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 94
+0.864822134387
+Epoch: 95
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0088 - acc: 0.9975
+Sklearn evaluation from epoch: 95
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.72      0.69      0.70        64
+     I-MISC       0.82      0.66      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 95
+0.864822134387
+Epoch: 96
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0089 - acc: 0.9979
+Sklearn evaluation from epoch: 96
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.75      0.69      0.72        64
+     I-MISC       0.82      0.66      0.73        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 96
+0.865506329114
+Epoch: 97
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0086 - acc: 0.9975
+Sklearn evaluation from epoch: 97
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.67      0.70        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 97
+0.863924050633
+Epoch: 98
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0093 - acc: 0.9972
+Sklearn evaluation from epoch: 98
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.70      0.67      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 98
+0.862776025237
+Epoch: 99
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0085 - acc: 0.9981
+Sklearn evaluation from epoch: 99
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.88       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.70      0.67      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 99
+0.862559241706
+Epoch: 100
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0082 - acc: 0.9979
+Sklearn evaluation from epoch: 100
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.72      0.64      0.68        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 100
+0.86144101346
+Epoch: 101
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0090 - acc: 0.9979
+Sklearn evaluation from epoch: 101
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 101
+0.861660079051
+Epoch: 102
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0085 - acc: 0.9979
+Sklearn evaluation from epoch: 102
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 102
+0.863024544735
+Epoch: 103
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0087 - acc: 0.9974
+Sklearn evaluation from epoch: 103
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 103
+0.859857482185
+Epoch: 104
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0076 - acc: 0.9982
+Sklearn evaluation from epoch: 104
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.72      0.64      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 104
+0.85917721519
+Epoch: 105
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0072 - acc: 0.9982
+Sklearn evaluation from epoch: 105
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.73      0.67      0.70        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 105
+0.862589356632
+Epoch: 106
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0083 - acc: 0.9976
+Sklearn evaluation from epoch: 106
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.77      0.83        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 106
+0.864177918983
+Epoch: 107
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0080 - acc: 0.9978
+Sklearn evaluation from epoch: 107
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 107
+0.862341772152
+Epoch: 108
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0078 - acc: 0.9979
+Sklearn evaluation from epoch: 108
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.88       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 108
+0.863241106719
+Epoch: 109
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0079 - acc: 0.9978
+Sklearn evaluation from epoch: 109
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.71      0.70      0.71        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 109
+0.865035516969
+Epoch: 110
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0075 - acc: 0.9980
+Sklearn evaluation from epoch: 110
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.73      0.70      0.71        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 110
+0.867298578199
+Epoch: 111
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0072 - acc: 0.9981
+Sklearn evaluation from epoch: 111
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.72      0.64      0.68        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 111
+0.860759493671
+Epoch: 112
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0075 - acc: 0.9979
+Sklearn evaluation from epoch: 112
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.73      0.69      0.71        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 112
+0.862559241706
+Epoch: 113
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0083 - acc: 0.9977
+Sklearn evaluation from epoch: 113
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.88       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.71      0.64      0.67        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 113
+0.860079051383
+Epoch: 114
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0079 - acc: 0.9979
+Sklearn evaluation from epoch: 114
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.73      0.69      0.71        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 114
+0.865718799368
+Epoch: 115
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0075 - acc: 0.9980
+Sklearn evaluation from epoch: 115
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 115
+0.860079051383
+Epoch: 116
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0072 - acc: 0.9980
+Sklearn evaluation from epoch: 116
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.72      0.69      0.70        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 116
+0.862559241706
+Epoch: 117
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0073 - acc: 0.9981
+Sklearn evaluation from epoch: 117
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.73      0.70      0.71        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 117
+0.864139020537
+Epoch: 118
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0068 - acc: 0.9983
+Sklearn evaluation from epoch: 118
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.73      0.70      0.71        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 118
+0.863456985004
+Epoch: 119
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0071 - acc: 0.9982
+Sklearn evaluation from epoch: 119
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.73      0.70      0.71        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 119
+0.864139020537
+Epoch: 120
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0070 - acc: 0.9982
+Sklearn evaluation from epoch: 120
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.70      0.71        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 120
+0.863241106719
+Epoch: 121
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0070 - acc: 0.9981
+Sklearn evaluation from epoch: 121
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.71      0.70      0.71        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 121
+0.863456985004
+Epoch: 122
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0068 - acc: 0.9980
+Sklearn evaluation from epoch: 122
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.71      0.70      0.71        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 122
+0.863456985004
+Epoch: 123
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0071 - acc: 0.9978
+Sklearn evaluation from epoch: 123
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 123
+0.860759493671
+Epoch: 124
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0067 - acc: 0.9982
+Sklearn evaluation from epoch: 124
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 124
+0.859857482185
+Epoch: 125
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0068 - acc: 0.9984
+Sklearn evaluation from epoch: 125
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 125
+0.859857482185
+Epoch: 126
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0074 - acc: 0.9978
+Sklearn evaluation from epoch: 126
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.88      0.88      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 126
+0.86144101346
+Epoch: 127
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0065 - acc: 0.9983
+Sklearn evaluation from epoch: 127
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.88      0.77      0.82        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.89      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 127
+0.86144101346
+Epoch: 128
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0069 - acc: 0.9983
+Sklearn evaluation from epoch: 128
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.75      0.69      0.72        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 128
+0.864822134387
+Epoch: 129
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0065 - acc: 0.9983
+Sklearn evaluation from epoch: 129
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.73      0.64      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 129
+0.861904761905
+Epoch: 130
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0061 - acc: 0.9984
+Sklearn evaluation from epoch: 130
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 130
+0.861904761905
+Epoch: 131
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0064 - acc: 0.9982
+Sklearn evaluation from epoch: 131
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.71      0.62      0.67        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 131
+0.858954041204
+Epoch: 132
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0056 - acc: 0.9986
+Sklearn evaluation from epoch: 132
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.73      0.67      0.70        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.92      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 132
+0.863708399366
+Epoch: 133
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0072 - acc: 0.9980
+Sklearn evaluation from epoch: 133
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 133
+0.860079051383
+Epoch: 134
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0066 - acc: 0.9981
+Sklearn evaluation from epoch: 134
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.72      0.64      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 134
+0.859635210151
+Epoch: 135
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0056 - acc: 0.9985
+Sklearn evaluation from epoch: 135
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 135
+0.861221252974
+Epoch: 136
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0063 - acc: 0.9983
+Sklearn evaluation from epoch: 136
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.72      0.64      0.68        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 136
+0.86144101346
+Epoch: 137
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0065 - acc: 0.9982
+Sklearn evaluation from epoch: 137
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 137
+0.860759493671
+Epoch: 138
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0060 - acc: 0.9985
+Sklearn evaluation from epoch: 138
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 138
+0.862123613312
+Epoch: 139
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0068 - acc: 0.9981
+Sklearn evaluation from epoch: 139
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.67      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 139
+0.860979462875
+Epoch: 140
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0061 - acc: 0.9984
+Sklearn evaluation from epoch: 140
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.67      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 140
+0.862559241706
+Epoch: 141
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0067 - acc: 0.9980
+Sklearn evaluation from epoch: 141
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.64      0.67        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 141
+0.85917721519
+Epoch: 142
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0070 - acc: 0.9980
+Sklearn evaluation from epoch: 142
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.74      0.62      0.68        64
+     I-MISC       0.82      0.66      0.73        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 142
+0.861221252974
+Epoch: 143
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0063 - acc: 0.9984
+Sklearn evaluation from epoch: 143
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.69      0.67      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 143
+0.860299921073
+Epoch: 144
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0059 - acc: 0.9986
+Sklearn evaluation from epoch: 144
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.62      0.67        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 144
+0.858954041204
+Epoch: 145
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0058 - acc: 0.9985
+Sklearn evaluation from epoch: 145
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.64      0.67        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 145
+0.85917721519
+Epoch: 146
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0052 - acc: 0.9987
+Sklearn evaluation from epoch: 146
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.67      0.69        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 146
+0.860299921073
+Epoch: 147
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0064 - acc: 0.9982
+Sklearn evaluation from epoch: 147
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 147
+0.859399684044
+Epoch: 148
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0067 - acc: 0.9983
+Sklearn evaluation from epoch: 148
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.70      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 148
+0.859399684044
+Epoch: 149
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0054 - acc: 0.9984
+Sklearn evaluation from epoch: 149
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.70      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 149
+0.858498023715
+Epoch: 150
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0057 - acc: 0.9986
+Sklearn evaluation from epoch: 150
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.70      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 150
+0.859399684044
+Epoch: 151
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0062 - acc: 0.9983
+Sklearn evaluation from epoch: 151
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.73      0.64      0.68        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 151
+0.861000794281
+Epoch: 152
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0057 - acc: 0.9983
+Sklearn evaluation from epoch: 152
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 152
+0.861221252974
+Epoch: 153
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0055 - acc: 0.9984
+Sklearn evaluation from epoch: 153
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 153
+0.858498023715
+Epoch: 154
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0060 - acc: 0.9985
+Sklearn evaluation from epoch: 154
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.70      0.66      0.68        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 154
+0.858721389108
+Epoch: 155
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0070 - acc: 0.9983
+Sklearn evaluation from epoch: 155
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 155
+0.86144101346
+Epoch: 156
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0061 - acc: 0.9984
+Sklearn evaluation from epoch: 156
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.98      0.95       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.75      0.66      0.70        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 156
+0.859635210151
+Epoch: 157
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0061 - acc: 0.9982
+Sklearn evaluation from epoch: 157
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.74      0.62      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 157
+0.85873015873
+Epoch: 158
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0046 - acc: 0.9989
+Sklearn evaluation from epoch: 158
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 158
+0.860538827258
+Epoch: 159
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0062 - acc: 0.9986
+Sklearn evaluation from epoch: 159
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 159
+0.859399684044
+Epoch: 160
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0065 - acc: 0.9984
+Sklearn evaluation from epoch: 160
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.70      0.67      0.69        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 160
+0.859621451104
+Epoch: 161
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0061 - acc: 0.9986
+Sklearn evaluation from epoch: 161
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.69      0.70        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 161
+0.860299921073
+Epoch: 162
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0053 - acc: 0.9984
+Sklearn evaluation from epoch: 162
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 162
+0.860079051383
+Epoch: 163
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0042 - acc: 0.9990
+Sklearn evaluation from epoch: 163
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.86      0.87      0.86       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.75      0.64      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 163
+0.859635210151
+Epoch: 164
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0055 - acc: 0.9985
+Sklearn evaluation from epoch: 164
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.86      0.87      0.86       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 164
+0.858273950911
+Epoch: 165
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0050 - acc: 0.9985
+Sklearn evaluation from epoch: 165
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 165
+0.859399684044
+Epoch: 166
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0054 - acc: 0.9987
+Sklearn evaluation from epoch: 166
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.73      0.67      0.70        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 166
+0.86144101346
+Epoch: 167
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0052 - acc: 0.9984
+Sklearn evaluation from epoch: 167
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.69      0.70        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 167
+0.861878453039
+Epoch: 168
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0048 - acc: 0.9988
+Sklearn evaluation from epoch: 168
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 168
+0.85917721519
+Epoch: 169
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0051 - acc: 0.9985
+Sklearn evaluation from epoch: 169
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.70      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 169
+0.859399684044
+Epoch: 170
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0063 - acc: 0.9982
+Sklearn evaluation from epoch: 170
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.70      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 170
+0.859399684044
+Epoch: 171
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0054 - acc: 0.9984
+Sklearn evaluation from epoch: 171
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.73      0.67      0.70        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 171
+0.861660079051
+Epoch: 172
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0051 - acc: 0.9986
+Sklearn evaluation from epoch: 172
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.86      0.87      0.86       143
+      I-ORG       0.91      0.75      0.82        77
+     B-MISC       0.73      0.67      0.70        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 172
+0.860759493671
+Epoch: 173
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0051 - acc: 0.9985
+Sklearn evaluation from epoch: 173
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.70      0.66      0.68        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 173
+0.858721389108
+Epoch: 174
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0051 - acc: 0.9985
+Sklearn evaluation from epoch: 174
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.70      0.67      0.69        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 174
+0.859621451104
+Epoch: 175
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0058 - acc: 0.9983
+Sklearn evaluation from epoch: 175
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.73      0.67      0.70        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 175
+0.860759493671
+Epoch: 176
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0051 - acc: 0.9985
+Sklearn evaluation from epoch: 176
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.67      0.69        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 176
+0.860299921073
+Epoch: 177
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0047 - acc: 0.9990
+Sklearn evaluation from epoch: 177
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.73      0.67      0.70        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 177
+0.861660079051
+Epoch: 178
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0046 - acc: 0.9988
+Sklearn evaluation from epoch: 178
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 178
+0.863024544735
+Epoch: 179
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0044 - acc: 0.9988
+Sklearn evaluation from epoch: 179
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.98      0.91      0.94        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 179
+0.862341772152
+Epoch: 180
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0045 - acc: 0.9988
+Sklearn evaluation from epoch: 180
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.75      0.66      0.70        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 180
+0.860538827258
+Epoch: 181
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0050 - acc: 0.9988
+Sklearn evaluation from epoch: 181
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.75      0.66      0.70        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 181
+0.860538827258
+Epoch: 182
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0054 - acc: 0.9982
+Sklearn evaluation from epoch: 182
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 182
+0.859857482185
+Epoch: 183
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0048 - acc: 0.9985
+Sklearn evaluation from epoch: 183
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.73      0.64      0.68        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 183
+0.858954041204
+Epoch: 184
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0046 - acc: 0.9986
+Sklearn evaluation from epoch: 184
+             precision    recall  f1-score   support
+
+          O       0.99      0.96      0.98      2890
+      B-PER       0.94      0.98      0.96       139
+      B-ORG       0.89      0.87      0.88       143
+      I-ORG       0.88      0.75      0.81        77
+     B-MISC       0.68      0.66      0.67        64
+     I-MISC       0.66      0.69      0.67        61
+      I-PER       0.98      0.92      0.95        53
+      B-LOC       0.87      0.91      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 184
+0.857365549493
+Epoch: 185
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0049 - acc: 0.9988
+Sklearn evaluation from epoch: 185
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.64      0.68        64
+     I-MISC       0.75      0.66      0.70        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 185
+0.857819905213
+Epoch: 186
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0047 - acc: 0.9986
+Sklearn evaluation from epoch: 186
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.74      0.66      0.69        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 186
+0.86144101346
+Epoch: 187
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0041 - acc: 0.9990
+Sklearn evaluation from epoch: 187
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.73      0.64      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 187
+0.859857482185
+Epoch: 188
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0043 - acc: 0.9991
+Sklearn evaluation from epoch: 188
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.75      0.66      0.70        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 188
+0.861221252974
+Epoch: 189
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0050 - acc: 0.9986
+Sklearn evaluation from epoch: 189
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 189
+0.859857482185
+Epoch: 190
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0049 - acc: 0.9985
+Sklearn evaluation from epoch: 190
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 190
+0.86144101346
+Epoch: 191
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0045 - acc: 0.9988
+Sklearn evaluation from epoch: 191
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.71      0.64      0.67        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.96      0.92      0.94        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 191
+0.862559241706
+Epoch: 192
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0047 - acc: 0.9986
+Sklearn evaluation from epoch: 192
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.96      0.92      0.94        53
+      B-LOC       0.90      0.90      0.90        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 192
+0.864353312303
+Epoch: 193
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0051 - acc: 0.9983
+Sklearn evaluation from epoch: 193
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.92      0.94        53
+      B-LOC       0.91      0.90      0.90        67
+      I-LOC       0.93      0.86      0.89        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 193
+0.866191607284
+Epoch: 194
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0048 - acc: 0.9987
+Sklearn evaluation from epoch: 194
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.73      0.64      0.68        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.88      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 194
+0.861221252974
+Epoch: 195
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0037 - acc: 0.9992
+Sklearn evaluation from epoch: 195
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.73      0.64      0.68        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 195
+0.857594936709
+Epoch: 196
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0042 - acc: 0.9989
+Sklearn evaluation from epoch: 196
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.75      0.64      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.89      0.87      0.88        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 196
+0.858954041204
+Epoch: 197
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0051 - acc: 0.9986
+Sklearn evaluation from epoch: 197
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.88      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.71      0.66      0.68        64
+     I-MISC       0.77      0.66      0.71        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.91      0.88      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 197
+0.860759493671
+Epoch: 198
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0039 - acc: 0.9989
+Sklearn evaluation from epoch: 198
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.78      0.66      0.71        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 198
+0.860538827258
+Epoch: 199
+Epoch 1/1
+
+1506/1506 [==============================] - 70s 46ms/step - loss: 0.0045 - acc: 0.9988
+Sklearn evaluation from epoch: 199
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.94      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.75      0.82        77
+     B-MISC       0.72      0.66      0.69        64
+     I-MISC       0.80      0.66      0.72        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.94      0.96      3537
+
+F-1 Score (without O) from epoch: 199
+0.860538827258
+Epoch: 200
+Epoch 1/1
+
+1506/1506 [==============================] - 69s 46ms/step - loss: 0.0047 - acc: 0.9985
+Sklearn evaluation from epoch: 200
+             precision    recall  f1-score   support
+
+          O       0.99      0.97      0.98      2890
+      B-PER       0.93      0.99      0.96       139
+      B-ORG       0.87      0.87      0.87       143
+      I-ORG       0.89      0.77      0.83        77
+     B-MISC       0.75      0.66      0.70        64
+     I-MISC       0.82      0.66      0.73        61
+      I-PER       0.96      0.91      0.93        53
+      B-LOC       0.91      0.87      0.89        67
+      I-LOC       0.92      0.84      0.88        43
+
+avg / total       0.97      0.95      0.96      3537
+
+F-1 Score (without O) from epoch: 200
+0.862807295797
