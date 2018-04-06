@@ -76,12 +76,24 @@ for line in entities:
     for token in line:
         y_pred.append(token[1])
 
-neTypes = ['PERSON', 'LOCATION', 'ORGANIZATION']
+neTypes = ['O', 'PERSON', 'LOCATION', 'ORGANIZATION']
 
-print f1_score(y_true, y_pred, labels=neTypes, average='macro')
+print "Macro", f1_score(y_true, y_pred, labels=neTypes, average='macro')
 
-print f1_score(y_true, y_pred, labels=neTypes, average='micro')
+print "Micro", f1_score(y_true, y_pred, labels=neTypes, average='micro')
 
 print f1_score(y_true, y_pred, average='weighted')
 
 print f1_score(y_true, y_pred, average=None)
+
+from sklearn.metrics import classification_report
+
+print "Sklearn evaluation:"
+print classification_report(y_true, y_pred, labels=neTypes)
+
+print "Without O"
+
+neTypes = ['PERSON', 'LOCATION', 'ORGANIZATION']
+
+print "Sklearn evaluation:"
+print classification_report(y_true, y_pred, labels=neTypes)
