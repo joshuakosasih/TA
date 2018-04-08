@@ -20,7 +20,7 @@ import sys
 import ast
 
 trainable = ast.literal_eval(sys.argv[5])  # word embedding is trainable or not
-gtrainable = ast.literal_eval(sys.argv[6])
+gtrainable = ast.literal_eval(sys.argv[6])  # GRU is trainable or not
 mask = True  # mask pad (zeros) or not
 
 
@@ -411,6 +411,8 @@ print "True", total_true
 print "False", total_false
 print "True percentage", float(total_true) / float(total_nonzero)
 
+print "Embedding Trainable:", trainable
+print "GRU Trainable:", gtrainable
 """
 Sklearn evaluation
 """
