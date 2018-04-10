@@ -1,0 +1,107 @@
+#!/bin/bash
+echo "sgd"
+python auto_main_with_char.py sgd 0 >> log2.txt
+python auto_main_with_char.py sgd 1 >> log2.txt
+python auto_main_with_char.py sgd 2 >> log2.txt
+python auto_main_with_char.py sgd 3 >> log2.txt
+python auto_main_with_char.py sgd 4 >> log2.txt
+python auto_main_with_char.py sgd 5 >> log2.txt
+python auto_main_with_char.py sgd 6 >> log2.txt
+python auto_main_with_char.py sgd 7 >> log2.txt
+python auto_main_with_char.py sgd 8 >> log2.txt
+python auto_main_with_char.py sgd 9 >> log2.txt
+python auto_main_with_char.py sgd 10 >> log2.txt
+python auto_main_with_char.py sgd 11 >> log2.txt
+python auto_main_with_char.py sgd 12 >> log2.txt
+python auto_main_with_char.py sgd 13 >> log2.txt
+echo "rmsprop"
+python auto_main_with_char.py rmsprop 0 >> log2.txt
+python auto_main_with_char.py rmsprop 1 >> log2.txt
+python auto_main_with_char.py rmsprop 2 >> log2.txt
+python auto_main_with_char.py rmsprop 3 >> log2.txt
+python auto_main_with_char.py rmsprop 4 >> log2.txt
+python auto_main_with_char.py rmsprop 5 >> log2.txt
+python auto_main_with_char.py rmsprop 6 >> log2.txt
+python auto_main_with_char.py rmsprop 7 >> log2.txt
+python auto_main_with_char.py rmsprop 8 >> log2.txt
+python auto_main_with_char.py rmsprop 9 >> log2.txt
+python auto_main_with_char.py rmsprop 10 >> log2.txt
+python auto_main_with_char.py rmsprop 11 >> log2.txt
+python auto_main_with_char.py rmsprop 12 >> log2.txt
+python auto_main_with_char.py rmsprop 13 >> log2.txt
+echo "adagrad"
+python auto_main_with_char.py adagrad 0 >> log2.txt
+python auto_main_with_char.py adagrad 1 >> log2.txt
+python auto_main_with_char.py adagrad 2 >> log2.txt
+python auto_main_with_char.py adagrad 3 >> log2.txt
+python auto_main_with_char.py adagrad 4 >> log2.txt
+python auto_main_with_char.py adagrad 5 >> log2.txt
+python auto_main_with_char.py adagrad 6 >> log2.txt
+python auto_main_with_char.py adagrad 7 >> log2.txt
+python auto_main_with_char.py adagrad 8 >> log2.txt
+python auto_main_with_char.py adagrad 9 >> log2.txt
+python auto_main_with_char.py adagrad 10 >> log2.txt
+python auto_main_with_char.py adagrad 11 >> log2.txt
+python auto_main_with_char.py adagrad 12 >> log2.txt
+python auto_main_with_char.py adagrad 13 >> log2.txt
+echo "adadelta"
+python auto_main_with_char.py adadelta 0 >> log2.txt
+python auto_main_with_char.py adadelta 1 >> log2.txt
+python auto_main_with_char.py adadelta 2 >> log2.txt
+python auto_main_with_char.py adadelta 3 >> log2.txt
+python auto_main_with_char.py adadelta 4 >> log2.txt
+python auto_main_with_char.py adadelta 5 >> log2.txt
+python auto_main_with_char.py adadelta 6 >> log2.txt
+python auto_main_with_char.py adadelta 7 >> log2.txt
+python auto_main_with_char.py adadelta 8 >> log2.txt
+python auto_main_with_char.py adadelta 9 >> log2.txt
+python auto_main_with_char.py adadelta 10 >> log2.txt
+python auto_main_with_char.py adadelta 11 >> log2.txt
+python auto_main_with_char.py adadelta 12 >> log2.txt
+python auto_main_with_char.py adadelta 13 >> log2.txt
+echo "adam"
+python auto_main_with_char.py adam 0 >> log2.txt
+python auto_main_with_char.py adam 1 >> log2.txt
+python auto_main_with_char.py adam 2 >> log2.txt
+python auto_main_with_char.py adam 3 >> log2.txt
+python auto_main_with_char.py adam 4 >> log2.txt
+python auto_main_with_char.py adam 5 >> log2.txt
+python auto_main_with_char.py adam 6 >> log2.txt
+python auto_main_with_char.py adam 7 >> log2.txt
+python auto_main_with_char.py adam 8 >> log2.txt
+python auto_main_with_char.py adam 9 >> log2.txt
+python auto_main_with_char.py adam 10 >> log2.txt
+python auto_main_with_char.py adam 11 >> log2.txt
+python auto_main_with_char.py adam 12 >> log2.txt
+python auto_main_with_char.py adam 13 >> log2.txt
+echo "adamax"
+python auto_main_with_char.py adamax 0 >> log2.txt
+python auto_main_with_char.py adamax 1 >> log2.txt
+python auto_main_with_char.py adamax 2 >> log2.txt
+python auto_main_with_char.py adamax 3 >> log2.txt
+python auto_main_with_char.py adamax 4 >> log2.txt
+python auto_main_with_char.py adamax 5 >> log2.txt
+python auto_main_with_char.py adamax 6 >> log2.txt
+python auto_main_with_char.py adamax 7 >> log2.txt
+python auto_main_with_char.py adamax 8 >> log2.txt
+python auto_main_with_char.py adamax 9 >> log2.txt
+python auto_main_with_char.py adamax 10 >> log2.txt
+python auto_main_with_char.py adamax 11 >> log2.txt
+python auto_main_with_char.py adamax 12 >> log2.txt
+python auto_main_with_char.py adamax 13 >> log2.txt
+echo "nadam"
+python auto_main_with_char.py nadam 0 >> log2.txt
+python auto_main_with_char.py nadam 1 >> log2.txt
+python auto_main_with_char.py nadam 2 >> log2.txt
+python auto_main_with_char.py nadam 3 >> log2.txt
+python auto_main_with_char.py nadam 4 >> log2.txt
+python auto_main_with_char.py nadam 5 >> log2.txt
+python auto_main_with_char.py nadam 6 >> log2.txt
+python auto_main_with_char.py nadam 7 >> log2.txt
+python auto_main_with_char.py nadam 8 >> log2.txt
+python auto_main_with_char.py nadam 9 >> log2.txt
+python auto_main_with_char.py nadam 10 >> log2.txt
+python auto_main_with_char.py nadam 11 >> log2.txt
+python auto_main_with_char.py nadam 12 >> log2.txt
+python auto_main_with_char.py nadam 13 >> log2.txt
+echo "done!"
