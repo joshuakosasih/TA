@@ -1,0 +1,107 @@
+#!/bin/bash
+echo "sgd"
+python auto_main_OL.py sgd 0 >> logOxL.txt
+python auto_main_OL.py sgd 1 >> logOxL.txt
+python auto_main_OL.py sgd 2 >> logOxL.txt
+python auto_main_OL.py sgd 3 >> logOxL.txt
+python auto_main_OL.py sgd 4 >> logOxL.txt
+python auto_main_OL.py sgd 5 >> logOxL.txt
+python auto_main_OL.py sgd 6 >> logOxL.txt
+python auto_main_OL.py sgd 7 >> logOxL.txt
+python auto_main_OL.py sgd 8 >> logOxL.txt
+python auto_main_OL.py sgd 9 >> logOxL.txt
+python auto_main_OL.py sgd 10 >> logOxL.txt
+python auto_main_OL.py sgd 11 >> logOxL.txt
+python auto_main_OL.py sgd 12 >> logOxL.txt
+python auto_main_OL.py sgd 13 >> logOxL.txt
+echo "rmsprop"
+python auto_main_OL.py rmsprop 0 >> logOxL.txt
+python auto_main_OL.py rmsprop 1 >> logOxL.txt
+python auto_main_OL.py rmsprop 2 >> logOxL.txt
+python auto_main_OL.py rmsprop 3 >> logOxL.txt
+python auto_main_OL.py rmsprop 4 >> logOxL.txt
+python auto_main_OL.py rmsprop 5 >> logOxL.txt
+python auto_main_OL.py rmsprop 6 >> logOxL.txt
+python auto_main_OL.py rmsprop 7 >> logOxL.txt
+python auto_main_OL.py rmsprop 8 >> logOxL.txt
+python auto_main_OL.py rmsprop 9 >> logOxL.txt
+python auto_main_OL.py rmsprop 10 >> logOxL.txt
+python auto_main_OL.py rmsprop 11 >> logOxL.txt
+python auto_main_OL.py rmsprop 12 >> logOxL.txt
+python auto_main_OL.py rmsprop 13 >> logOxL.txt
+echo "adagrad"
+python auto_main_OL.py adagrad 0 >> logOxL.txt
+python auto_main_OL.py adagrad 1 >> logOxL.txt
+python auto_main_OL.py adagrad 2 >> logOxL.txt
+python auto_main_OL.py adagrad 3 >> logOxL.txt
+python auto_main_OL.py adagrad 4 >> logOxL.txt
+python auto_main_OL.py adagrad 5 >> logOxL.txt
+python auto_main_OL.py adagrad 6 >> logOxL.txt
+python auto_main_OL.py adagrad 7 >> logOxL.txt
+python auto_main_OL.py adagrad 8 >> logOxL.txt
+python auto_main_OL.py adagrad 9 >> logOxL.txt
+python auto_main_OL.py adagrad 10 >> logOxL.txt
+python auto_main_OL.py adagrad 11 >> logOxL.txt
+python auto_main_OL.py adagrad 12 >> logOxL.txt
+python auto_main_OL.py adagrad 13 >> logOxL.txt
+echo "adadelta"
+python auto_main_OL.py adadelta 0 >> logOxL.txt
+python auto_main_OL.py adadelta 1 >> logOxL.txt
+python auto_main_OL.py adadelta 2 >> logOxL.txt
+python auto_main_OL.py adadelta 3 >> logOxL.txt
+python auto_main_OL.py adadelta 4 >> logOxL.txt
+python auto_main_OL.py adadelta 5 >> logOxL.txt
+python auto_main_OL.py adadelta 6 >> logOxL.txt
+python auto_main_OL.py adadelta 7 >> logOxL.txt
+python auto_main_OL.py adadelta 8 >> logOxL.txt
+python auto_main_OL.py adadelta 9 >> logOxL.txt
+python auto_main_OL.py adadelta 10 >> logOxL.txt
+python auto_main_OL.py adadelta 11 >> logOxL.txt
+python auto_main_OL.py adadelta 12 >> logOxL.txt
+python auto_main_OL.py adadelta 13 >> logOxL.txt
+echo "adam"
+python auto_main_OL.py adam 0 >> logOxL.txt
+python auto_main_OL.py adam 1 >> logOxL.txt
+python auto_main_OL.py adam 2 >> logOxL.txt
+python auto_main_OL.py adam 3 >> logOxL.txt
+python auto_main_OL.py adam 4 >> logOxL.txt
+python auto_main_OL.py adam 5 >> logOxL.txt
+python auto_main_OL.py adam 6 >> logOxL.txt
+python auto_main_OL.py adam 7 >> logOxL.txt
+python auto_main_OL.py adam 8 >> logOxL.txt
+python auto_main_OL.py adam 9 >> logOxL.txt
+python auto_main_OL.py adam 10 >> logOxL.txt
+python auto_main_OL.py adam 11 >> logOxL.txt
+python auto_main_OL.py adam 12 >> logOxL.txt
+python auto_main_OL.py adam 13 >> logOxL.txt
+echo "adamax"
+python auto_main_OL.py adamax 0 >> logOxL.txt
+python auto_main_OL.py adamax 1 >> logOxL.txt
+python auto_main_OL.py adamax 2 >> logOxL.txt
+python auto_main_OL.py adamax 3 >> logOxL.txt
+python auto_main_OL.py adamax 4 >> logOxL.txt
+python auto_main_OL.py adamax 5 >> logOxL.txt
+python auto_main_OL.py adamax 6 >> logOxL.txt
+python auto_main_OL.py adamax 7 >> logOxL.txt
+python auto_main_OL.py adamax 8 >> logOxL.txt
+python auto_main_OL.py adamax 9 >> logOxL.txt
+python auto_main_OL.py adamax 10 >> logOxL.txt
+python auto_main_OL.py adamax 11 >> logOxL.txt
+python auto_main_OL.py adamax 12 >> logOxL.txt
+python auto_main_OL.py adamax 13 >> logOxL.txt
+echo "nadam"
+python auto_main_OL.py nadam 0 >> logOxL.txt
+python auto_main_OL.py nadam 1 >> logOxL.txt
+python auto_main_OL.py nadam 2 >> logOxL.txt
+python auto_main_OL.py nadam 3 >> logOxL.txt
+python auto_main_OL.py nadam 4 >> logOxL.txt
+python auto_main_OL.py nadam 5 >> logOxL.txt
+python auto_main_OL.py nadam 6 >> logOxL.txt
+python auto_main_OL.py nadam 7 >> logOxL.txt
+python auto_main_OL.py nadam 8 >> logOxL.txt
+python auto_main_OL.py nadam 9 >> logOxL.txt
+python auto_main_OL.py nadam 10 >> logOxL.txt
+python auto_main_OL.py nadam 11 >> logOxL.txt
+python auto_main_OL.py nadam 12 >> logOxL.txt
+python auto_main_OL.py nadam 13 >> logOxL.txt
+echo "done!"

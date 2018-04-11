@@ -20,6 +20,10 @@ import sys
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
 
+loss_func = ['categorical_crossentropy', 'categorical_hinge', 'sparse_categorical_crossentropy',
+             'binary_crossentropy', 'kullback_leibler_divergence', 'poisson', 'cosine_proximity',
+             'logcosh', 'mean_squared_error', 'mean_absolute_error', 'mean_absolute_percentage_error',
+             'mean_squared_logarithmic_error', 'squared_hinge', 'hinge']
 
 def activationPrompt(name):
     print "List of Activation Functions\n" \
@@ -43,7 +47,7 @@ Load pre-trained word embedding
 
 embeddings_index = {}
 # WE_DIR = raw_input('Enter word embedding file name: ')
-WE_DIR = sys.argv[1]
+WE_DIR = 'polyglot.vec'
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -67,7 +71,7 @@ Load pre-trained char embedding
 
 char_embeddings_index = {}
 # CE_DIR = raw_input('Enter char embedding file name: ')
-CE_DIR = sys.argv[2]
+CE_DIR = 'polyglot-char.vec'
 
 print 'Loading', CE_DIR, '...'
 f = open(CE_DIR, 'r')
@@ -262,8 +266,7 @@ elif model_choice == 2:
         rtwo)
 else:
     # combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
-    combine = sys.argv[3]
-    print 'Merge layer:', combine
+    combine = 1
     print 'Both WE & CE'
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
@@ -291,9 +294,9 @@ if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
 # optimizer = raw_input('Enter optimizer (default rmsprop): ')
-optimizer = 'adagrad'
+optimizer = sys.argv[1]
 # loss = raw_input('Enter loss function (default categorical_crossentropy): ')
-loss = 'categorical_crossentropy'
+loss = loss_func[int(sys.argv[2])]
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
@@ -305,6 +308,8 @@ model.compile(loss=loss,
 epoch = 3
 # batch = input('Enter number of batch size: ')
 batch = 8
+print "|- Optimizer:", optimizer
+print "|- Loss function:", loss
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
           epochs=epoch, batch_size=batch)

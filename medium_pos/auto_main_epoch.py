@@ -20,7 +20,6 @@ import sys
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
 
-
 def activationPrompt(name):
     print "List of Activation Functions\n" \
           "1. softmax\t\t2. elu\t\t3. selu\t\t4. softplus\t\t5. softsign\n" \
@@ -35,7 +34,7 @@ Preparing file
 """
 
 train = DL('id-ud-train.pos')
-test = DL('id-ud-test.pos')
+test = DL('id-ud-dev.pos')
 
 """
 Load pre-trained word embedding
@@ -43,7 +42,7 @@ Load pre-trained word embedding
 
 embeddings_index = {}
 # WE_DIR = raw_input('Enter word embedding file name: ')
-WE_DIR = sys.argv[1]
+WE_DIR = 'polyglot.vec'
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -67,7 +66,7 @@ Load pre-trained char embedding
 
 char_embeddings_index = {}
 # CE_DIR = raw_input('Enter char embedding file name: ')
-CE_DIR = sys.argv[2]
+CE_DIR = 'polyglot-char.vec'
 
 print 'Loading', CE_DIR, '...'
 f = open(CE_DIR, 'r')
@@ -262,8 +261,7 @@ elif model_choice == 2:
         rtwo)
 else:
     # combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
-    combine = sys.argv[3]
-    print 'Merge layer:', combine
+    combine = 1
     print 'Both WE & CE'
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
@@ -291,9 +289,9 @@ if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
 # optimizer = raw_input('Enter optimizer (default rmsprop): ')
-optimizer = 'adagrad'
+optimizer = ''
 # loss = raw_input('Enter loss function (default categorical_crossentropy): ')
-loss = 'categorical_crossentropy'
+loss = ''
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
@@ -301,18 +299,12 @@ model.compile(loss=loss,
 
 # plot_model(model, to_file='model.png')
 
-# epoch = input('Enter number of epochs: ')
-epoch = 3
-# batch = input('Enter number of batch size: ')
-batch = 8
-model.fit([np.array(x_train.padded), np.array(x_train_char)],
-          [np.array(y_encoded)],
-          epochs=epoch, batch_size=batch)
-
-
 """
-Converting text data to int using index
+Converting dev data to int using index
 """
+x_test.pad(padsize)
+y_test.pad(padsize)
+
 x_test_tmp1 = []
 for sent in test.words:
     x_map = DM(sent, char.index, False)
@@ -341,73 +333,34 @@ for sent in x_test_tmp2:
 
 print('Padded until %s tokens.' % padsize)
 
-"""
-Evaluate
-"""
-
-mateval = []
-for labr in range(label.cnt):
-    row = []
-    for labc in range(label.cnt):
-        row.append(0)
-    mateval.append(row)
-
-x_test.pad(padsize)
-results = []
-print "Computing..."
-raw_results = model.predict([np.array(x_test.padded), np.array(x_test_char)])
-for raw_result in raw_results:
-    result = []
-    for token in raw_result:
-        value = np.argmax(token)
-        result.append(value)
-    results.append(result)
-
-y_test.pad(padsize)
-total_nonzero = 0  # to get labelled token total number
-for i, sent in enumerate(y_test.padded):
-    for j, token in enumerate(sent):
-        pred = results[i][j]
-        answ = token
-        mateval[answ][pred] = mateval[answ][pred] + 1  # row shows label and column shows prediction given
-        if not answ == 0:
-            total_nonzero = total_nonzero + 1
-
-total_true = 0
-for i in range(1, len(mateval)):
-    total_true = total_true + mateval[i][i]
-
-total_false = total_nonzero - total_true
-
-print "Manual evaluation: (didn't understand why I made this)"
-print "True", total_true
-print "False", total_false
-print "True percentage", float(total_true) / float(total_nonzero)
-
-"""
-Sklearn evaluation
-"""
 label_index = range(1, len(label.index) + 1)
 label_names = []
 for key, value in sorted(label.index.iteritems(), key=lambda (k, v): (v, k)):
     label_names.append(key)
 
-from sklearn.metrics import classification_report
-
-# flatten list for sklearn evaluation
-y_true = [item for sublist in y_test.padded for item in sublist]
-y_pred = [item for sublist in results for item in sublist]
-print "Sklearn evaluation:"
-print classification_report(y_true, y_pred, labels=label_index, target_names=label_names)
-
-from sklearn.metrics import f1_score
-
-f1_mac = f1_score(y_true, y_pred, labels=label_index, average='macro')
-f1_mic = f1_score(y_true, y_pred, labels=label_index, average='micro')
-print 'F-1 Score:'
-print max([f1_mac, f1_mic])
 """
-Predict function
+Training
 """
-
-# pm.predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua', padsize)
+epoch = 1
+batch = int(sys.argv[2])
+for ep in range(int(sys.argv[1])):
+    print 'Epoch:', ep+1
+    model.fit([np.array(x_train.padded), np.array(x_train_char)],
+              [np.array(y_encoded)],
+              epochs=epoch, batch_size=batch)
+    results = []
+    raw_results = model.predict([np.array(x_test.padded), np.array(x_test_char)])
+    for raw_result in raw_results:
+        result = []
+        for token in raw_result:
+            value = np.argmax(token)
+            result.append(value)
+        results.append(result)
+    y_true = [item for sublist in y_test.padded for item in sublist]  # flatten list for sklearn evaluation
+    y_pred = [item for sublist in results for item in sublist]
+    print "Sklearn evaluation from epoch:", ep+1
+    print classification_report(y_true, y_pred, labels=label_index, target_names=label_names)
+    f1_mac = f1_score(y_true, y_pred, labels=label_index[1:], average='macro')
+    f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
+    print 'F-1 Score (without O) from epoch:', ep+1
+    print max([f1_mac, f1_mic])
