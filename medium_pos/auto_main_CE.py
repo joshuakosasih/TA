@@ -34,8 +34,8 @@ def activationPrompt(name):
 Preparing file
 """
 
-train = DL('id-ud-train')
-test = DL('id-ud-test')
+train = DL('id-ud-train.pos')
+test = DL('id-ud-test.pos')
 
 """
 Load pre-trained word embedding
