@@ -20,11 +20,6 @@ import sys
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
 
-loss_func = ['categorical_crossentropy', 'categorical_hinge', 'sparse_categorical_crossentropy',
-             'binary_crossentropy', 'kullback_leibler_divergence', 'poisson', 'cosine_proximity',
-             'logcosh', 'mean_squared_error', 'mean_absolute_error', 'mean_absolute_percentage_error',
-             'mean_squared_logarithmic_error', 'squared_hinge', 'hinge']
-
 def activationPrompt(name):
     print "List of Activation Functions\n" \
           "1. softmax\t\t2. elu\t\t3. selu\t\t4. softplus\t\t5. softsign\n" \
@@ -236,9 +231,9 @@ rone = Lambda(reshape_one)(embedded_sequences_c)
 # merge_m = raw_input('Enter merge mode for GRU Karakter: ')
 merge_m = 'mul'
 # dropout = input('Enter GRU Karakter dropout: ')
-dropout = 0.1
+dropout = float(sys.argv[1])
 # rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
-rec_dropout = 0.1
+rec_dropout = dropout
 gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
@@ -266,7 +261,7 @@ elif model_choice == 2:
         rtwo)
 else:
     # combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
-    combine = 3
+    combine = 1
     print 'Both WE & CE'
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
@@ -294,9 +289,9 @@ if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
 # optimizer = raw_input('Enter optimizer (default rmsprop): ')
-optimizer = sys.argv[1]
+optimizer = 'adagrad'
 # loss = raw_input('Enter loss function (default categorical_crossentropy): ')
-loss = loss_func[int(sys.argv[2])]
+loss = 'categorical_crossentropy'
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
@@ -308,8 +303,6 @@ model.compile(loss=loss,
 epoch = 3
 # batch = input('Enter number of batch size: ')
 batch = 8
-print "|- Optimizer:", optimizer
-print "|- Loss function:", loss
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
           epochs=epoch, batch_size=batch)
