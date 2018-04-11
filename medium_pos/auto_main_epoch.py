@@ -341,6 +341,9 @@ for key, value in sorted(label.index.iteritems(), key=lambda (k, v): (v, k)):
 """
 Training
 """
+from sklearn.metrics import classification_report
+from sklearn.metrics import f1_score
+
 epoch = 1
 batch = int(sys.argv[2])
 for ep in range(int(sys.argv[1])):
