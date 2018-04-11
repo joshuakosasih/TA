@@ -289,9 +289,9 @@ if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
 # optimizer = raw_input('Enter optimizer (default rmsprop): ')
-optimizer = ''
+optimizer = 'adagrad'
 # loss = raw_input('Enter loss function (default categorical_crossentropy): ')
-loss = ''
+loss = 'categorical_crossentropy'
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
