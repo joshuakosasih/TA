@@ -1,0 +1,226 @@
+Opening file id-ud-train.pos
+Opening file id-ud-test.pos
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 103581 unique words.
+Found 181 unique chars.
+Found 16 unique labels.
+3577 unique words not found in embedding.
+97 unique chars not found in embedding.
+Padded until 152 tokens.
+Padded until 25 chars.
+Padded until 152 tokens.
+Model Choice:
+WE only
+Model Choice:
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         (None, 152)               0         
+_________________________________________________________________
+embedding_1 (Embedding)      (None, 152, 64)           6629248   
+_________________________________________________________________
+bidirectional_2 (Bidirection (None, 152, 128)          49536     
+_________________________________________________________________
+crf_1 (CRF)                  (None, 152, 17)           2516      
+=================================================================
+Total params: 6,681,300
+Trainable params: 52,052
+Non-trainable params: 6,629,248
+_________________________________________________________________
+Epoch 1/3
+
+4475/4475 [==============================] - 47s 10ms/step - loss: 0.6145 - acc: 0.8278
+Epoch 2/3
+
+4475/4475 [==============================] - 47s 10ms/step - loss: 0.4244 - acc: 0.8754
+Epoch 3/3
+
+4475/4475 [==============================] - 47s 10ms/step - loss: 0.3946 - acc: 0.8836
+Padded until 25 chars.
+Padded until 152 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 9556
+False 1505
+True percentage 0.863936352952
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+      PROPN       0.88      0.80      0.84      2188
+        AUX       0.98      0.99      0.98        95
+        DET       0.89      0.91      0.90       367
+       NOUN       0.88      0.88      0.88      2557
+       PRON       0.98      0.94      0.96       455
+       VERB       0.92      0.91      0.91      1240
+        ADP       0.94      0.95      0.95      1142
+      PUNCT       1.00      0.99      0.99      1127
+        ADV       0.77      0.79      0.78       478
+      CCONJ       0.97      0.89      0.93       370
+      SCONJ       0.65      0.79      0.72       142
+        NUM       0.86      0.54      0.66       398
+        ADJ       0.77      0.67      0.72       423
+       PART       0.97      0.60      0.74        48
+        SYM       0.95      0.60      0.73        30
+          X       0.00      0.00      0.00         1
+
+avg / total       0.90      0.86      0.88     11061
+
+F-1 Score:
+0.880899705015
+Opening file id-ud-train.pos
+Opening file id-ud-test.pos
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 103581 unique words.
+Found 181 unique chars.
+Found 16 unique labels.
+3577 unique words not found in embedding.
+97 unique chars not found in embedding.
+Padded until 152 tokens.
+Padded until 25 chars.
+Padded until 152 tokens.
+Model Choice:
+CE only
+Model Choice:
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_2 (InputLayer)         (None, 152, 25)           0         
+_________________________________________________________________
+embedding_2 (Embedding)      (None, 25, 64)            11648     
+_________________________________________________________________
+lambda_1 (Lambda)            (None, 25, 64)            0         
+_________________________________________________________________
+bidirectional_1 (Bidirection (None, 64)                49536     
+_________________________________________________________________
+lambda_2 (Lambda)            (None, 152, 64)           0         
+_________________________________________________________________
+bidirectional_2 (Bidirection (None, 152, 128)          49536     
+_________________________________________________________________
+crf_1 (CRF)                  (None, 152, 17)           2516      
+=================================================================
+Total params: 113,236
+Trainable params: 101,588
+Non-trainable params: 11,648
+_________________________________________________________________
+Epoch 1/3
+
+4475/4475 [==============================] - 149s 33ms/step - loss: 0.2648 - acc: 0.9154
+Epoch 2/3
+
+4475/4475 [==============================] - 150s 33ms/step - loss: 0.2047 - acc: 0.9312
+Epoch 3/3
+
+4475/4475 [==============================] - 148s 33ms/step - loss: 0.1763 - acc: 0.9429
+Padded until 25 chars.
+Padded until 152 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 6619
+False 4442
+True percentage 0.598408823795
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+      PROPN       0.80      0.90      0.85      2188
+        AUX       0.00      0.00      0.00        95
+        DET       0.27      0.04      0.07       367
+       NOUN       0.45      0.61      0.52      2557
+       PRON       0.37      0.35      0.36       455
+       VERB       0.53      0.72      0.61      1240
+        ADP       0.46      0.41      0.44      1142
+      PUNCT       0.98      0.98      0.98      1127
+        ADV       0.33      0.14      0.20       478
+      CCONJ       0.52      0.33      0.40       370
+      SCONJ       0.00      0.00      0.00       142
+        NUM       0.74      0.67      0.71       398
+        ADJ       0.00      0.00      0.00       423
+       PART       0.00      0.00      0.00        48
+        SYM       1.00      0.03      0.06        30
+          X       0.00      0.00      0.00         1
+
+avg / total       0.56      0.60      0.57     11061
+
+F-1 Score:
+0.600090661831
+Opening file id-ud-train.pos
+Opening file id-ud-test.pos
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 103581 unique words.
+Found 181 unique chars.
+Found 16 unique labels.
+3577 unique words not found in embedding.
+97 unique chars not found in embedding.
+Padded until 152 tokens.
+Padded until 25 chars.
+Padded until 152 tokens.
+Model Choice:
+Both WE & CE
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 152, 25)      0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 25, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 25, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 152)          0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 152, 64)      6629248     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 152, 64)      0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+add_1 (Add)                     (None, 152, 64)      0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 152, 128)     49536       add_1[0][0]                      
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 152, 17)      2516        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,742,484
+Trainable params: 101,588
+Non-trainable params: 6,640,896
+__________________________________________________________________________________________________
+Epoch 1/3
+
+4475/4475 [==============================] - 143s 32ms/step - loss: 0.5661 - acc: 0.8411
+Epoch 2/3
+
+4475/4475 [==============================] - 143s 32ms/step - loss: 0.3745 - acc: 0.8926
+Epoch 3/3
+
+4475/4475 [==============================] - 142s 32ms/step - loss: 0.3458 - acc: 0.9001
+Padded until 25 chars.
+Padded until 152 tokens.
+Manual evaluation: (didn't understand why I made this)
+True 9710
+False 1351
+True percentage 0.877859144743
+Sklearn evaluation:
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.81      0.86      2188
+        AUX       0.99      0.99      0.99        95
+        DET       0.90      0.91      0.91       367
+       NOUN       0.89      0.89      0.89      2557
+       PRON       0.98      0.95      0.96       455
+       VERB       0.92      0.92      0.92      1240
+        ADP       0.94      0.96      0.95      1142
+      PUNCT       1.00      0.99      1.00      1127
+        ADV       0.79      0.81      0.80       478
+      CCONJ       0.98      0.88      0.93       370
+      SCONJ       0.70      0.75      0.73       142
+        NUM       0.90      0.72      0.80       398
+        ADJ       0.77      0.70      0.73       423
+       PART       0.97      0.71      0.82        48
+        SYM       1.00      0.70      0.82        30
+          X       0.00      0.00      0.00         1
+
+avg / total       0.91      0.88      0.89     11061
+
+F-1 Score:
+0.895095870206
