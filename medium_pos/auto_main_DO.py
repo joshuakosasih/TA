@@ -261,7 +261,7 @@ elif model_choice == 2:
         rtwo)
 else:
     # combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
-    combine = 1
+    combine = 3
     print 'Both WE & CE'
     if combine == 2:
         merge = Subtract()([embedded_sequences, rtwo])
