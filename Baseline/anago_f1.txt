@@ -3,4 +3,43 @@ Using all hyperparam no embedding
 >>> model.eval(x_test, y_test)
  - f1: 66.70
 
+Using all hyperparam with glove embedding
+
+>>> model.eval(x_test, y_test)
+ - f1: 71.52
+
+>>> printConfMat()
+	B-LOC 	B-MISC 	B-ORG 	B-PER 	I-LOC 	I-MISC 	I-ORG 	I-PER 	O
+B-LOC 	163 	21 	16 	2 	3 	2 	3 	1 	7 	
+B-MISC 	17 	59 	26 	5 	1 	10 	4 	0 	19 	
+B-ORG 	10 	20 	227 	9 	6 	4 	7 	1 	12 	
+B-PER 	7 	9 	9 	370 	1 	7 	7 	21 	7 	
+I-LOC 	4 	1 	0 	0 	115 	7 	8 	0 	6 	
+I-MISC 	2 	11 	3 	3 	15 	63 	25 	7 	25 	
+I-ORG 	2 	2 	4 	3 	12 	10 	92 	3 	23 	
+I-PER 	0 	0 	0 	7 	3 	6 	4 	192 	2 	
+O 	11 	29 	32 	35 	0 	12 	9 	5 	7185 	
+
+
+>>> print classification_report(y_true, y_pred)
+             precision    recall  f1-score   support
+
+      B-LOC       0.75      0.75      0.75       218
+     B-MISC       0.39      0.42      0.40       141
+      B-ORG       0.72      0.77      0.74       296
+      B-PER       0.85      0.84      0.85       438
+      I-LOC       0.74      0.82      0.77       141
+     I-MISC       0.52      0.41      0.46       154
+      I-ORG       0.58      0.61      0.59       151
+      I-PER       0.83      0.90      0.86       214
+          O       0.99      0.98      0.98      7318
+
+avg / total       0.93      0.93      0.93      9071
+
+>>> f1_score(y_true, y_pred, average='micro', labels=labels)
+0.72413793103448276
+
+
+
+
 

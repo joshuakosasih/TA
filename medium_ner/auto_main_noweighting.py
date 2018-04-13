@@ -371,6 +371,17 @@ for i in range(1, len(mateval)):
 
 total_false = total_nonzero - total_true
 
+def printConfMat():
+    for l in label_names:
+            print '\t',l,
+    print
+    for i, row in enumerate(mateval):
+            print label_names[i],'\t',
+            for col in row:
+                    print col,'\t',
+            print
+
+
 print "Manual evaluation: (didn't understand why I made this)"
 print "True", total_true
 print "False", total_false
