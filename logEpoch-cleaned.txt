@@ -1,0 +1,1416 @@
+Opening file id-ud-train.pos
+Opening file id-ud-dev.pos
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 103581 unique words.
+Found 181 unique chars.
+Found 16 unique labels.
+3577 unique words not found in embedding.
+97 unique chars not found in embedding.
+Padded until 152 tokens.
+Padded until 25 chars.
+Padded until 152 tokens.
+Model Choice:
+Merge Mode: sum
+Both WE & CE
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 152, 25)      0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 25, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 25, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 152)          0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 152, 64)      6629248     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 152, 64)      0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+add_1 (Add)                     (None, 152, 64)      0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 152, 64)      49536       add_1[0][0]                      
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 152, 17)      1428        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,741,396
+Trainable params: 6,741,396
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Padded until 25 chars.
+Padded until 152 tokens.
+Epoch: 1
+Epoch 1/1
+
+4475/4475 [==============================] - 254s 57ms/step - loss: 0.4072 - acc: 0.8849
+Sklearn evaluation from epoch: 1
+             precision    recall  f1-score   support
+
+      PROPN       0.91      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.95      0.94      0.95       399
+       NOUN       0.92      0.87      0.89      2853
+       PRON       0.99      0.95      0.97       443
+       VERB       0.91      0.93      0.92      1247
+        ADP       0.95      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.83      0.85      0.84       467
+      CCONJ       0.99      0.90      0.94       371
+      SCONJ       0.78      0.81      0.79       161
+        NUM       0.93      0.74      0.82       421
+        ADJ       0.77      0.77      0.77       494
+       PART       0.95      0.67      0.79        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.92      0.89      0.91     12053
+
+F-1 Score (without O) from epoch: 1
+0.915656354515
+Epoch: 2
+Epoch 1/1
+
+4475/4475 [==============================] - 253s 57ms/step - loss: 0.2372 - acc: 0.9297
+Sklearn evaluation from epoch: 2
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.90      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.83      0.86      0.85       467
+      CCONJ       1.00      0.91      0.95       371
+      SCONJ       0.80      0.83      0.81       161
+        NUM       0.92      0.77      0.84       421
+        ADJ       0.82      0.76      0.79       494
+       PART       0.94      0.72      0.81        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.89      0.91     12053
+
+F-1 Score (without O) from epoch: 2
+0.921696489123
+Epoch: 3
+Epoch 1/1
+
+4475/4475 [==============================] - 252s 56ms/step - loss: 0.2035 - acc: 0.9390
+Sklearn evaluation from epoch: 3
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.90      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.86      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.83      0.80      0.81       161
+        NUM       0.92      0.78      0.84       421
+        ADJ       0.83      0.76      0.79       494
+       PART       0.94      0.74      0.83        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 3
+0.922459195912
+Epoch: 4
+Epoch 1/1
+
+4475/4475 [==============================] - 256s 57ms/step - loss: 0.1827 - acc: 0.9445
+Sklearn evaluation from epoch: 4
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.97      0.93      0.95       399
+       NOUN       0.91      0.90      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.86      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.82      0.81      0.82       161
+        NUM       0.91      0.79      0.85       421
+        ADJ       0.80      0.81      0.80       494
+       PART       0.94      0.75      0.84        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 4
+0.924889236383
+Epoch: 5
+Epoch 1/1
+
+4475/4475 [==============================] - 253s 57ms/step - loss: 0.1666 - acc: 0.9492
+Sklearn evaluation from epoch: 5
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.97      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.83      0.88      0.86       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.81      0.84      0.82       161
+        NUM       0.91      0.80      0.85       421
+        ADJ       0.81      0.79      0.80       494
+       PART       0.94      0.75      0.84        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 5
+0.925290652208
+Epoch: 6
+Epoch 1/1
+
+4475/4475 [==============================] - 254s 57ms/step - loss: 0.1566 - acc: 0.9524
+Sklearn evaluation from epoch: 6
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.83      0.88      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.95      0.94      0.95       399
+       NOUN       0.92      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.92      0.93      1247
+        ADP       0.96      0.97      0.97      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.86      0.85       467
+      CCONJ       0.99      0.92      0.95       371
+      SCONJ       0.79      0.84      0.81       161
+        NUM       0.92      0.78      0.84       421
+        ADJ       0.79      0.80      0.80       494
+       PART       0.94      0.75      0.84        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 6
+0.924562777343
+Epoch: 7
+Epoch 1/1
+
+4475/4475 [==============================] - 256s 57ms/step - loss: 0.1448 - acc: 0.9551
+Sklearn evaluation from epoch: 7
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.84      0.88      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.93      0.95       399
+       NOUN       0.92      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.97      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.86      0.85      0.86       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.80      0.85      0.82       161
+        NUM       0.92      0.79      0.85       421
+        ADJ       0.81      0.78      0.79       494
+       PART       0.94      0.79      0.86        61
+        SYM       0.95      0.88      0.91        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.92     12053
+
+F-1 Score (without O) from epoch: 7
+0.92486938349
+Opening file id-ud-train.pos
+Opening file id-ud-dev.pos
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 103581 unique words.
+Found 181 unique chars.
+Found 16 unique labels.
+3577 unique words not found in embedding.
+97 unique chars not found in embedding.
+Padded until 152 tokens.
+Padded until 25 chars.
+Padded until 152 tokens.
+Model Choice:
+Merge Mode: sum
+Both WE & CE
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 152, 25)      0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 25, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 25, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 152)          0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 152, 64)      6629248     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 152, 64)      0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+add_1 (Add)                     (None, 152, 64)      0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 152, 64)      49536       add_1[0][0]                      
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 152, 17)      1428        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,741,396
+Trainable params: 6,741,396
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Padded until 25 chars.
+Padded until 152 tokens.
+Epoch: 1
+Epoch 1/1
+
+4475/4475 [==============================] - 252s 56ms/step - loss: 0.4185 - acc: 0.8801
+Sklearn evaluation from epoch: 1
+             precision    recall  f1-score   support
+
+      PROPN       0.90      0.83      0.86      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.93      0.95       399
+       NOUN       0.90      0.88      0.89      2853
+       PRON       0.99      0.95      0.97       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.81      0.86      0.83       467
+      CCONJ       1.00      0.90      0.95       371
+      SCONJ       0.78      0.79      0.79       161
+        NUM       0.92      0.77      0.84       421
+        ADJ       0.81      0.74      0.78       494
+       PART       0.95      0.67      0.79        61
+        SYM       0.94      0.79      0.86        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.92      0.89      0.90     12053
+
+F-1 Score (without O) from epoch: 1
+0.915060745706
+Epoch: 2
+Epoch 1/1
+
+4475/4475 [==============================] - 252s 56ms/step - loss: 0.2371 - acc: 0.9292
+Sklearn evaluation from epoch: 2
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.95      0.95       399
+       NOUN       0.90      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.95      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.83      0.86      0.84       467
+      CCONJ       1.00      0.91      0.95       371
+      SCONJ       0.80      0.83      0.81       161
+        NUM       0.91      0.77      0.84       421
+        ADJ       0.81      0.78      0.79       494
+       PART       0.96      0.72      0.82        61
+        SYM       0.92      0.86      0.89        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.89      0.91     12053
+
+F-1 Score (without O) from epoch: 2
+0.919712589816
+Epoch: 3
+Epoch 1/1
+
+4475/4475 [==============================] - 255s 57ms/step - loss: 0.2045 - acc: 0.9385
+Sklearn evaluation from epoch: 3
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.83      0.87      0.85       467
+      CCONJ       1.00      0.91      0.95       371
+      SCONJ       0.78      0.84      0.81       161
+        NUM       0.91      0.79      0.85       421
+        ADJ       0.83      0.79      0.81       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.93      0.88      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 3
+0.923406478579
+Epoch: 4
+Epoch 1/1
+
+4475/4475 [==============================] - 249s 56ms/step - loss: 0.1815 - acc: 0.9442
+Sklearn evaluation from epoch: 4
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.90      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.92      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.86      0.84      0.85       467
+      CCONJ       1.00      0.91      0.95       371
+      SCONJ       0.79      0.84      0.81       161
+        NUM       0.92      0.79      0.85       421
+        ADJ       0.84      0.78      0.81       494
+       PART       0.94      0.79      0.86        61
+        SYM       0.95      0.90      0.93        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 4
+0.924177545692
+Epoch: 5
+Epoch 1/1
+
+4475/4475 [==============================] - 249s 56ms/step - loss: 0.1668 - acc: 0.9494
+Sklearn evaluation from epoch: 5
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.97      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.87      0.86       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.81      0.82      0.82       161
+        NUM       0.91      0.79      0.85       421
+        ADJ       0.81      0.82      0.81       494
+       PART       0.94      0.79      0.86        61
+        SYM       0.93      0.93      0.93        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 5
+0.92452141255
+Epoch: 6
+Epoch 1/1
+
+4475/4475 [==============================] - 253s 57ms/step - loss: 0.1537 - acc: 0.9524
+Sklearn evaluation from epoch: 6
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.87      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.80      0.84      0.82       161
+        NUM       0.92      0.79      0.85       421
+        ADJ       0.81      0.80      0.80       494
+       PART       0.94      0.79      0.86        61
+        SYM       0.93      0.93      0.93        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 6
+0.924577508867
+Epoch: 7
+Epoch 1/1
+
+4475/4475 [==============================] - 251s 56ms/step - loss: 0.1440 - acc: 0.9554
+Sklearn evaluation from epoch: 7
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.95      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.86      0.85      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.81      0.83      0.82       161
+        NUM       0.91      0.79      0.85       421
+        ADJ       0.82      0.80      0.81       494
+       PART       0.94      0.82      0.88        61
+        SYM       0.93      0.93      0.93        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 7
+0.924296141814
+Opening file id-ud-train.pos
+Opening file id-ud-dev.pos
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 103581 unique words.
+Found 181 unique chars.
+Found 16 unique labels.
+3577 unique words not found in embedding.
+97 unique chars not found in embedding.
+Padded until 152 tokens.
+Padded until 25 chars.
+Padded until 152 tokens.
+Model Choice:
+Merge Mode: sum
+Both WE & CE
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 152, 25)      0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 25, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 25, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 152)          0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 152, 64)      6629248     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 152, 64)      0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+add_1 (Add)                     (None, 152, 64)      0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 152, 64)      49536       add_1[0][0]                      
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 152, 17)      1428        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,741,396
+Trainable params: 6,741,396
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Padded until 25 chars.
+Padded until 152 tokens.
+Epoch: 1
+Epoch 1/1
+
+4475/4475 [==============================] - 233s 52ms/step - loss: 0.4885 - acc: 0.8631
+Sklearn evaluation from epoch: 1
+             precision    recall  f1-score   support
+
+      PROPN       0.88      0.84      0.86      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.95      0.92      0.94       399
+       NOUN       0.91      0.86      0.89      2853
+       PRON       0.98      0.95      0.97       443
+       VERB       0.93      0.91      0.92      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.83      0.83       467
+      CCONJ       0.99      0.90      0.94       371
+      SCONJ       0.76      0.83      0.79       161
+        NUM       0.91      0.76      0.83       421
+        ADJ       0.79      0.73      0.76       494
+       PART       0.98      0.67      0.80        61
+        SYM       0.94      0.81      0.87        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.92      0.88      0.90     12053
+
+F-1 Score (without O) from epoch: 1
+0.911989057815
+Epoch: 2
+Epoch 1/1
+
+4475/4475 [==============================] - 232s 52ms/step - loss: 0.2515 - acc: 0.9270
+Sklearn evaluation from epoch: 2
+             precision    recall  f1-score   support
+
+      PROPN       0.91      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.95      0.92      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.84      0.84       467
+      CCONJ       1.00      0.90      0.95       371
+      SCONJ       0.80      0.83      0.81       161
+        NUM       0.92      0.78      0.84       421
+        ADJ       0.82      0.79      0.80       494
+       PART       0.95      0.69      0.80        61
+        SYM       0.95      0.83      0.89        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.89      0.91     12053
+
+F-1 Score (without O) from epoch: 2
+0.921177885873
+Epoch: 3
+Epoch 1/1
+
+4475/4475 [==============================] - 232s 52ms/step - loss: 0.2105 - acc: 0.9373
+Sklearn evaluation from epoch: 3
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.90      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.84      0.84       467
+      CCONJ       1.00      0.90      0.95       371
+      SCONJ       0.80      0.83      0.82       161
+        NUM       0.91      0.78      0.84       421
+        ADJ       0.81      0.80      0.80       494
+       PART       0.93      0.70      0.80        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.89      0.91     12053
+
+F-1 Score (without O) from epoch: 3
+0.921800824247
+Epoch: 4
+Epoch 1/1
+
+4475/4475 [==============================] - 231s 52ms/step - loss: 0.1888 - acc: 0.9428
+Sklearn evaluation from epoch: 4
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.98      0.96      0.97       443
+       VERB       0.95      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.82      0.86      0.84       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.81      0.83      0.82       161
+        NUM       0.91      0.79      0.84       421
+        ADJ       0.80      0.81      0.81       494
+       PART       0.94      0.72      0.81        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.89      0.91     12053
+
+F-1 Score (without O) from epoch: 4
+0.922290601857
+Epoch: 5
+Epoch 1/1
+
+4475/4475 [==============================] - 231s 52ms/step - loss: 0.1708 - acc: 0.9479
+Sklearn evaluation from epoch: 5
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.85      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.79      0.85      0.82       161
+        NUM       0.92      0.78      0.85       421
+        ADJ       0.81      0.80      0.81       494
+       PART       0.94      0.75      0.84        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 5
+0.922844175492
+Epoch: 6
+Epoch 1/1
+
+4475/4475 [==============================] - 231s 52ms/step - loss: 0.1588 - acc: 0.9510
+Sklearn evaluation from epoch: 6
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.95      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.86      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.82      0.84      0.83       161
+        NUM       0.93      0.79      0.85       421
+        ADJ       0.81      0.79      0.80       494
+       PART       0.94      0.75      0.84        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 6
+0.923414023372
+Epoch: 7
+Epoch 1/1
+
+4475/4475 [==============================] - 232s 52ms/step - loss: 0.1480 - acc: 0.9540
+Sklearn evaluation from epoch: 7
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.97      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.85      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.80      0.84      0.82       161
+        NUM       0.92      0.80      0.85       421
+        ADJ       0.81      0.81      0.81       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 7
+0.923910777569
+Epoch: 8
+Epoch 1/1
+
+4475/4475 [==============================] - 232s 52ms/step - loss: 0.1396 - acc: 0.9557
+Sklearn evaluation from epoch: 8
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.95      0.95      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.94      0.93      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.85      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.78      0.86      0.82       161
+        NUM       0.93      0.80      0.86       421
+        ADJ       0.82      0.80      0.81       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 8
+0.923213077203
+Epoch: 9
+Epoch 1/1
+
+4475/4475 [==============================] - 230s 51ms/step - loss: 0.1332 - acc: 0.9581
+Sklearn evaluation from epoch: 9
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.85      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.83      0.85      0.84       161
+        NUM       0.92      0.80      0.85       421
+        ADJ       0.81      0.80      0.80       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 9
+0.923486152402
+Epoch: 10
+Epoch 1/1
+
+4475/4475 [==============================] - 231s 52ms/step - loss: 0.1256 - acc: 0.9602
+Sklearn evaluation from epoch: 10
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.95      0.92      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.85      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.82      0.85      0.84       161
+        NUM       0.92      0.79      0.85       421
+        ADJ       0.80      0.82      0.81       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 10
+0.92441708831
+Epoch: 11
+Epoch 1/1
+
+4475/4475 [==============================] - 232s 52ms/step - loss: 0.1193 - acc: 0.9627
+Sklearn evaluation from epoch: 11
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.85      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.81      0.85      0.83       161
+        NUM       0.93      0.80      0.86       421
+        ADJ       0.80      0.80      0.80       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.95      0.86      0.90        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 11
+0.922595777952
+Epoch: 12
+Epoch 1/1
+
+4475/4475 [==============================] - 230s 52ms/step - loss: 0.1138 - acc: 0.9636
+Sklearn evaluation from epoch: 12
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.95      0.95      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.86      0.85       467
+      CCONJ       0.99      0.92      0.95       371
+      SCONJ       0.82      0.85      0.84       161
+        NUM       0.92      0.80      0.85       421
+        ADJ       0.79      0.81      0.80       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.95      0.88      0.91        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 12
+0.923694779116
+Epoch: 13
+Epoch 1/1
+
+4475/4475 [==============================] - 231s 52ms/step - loss: 0.1104 - acc: 0.9648
+Sklearn evaluation from epoch: 13
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.95      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.86      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.81      0.86      0.83       161
+        NUM       0.92      0.79      0.85       421
+        ADJ       0.80      0.80      0.80       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.95      0.90      0.93        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 13
+0.923469653556
+Epoch: 14
+Epoch 1/1
+
+4475/4475 [==============================] - 231s 52ms/step - loss: 0.1047 - acc: 0.9665
+Sklearn evaluation from epoch: 14
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.95      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.94      0.91      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.86      0.85       467
+      CCONJ       0.99      0.92      0.95       371
+      SCONJ       0.83      0.84      0.84       161
+        NUM       0.92      0.80      0.85       421
+        ADJ       0.80      0.80      0.80       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.95      0.90      0.93        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 14
+0.924160968735
+Epoch: 15
+Epoch 1/1
+
+4475/4475 [==============================] - 232s 52ms/step - loss: 0.1018 - acc: 0.9677
+Sklearn evaluation from epoch: 15
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.86      0.85       467
+      CCONJ       0.99      0.92      0.95       371
+      SCONJ       0.82      0.85      0.83       161
+        NUM       0.92      0.80      0.85       421
+        ADJ       0.80      0.81      0.81       494
+       PART       0.94      0.79      0.86        61
+        SYM       0.95      0.93      0.94        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 15
+0.923998541439
+Opening file id-ud-train.pos
+Opening file id-ud-dev.pos
+Found 100004 word vectors.
+Found 84 char vectors.
+Found 103581 unique words.
+Found 181 unique chars.
+Found 16 unique labels.
+3577 unique words not found in embedding.
+97 unique chars not found in embedding.
+Padded until 152 tokens.
+Padded until 25 chars.
+Padded until 152 tokens.
+Model Choice:
+Merge Mode: sum
+Both WE & CE
+Model Choice:
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 152, 25)      0                                            
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 25, 64)       11648       input_2[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 25, 64)       0           embedding_2[0][0]                
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 152)          0                                            
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 64)           49536       lambda_1[0][0]                   
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 152, 64)      6629248     input_1[0][0]                    
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 152, 64)      0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+add_1 (Add)                     (None, 152, 64)      0           embedding_1[0][0]                
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) (None, 152, 64)      49536       add_1[0][0]                      
+__________________________________________________________________________________________________
+crf_1 (CRF)                     (None, 152, 17)      1428        bidirectional_2[0][0]            
+==================================================================================================
+Total params: 6,741,396
+Trainable params: 6,741,396
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Padded until 25 chars.
+Padded until 152 tokens.
+Epoch: 1
+Epoch 1/1
+
+4475/4475 [==============================] - 237s 53ms/step - loss: 0.4866 - acc: 0.8632
+Sklearn evaluation from epoch: 1
+             precision    recall  f1-score   support
+
+      PROPN       0.91      0.82      0.86      2362
+        AUX       1.00      0.99      1.00       104
+        DET       0.94      0.93      0.93       399
+       NOUN       0.90      0.87      0.89      2853
+       PRON       0.98      0.94      0.96       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.80      0.85      0.82       467
+      CCONJ       1.00      0.90      0.95       371
+      SCONJ       0.77      0.83      0.80       161
+        NUM       0.89      0.74      0.81       421
+        ADJ       0.78      0.77      0.77       494
+       PART       1.00      0.62      0.77        61
+        SYM       1.00      0.79      0.88        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.92      0.88      0.90     12053
+
+F-1 Score (without O) from epoch: 1
+0.911285266458
+Epoch: 2
+Epoch 1/1
+
+4475/4475 [==============================] - 232s 52ms/step - loss: 0.2483 - acc: 0.9262
+Sklearn evaluation from epoch: 2
+             precision    recall  f1-score   support
+
+      PROPN       0.91      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.93      0.94       399
+       NOUN       0.90      0.89      0.89      2853
+       PRON       0.98      0.95      0.96       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.84      0.85       467
+      CCONJ       1.00      0.90      0.95       371
+      SCONJ       0.81      0.82      0.81       161
+        NUM       0.92      0.77      0.84       421
+        ADJ       0.81      0.78      0.79       494
+       PART       0.96      0.72      0.82        61
+        SYM       0.97      0.86      0.91        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.89      0.91     12053
+
+F-1 Score (without O) from epoch: 2
+0.919328697653
+Epoch: 3
+Epoch 1/1
+
+4475/4475 [==============================] - 233s 52ms/step - loss: 0.2093 - acc: 0.9377
+Sklearn evaluation from epoch: 3
+             precision    recall  f1-score   support
+
+      PROPN       0.90      0.84      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.97      0.93      0.95       399
+       NOUN       0.91      0.88      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.95      0.92      0.93      1247
+        ADP       0.96      0.96      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.83      0.87      0.85       467
+      CCONJ       1.00      0.90      0.95       371
+      SCONJ       0.80      0.82      0.81       161
+        NUM       0.90      0.79      0.84       421
+        ADJ       0.84      0.77      0.80       494
+       PART       0.94      0.74      0.83        61
+        SYM       0.97      0.86      0.91        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.89      0.91     12053
+
+F-1 Score (without O) from epoch: 3
+0.921536768174
+Epoch: 4
+Epoch 1/1
+
+4475/4475 [==============================] - 234s 52ms/step - loss: 0.1856 - acc: 0.9437
+Sklearn evaluation from epoch: 4
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.97      0.94      0.95       399
+       NOUN       0.91      0.90      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.87      0.85       467
+      CCONJ       1.00      0.91      0.95       371
+      SCONJ       0.83      0.81      0.82       161
+        NUM       0.91      0.79      0.84       421
+        ADJ       0.82      0.78      0.80       494
+       PART       0.94      0.75      0.84        61
+        SYM       1.00      0.86      0.92        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 4
+0.924103419516
+Epoch: 5
+Epoch 1/1
+
+4475/4475 [==============================] - 235s 53ms/step - loss: 0.1700 - acc: 0.9478
+Sklearn evaluation from epoch: 5
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.84      0.88      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.98      0.94      0.96       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.97       443
+       VERB       0.95      0.92      0.94      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.87      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.81      0.84      0.83       161
+        NUM       0.93      0.79      0.85       421
+        ADJ       0.81      0.80      0.81       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.97      0.86      0.91        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 5
+0.924942504704
+Epoch: 6
+Epoch 1/1
+
+4475/4475 [==============================] - 234s 52ms/step - loss: 0.1571 - acc: 0.9514
+Sklearn evaluation from epoch: 6
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.97      0.93      0.95       399
+       NOUN       0.92      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.83      0.86      0.84       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.82      0.81      0.81       161
+        NUM       0.91      0.79      0.85       421
+        ADJ       0.80      0.81      0.81       494
+       PART       0.94      0.77      0.85        61
+        SYM       1.00      0.86      0.92        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 6
+0.923639020826
+Epoch: 7
+Epoch 1/1
+
+4475/4475 [==============================] - 232s 52ms/step - loss: 0.1476 - acc: 0.9540
+Sklearn evaluation from epoch: 7
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.97      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.86      0.86      0.86       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.80      0.82      0.81       161
+        NUM       0.91      0.79      0.85       421
+        ADJ       0.80      0.79      0.80       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.97      0.86      0.91        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 7
+0.923558243821
+Epoch: 8
+Epoch 1/1
+
+4475/4475 [==============================] - 235s 53ms/step - loss: 0.1375 - acc: 0.9572
+Sklearn evaluation from epoch: 8
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.95      0.95      0.95       399
+       NOUN       0.91      0.90      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.87      0.86      0.86       467
+      CCONJ       0.99      0.92      0.95       371
+      SCONJ       0.81      0.83      0.82       161
+        NUM       0.92      0.79      0.85       421
+        ADJ       0.80      0.81      0.80       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.97      0.86      0.91        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 8
+0.92462363911
+Epoch: 9
+Epoch 1/1
+
+4475/4475 [==============================] - 234s 52ms/step - loss: 0.1302 - acc: 0.9588
+Sklearn evaluation from epoch: 9
+             precision    recall  f1-score   support
+
+      PROPN       0.92      0.83      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.86      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.80      0.82      0.81       161
+        NUM       0.92      0.79      0.85       421
+        ADJ       0.81      0.80      0.80       494
+       PART       0.94      0.77      0.85        61
+        SYM       0.97      0.86      0.91        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 9
+0.92412857441
+Epoch: 10
+Epoch 1/1
+
+4475/4475 [==============================] - 234s 52ms/step - loss: 0.1233 - acc: 0.9614
+Sklearn evaluation from epoch: 10
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.86      0.85       467
+      CCONJ       0.98      0.92      0.95       371
+      SCONJ       0.80      0.82      0.81       161
+        NUM       0.93      0.79      0.85       421
+        ADJ       0.80      0.80      0.80       494
+       PART       0.94      0.82      0.88        61
+        SYM       0.97      0.86      0.91        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 10
+0.923654176872
+Epoch: 11
+Epoch 1/1
+
+4475/4475 [==============================] - 235s 53ms/step - loss: 0.1189 - acc: 0.9624
+Sklearn evaluation from epoch: 11
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.81      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.90      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.86      0.86      0.86       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.79      0.84      0.82       161
+        NUM       0.91      0.79      0.84       421
+        ADJ       0.81      0.80      0.80       494
+       PART       0.94      0.80      0.87        61
+        SYM       1.00      0.88      0.94        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 11
+0.923229063655
+Epoch: 12
+Epoch 1/1
+
+4475/4475 [==============================] - 237s 53ms/step - loss: 0.1135 - acc: 0.9638
+Sklearn evaluation from epoch: 12
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.90      0.90      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.94      0.91      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.86      0.86      0.86       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.80      0.82      0.81       161
+        NUM       0.92      0.79      0.85       421
+        ADJ       0.81      0.78      0.80       494
+       PART       0.94      0.82      0.88        61
+        SYM       1.00      0.88      0.94        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 12
+0.923245271221
+Epoch: 13
+Epoch 1/1
+
+4475/4475 [==============================] - 234s 52ms/step - loss: 0.1094 - acc: 0.9652
+Sklearn evaluation from epoch: 13
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.96      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.84      0.86      0.85       467
+      CCONJ       0.99      0.91      0.95       371
+      SCONJ       0.80      0.86      0.83       161
+        NUM       0.93      0.78      0.85       421
+        ADJ       0.79      0.80      0.80       494
+       PART       0.94      0.82      0.88        61
+        SYM       1.00      0.88      0.94        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 13
+0.923942488018
+Epoch: 14
+Epoch 1/1
+
+4475/4475 [==============================] - 235s 53ms/step - loss: 0.1049 - acc: 0.9657
+Sklearn evaluation from epoch: 14
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.95      0.94      0.95       399
+       NOUN       0.91      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.94      0.92      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.86      0.85       467
+      CCONJ       0.98      0.92      0.95       371
+      SCONJ       0.80      0.85      0.83       161
+        NUM       0.92      0.79      0.85       421
+        ADJ       0.79      0.81      0.80       494
+       PART       0.94      0.82      0.88        61
+        SYM       1.00      0.88      0.94        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 14
+0.923509795748
+Epoch: 15
+Epoch 1/1
+
+4475/4475 [==============================] - 236s 53ms/step - loss: 0.1009 - acc: 0.9677
+Sklearn evaluation from epoch: 15
+             precision    recall  f1-score   support
+
+      PROPN       0.93      0.82      0.87      2362
+        AUX       1.00      1.00      1.00       104
+        DET       0.95      0.94      0.95       399
+       NOUN       0.90      0.89      0.90      2853
+       PRON       0.99      0.96      0.98       443
+       VERB       0.95      0.91      0.93      1247
+        ADP       0.96      0.97      0.96      1248
+      PUNCT       1.00      1.00      1.00      1378
+        ADV       0.85      0.86      0.85       467
+      CCONJ       0.98      0.92      0.95       371
+      SCONJ       0.80      0.84      0.82       161
+        NUM       0.92      0.78      0.85       421
+        ADJ       0.79      0.80      0.80       494
+       PART       0.94      0.82      0.88        61
+        SYM       1.00      0.88      0.94        42
+          X       0.00      0.00      0.00         2
+
+avg / total       0.93      0.90      0.91     12053
+
+F-1 Score (without O) from epoch: 15
+0.922860712055
