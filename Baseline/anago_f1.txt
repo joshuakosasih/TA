@@ -1,0 +1,6 @@
+Using all hyperparam no embedding
+
+>>> model.eval(x_test, y_test)
+ - f1: 66.70
+
+
