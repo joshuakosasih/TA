@@ -30,3 +30,85 @@ avg/total 0.94 	0.91 	0.93 	9071
 
 >>> print max([f1_mac, f1_mic])
 0.732478377572
+
+
+** THIS MODEL IS USING TRANSFER ** :"(
+
+Using nw921
+
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.89      0.82      0.86       438
+      I-PER       0.90      0.63      0.74       214
+      B-ORG       0.77      0.73      0.75       296
+      I-ORG       0.64      0.64      0.64       151
+      B-LOC       0.76      0.74      0.75       218
+      I-LOC       0.75      0.82      0.78       141
+     B-MISC       0.41      0.31      0.35       141
+     I-MISC       0.53      0.39      0.45       154
+
+avg / total       0.94      0.91      0.92      9071
+
+F-1 Score (without O):
+0.714801444043
+
+Using nw900
+
+             precision    recall  f1-score   support
+
+          O       0.99      0.96      0.97      7318
+      B-PER       0.91      0.83      0.87       438
+      I-PER       0.88      0.64      0.74       214
+      B-ORG       0.70      0.75      0.72       296
+      I-ORG       0.56      0.67      0.61       151
+      B-LOC       0.75      0.74      0.75       218
+      I-LOC       0.81      0.77      0.79       141
+     B-MISC       0.41      0.29      0.34       141
+     I-MISC       0.47      0.42      0.45       154
+
+avg / total       0.94      0.91      0.92      9071
+
+F-1 Score (without O):
+0.70695754717
+
+Using nw919
+
+             precision    recall  f1-score   support
+
+          O       0.98      0.97      0.97      7318
+      B-PER       0.92      0.83      0.87       438
+      I-PER       0.90      0.64      0.75       214
+      B-ORG       0.80      0.72      0.76       296
+      I-ORG       0.68      0.54      0.60       151
+      B-LOC       0.77      0.72      0.75       218
+      I-LOC       0.80      0.72      0.75       141
+     B-MISC       0.42      0.33      0.37       141
+     I-MISC       0.44      0.52      0.48       154
+
+avg / total       0.94      0.91      0.92      9071
+
+F-1 Score (without O):
+0.713853599516
+
+Using nw921
+
+             precision    recall  f1-score   support
+
+          O       0.98      0.96      0.97      7318
+      B-PER       0.91      0.84      0.88       438
+      I-PER       0.92      0.66      0.77       214
+      B-ORG       0.78      0.73      0.75       296
+      I-ORG       0.69      0.66      0.67       151
+      B-LOC       0.78      0.74      0.76       218
+      I-LOC       0.77      0.79      0.78       141
+     B-MISC       0.42      0.37      0.39       141
+     I-MISC       0.53      0.47      0.50       154
+
+avg / total       0.94      0.91      0.93      9071
+
+F-1 Score (without O):
+0.730964467005
+
+^ epoch 27
+
