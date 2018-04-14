@@ -298,8 +298,8 @@ model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
-optimizer = 'adagrad' # raw_input('Enter optimizer (default rmsprop): ')
-loss = 'categorical_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
+optimizer = 'adam' # raw_input('Enter optimizer (default rmsprop): ')
+loss = 'binary_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
@@ -310,7 +310,7 @@ model.compile(loss=loss,
 Loading Weight (Transfer Weight)
 """
 import pickle
-w_name = 'w916' # raw_input('Enter file name to load weights: ')
+w_name = sys.argv[7] # raw_input('Enter file name to load weights: ')
 load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
 m_layers_len = len(model.layers)
 if 'n' in load_c:
