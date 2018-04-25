@@ -39,7 +39,7 @@ Preparing file
 """
 
 train = DL('id-ud-train.pos')
-test = DL('id-ud-test.pos')
+test = DL('id-ud-dev.pos')
 
 """
 Load pre-trained word embedding
