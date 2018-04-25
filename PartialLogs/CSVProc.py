@@ -37,3 +37,10 @@ for row in rdict[1:]:
 
 print np.array(rdict)
 f.close()
+
+csvout = open(cname + '-compact.csv', 'w')
+
+cwriter = csv.writer(csvout)
+cwriter.writerows(rdict)
+
+print "Compact csv saved"
