@@ -19,8 +19,8 @@ from time import time
 import sys
 import ast
 
-trainable = ast.literal_eval(sys.argv[5])  # word embedding is trainable or not
-gtrainable = ast.literal_eval(sys.argv[6])  # GRU is trainable or not
+trainable = ast.literal_eval(sys.argv[3])  # word embedding is trainable or not
+gtrainable = ast.literal_eval(sys.argv[4])  # GRU is trainable or not
 mask = True  # mask pad (zeros) or not
 
 
@@ -36,12 +36,12 @@ def activationPrompt(name):
 """
 Preparing file
 """
-train_name = sys.argv[1]
+train_name = 'ner_3_train.ner'
 train = DL(train_name)
 # percentage = input('Enter percentage of data to take: ')
 # seed = input('Enter seed for slicing data: ')
 # train.slice(percentage, seed)
-test_name = sys.argv[2]
+test_name = 'ner_3_test.ner'
 test = DL(test_name)
 
 """
@@ -309,7 +309,7 @@ model.compile(loss=loss,
 Loading Weight (Transfer Weight)
 """
 import pickle
-w_name = 'weights' # raw_input('Enter file name to load weights: ')
+w_name = sys.argv[5] # raw_input('Enter file name to load weights: ')
 load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
 m_layers_len = len(model.layers)
 if 'n' in load_c:
@@ -330,8 +330,8 @@ for i in range(m_layers_len):
 """
 Training
 """
-epoch = int(sys.argv[3])
-batch = int(sys.argv[4])
+epoch = int(sys.argv[1])
+batch = int(sys.argv[2])
 
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
