@@ -34,12 +34,12 @@ def activationPrompt(name):
 """
 Preparing file
 """
-train_name = sys.argv[1]
+train_name = 'ner_3_train.ner'
 train = DL(train_name)
-percentage = float(sys.argv[5])  # input('Enter percentage of data to take: ')
-seed = sys.argv[6]  # input('Enter seed for slicing data: ')
+percentage = float(sys.argv[2])  # input('Enter percentage of data to take: ')
+seed = sys.argv[3]  # input('Enter seed for slicing data: ')
 train.slice(percentage, seed)
-test_name = sys.argv[2]
+test_name = 'ner_3_test.ner'
 test = DL(test_name)
 print "Cut percentage", percentage, "with seed", seed
 
@@ -298,8 +298,8 @@ model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
-optimizer = 'adam' # raw_input('Enter optimizer (default rmsprop): ')
-loss = 'binary_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
+optimizer = sys.argv[4] # 'adam' # raw_input('Enter optimizer (default rmsprop): ')
+loss = sys.argv[5] # 'binary_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
@@ -310,7 +310,10 @@ model.compile(loss=loss,
 Loading Weight (Transfer Weight)
 """
 import pickle
-w_name = sys.argv[7] # raw_input('Enter file name to load weights: ')
+w_name = sys.argv[6] # raw_input('Enter file name to load weights: ')
+print 'Optimizer: ', optimizer
+print 'Loss: ', loss
+print 'Wgt name: ', w_name
 load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
 m_layers_len = len(model.layers)
 if 'n' in load_c:
@@ -330,8 +333,8 @@ for i in range(m_layers_len):
 """
 Training
 """
-epoch = int(sys.argv[3])
-batch = int(sys.argv[4])
+epoch = int(sys.argv[1])
+batch = 16
 
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
