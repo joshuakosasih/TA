@@ -39,10 +39,13 @@ Preparing file
 train_name = 'ner_3_train.ner'
 train = DL(train_name)
 # percentage = input('Enter percentage of data to take: ')
+percentage = 0.9
+seed = 0
 # seed = input('Enter seed for slicing data: ')
-# train.slice(percentage, seed)
-test_name = 'ner_3_test.ner'
+train.slice(percentage, seed)
+test_name = 'ner_3_train.ner'
 test = DL(test_name)
+test.antislice(percentage, seed)
 
 """
 Load pre-trained word embedding
