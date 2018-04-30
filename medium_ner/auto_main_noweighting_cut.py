@@ -34,12 +34,12 @@ def activationPrompt(name):
 """
 Preparing file
 """
-train_name = sys.argv[1]
+train_name = 'ner_3_train.ner'
 train = DL(train_name)
-percentage = float(sys.argv[5])  # input('Enter percentage of data to take: ')
-seed = sys.argv[6]  # input('Enter seed for slicing data: ')
+percentage = float(sys.argv[2])  # input('Enter percentage of data to take: ')
+seed = sys.argv[3]  # input('Enter seed for slicing data: ')
 train.slice(percentage, seed)
-test_name = sys.argv[2]
+test_name = 'ner_3_test.ner'
 test = DL(test_name)
 print "Cut percentage", percentage, "with seed", seed
 
@@ -289,18 +289,20 @@ model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
-optimizer = 'adagrad' # raw_input('Enter optimizer (default rmsprop): ')
-loss = 'categorical_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
+optimizer = sys.argv[4] # 'adagrad' # raw_input('Enter optimizer (default rmsprop): ')
+loss = sys.argv[5] # 'categorical_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['acc'])
 
+print 'Optimizer: ', optimizer
+print 'Loss: ', loss
 """
 Training
 """
-epoch = int(sys.argv[3])
-batch = int(sys.argv[4])
+epoch = int(sys.argv[1])
+batch = 16
 
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)],
