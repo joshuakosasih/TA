@@ -250,6 +250,9 @@ from keras.layers import Add, Subtract, Multiply, Average, Maximum
 print "Model Choice:"
 model_choice = 3 # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
 merge_m = 'concat' # raw_input('Enter merge mode for GRU Kata: ')
+combine = 0
+w_name_l = ''
+w_name = ''
 # dropout = input('Enter GRU Karakter dropout: ')
 # rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 if model_choice == 1:
@@ -397,3 +400,26 @@ f1_mac = f1_score(y_true, y_pred, labels=label_index[1:], average='macro')
 f1_mic = f1_score(y_true, y_pred, labels=label_index[1:], average='micro')
 print 'F-1 Score (without O):'
 print max([f1_mac, f1_mic])
+
+"""
+Save weight
+"""
+save_m = raw_input('Do you want to save model weight? ')
+if 'y' in save_m:
+    w_name = raw_input('Enter file name to save weights: ')
+    for i in range(len(model.layers)):
+        with open(w_name+'-'+str(i)+'.wgt', 'wb') as fp:
+            pickle.dump(model.layers[i].get_weights(), fp)
+
+
+
+import csv
+from datetime import datetime
+rnow = datetime.now()
+logcsv = open('log.csv', 'a')
+writer = csv.writer(logcsv, delimiter=',')
+writer.writerow(['no', str(rnow.date()), str(rnow.time())[:-10], train.filename, test.filename, WE_DIR, CE_DIR, word.cnt-1, char.cnt-1, 
+    len(x_test.oov_index), padsize, char_padsize, trainable, merge_m_c, merge_m, dropout, model_choice, 
+    combine, optimizer, loss, load_m, w_name_l, percentage, seed, epoch, batch, f1_mac, f1_mic, save_m, w_name])
+
+logcsv.close()
