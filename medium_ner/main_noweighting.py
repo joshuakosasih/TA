@@ -295,6 +295,7 @@ model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['acc'])
 
+load_m = False
 """
 Training
 """

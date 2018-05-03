@@ -303,6 +303,7 @@ model.compile(loss=loss,
 
 print 'Optimizer: ', optimizer
 print 'Loss: ', loss
+load_m = False
 """
 Training
 """
