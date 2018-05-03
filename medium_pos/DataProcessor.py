@@ -14,10 +14,12 @@ class DataLoader:
         corpus
         words
         labels
+        filename
     """
     def __init__(self, name):
         print "Opening file", name
         self.myfile = open(name, 'r')
+        self.filename = name
 
         print "Loading data..."
         self.mydict = []
@@ -91,6 +93,19 @@ class DataLoader:
             self.words.append(line)
             self.labels.append(y_true)
         print "Data added!", len(self.corpus), "sentences!"
+
+    def trim(self, length):
+        print "Triming sequence length..."
+        for i, line in enumerate(self.corpus):
+            if len(line) > length:
+                self.corpus[i] = line[:length]
+        for i, line in enumerate(self.words):
+            if len(line) > length:
+                self.words[i] = line[:length]
+        for i, line in enumerate(self.labels):
+            if len(line) > length:
+                self.labels[i] = line[:length]
+        print "Sequence trimmed!"
 
 class DataIndexer:
     """
