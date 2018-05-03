@@ -241,6 +241,7 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
 merge_m = 'sum' # raw_input('Enter merge mode for GRU Karakter: ')
+merge_m_c = merge_m
 dropout = 0.2 # input('Enter dropout for GRU: ')
 rec_dropout = dropout # input('Enter GRU Karakter recurrent dropout: ')
 gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
