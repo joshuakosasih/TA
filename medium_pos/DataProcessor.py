@@ -40,14 +40,13 @@ class DataLoader:
         self.labels = []
         
         for sent in self.corpus:
-            if len(sent) < 160:
-                line = []
-                y_true = []
-                for token in sent:
-                    line.append(token[0])
-                    y_true.append(token[1])
-                self.words.append(line)
-                self.labels.append(y_true)
+            line = []
+            y_true = []
+            for token in sent:
+                line.append(token[0])
+                y_true.append(token[1])
+            self.words.append(line)
+            self.labels.append(y_true)
         print "Data loaded!", len(self.corpus), "sentences!"
 
     def slice(self, percent, seed):
