@@ -309,6 +309,7 @@ model.compile(loss=loss,
 Loading Weight (Transfer Weight)
 """
 import pickle
+load_m = True
 w_name = raw_input('Enter file name to load weights: ')
 w_name_l = w_name
 load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
