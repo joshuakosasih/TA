@@ -1,0 +1,1 @@
+No,Date,Time,Train filename,Test filename,Word embedding,Char embedding,Total unique word,Total unique char,Unique OOV,Padsize,Char padsize,Trainable,MergeGRU Char,MergeGRU Word,Dropout,Model,Merge Layer,Optimizer,Loss,Load wgt,Name wgt,Percentage,Seed,Epoch,Batch,F-1 Macro,F-1 Micro,Save wgt,Saved name wgt

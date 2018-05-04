@@ -309,6 +309,7 @@ model.compile(loss=loss,
 Loading Weight (Transfer Weight)
 """
 import pickle
+load_m = True
 w_name = raw_input('Enter file name to load weights: ')
 w_name_l = w_name
 load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
@@ -453,6 +454,6 @@ logcsv = open('log.csv', 'a')
 writer = csv.writer(logcsv, delimiter=',')
 writer.writerow(['no', str(rnow.date()), str(rnow.time())[:-10], train.filename, test.filename, WE_DIR, CE_DIR, word.cnt-1, char.cnt-1, 
     len(x_test.oov_index), padsize, char_padsize, trainable, merge_m_c, merge_m, dropout, model_choice, 
-    combine, optimizer, loss, load_m, w_name_l, epoch, batch, f1_mac, f1_mic, save_m, w_name])
+    combine, optimizer, loss, load_m, w_name_l, 100.0, '-', epoch, batch, f1_mac, f1_mic, save_m, w_name])
 
 logcsv.close()
