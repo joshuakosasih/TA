@@ -245,6 +245,7 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
 merge_m = 'sum' # raw_input('Enter merge mode for GRU Karakter: ')
+merge_m_c = merge_m
 dropout = 0.2 # input('Enter dropout for GRU: ')
 rec_dropout = dropout # input('Enter GRU Karakter recurrent dropout: ')
 gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
@@ -259,6 +260,9 @@ from keras.layers import Add, Subtract, Multiply, Average, Maximum
 print "Model Choice:"
 model_choice = 3 # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
 merge_m = 'concat' # raw_input('Enter merge mode for GRU Kata: ')
+combine = 0
+w_name_l = ''
+w_name = ''
 # dropout = input('Enter GRU Karakter dropout: ')
 # rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 if model_choice == 1:
@@ -306,6 +310,7 @@ Loading Weight (Transfer Weight)
 """
 import pickle
 w_name = raw_input('Enter file name to load weights: ')
+w_name_l = w_name
 load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
 m_layers_len = len(model.layers)
 if 'n' in load_c:
@@ -441,3 +446,13 @@ if 'y' in save_m:
 
 
 # pm.predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua', padsize)
+import csv
+from datetime import datetime
+rnow = datetime.now()
+logcsv = open('log.csv', 'a')
+writer = csv.writer(logcsv, delimiter=',')
+writer.writerow(['no', str(rnow.date()), str(rnow.time())[:-10], train.filename, test.filename, WE_DIR, CE_DIR, word.cnt-1, char.cnt-1, 
+    len(x_test.oov_index), padsize, char_padsize, trainable, merge_m_c, merge_m, dropout, model_choice, 
+    combine, optimizer, loss, load_m, w_name_l, epoch, batch, f1_mac, f1_mic, save_m, w_name])
+
+logcsv.close()

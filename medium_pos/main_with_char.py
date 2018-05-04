@@ -151,6 +151,9 @@ print('%s unique chars not found in embedding.' % len(char_notfound))
 """
 Converting word text data to int using index
 """
+trimlen = input('Enter trimming length (default 63.5): ')
+train.trim(trimlen)
+test.trim(trimlen)
 
 x_train = DM(train.words, word.index)
 x_test = DM(test.words, word.index)
