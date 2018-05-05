@@ -250,6 +250,7 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 rone = Lambda(reshape_one)(embedded_sequences_c)
 
 merge_m = 'sum' # raw_input('Enter merge mode for GRU Karakter: ')
+merge_m_c = merge_m
 dropout = 0.2 # input('Enter dropout for GRU: ')
 rec_dropout = dropout # input('Enter GRU Karakter recurrent dropout: ')
 gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
@@ -264,6 +265,10 @@ from keras.layers import Add, Subtract, Multiply, Average, Maximum
 print "Model Choice:"
 model_choice = 3 # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
 merge_m = 'concat' # raw_input('Enter merge mode for GRU Kata: ')
+combine = 0
+w_name_l = ''
+w_name = ''
+save_m = False
 # dropout = input('Enter GRU Karakter dropout: ')
 # rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 if model_choice == 1:
@@ -314,6 +319,8 @@ w_name = sys.argv[6] # raw_input('Enter file name to load weights: ')
 print 'Optimizer: ', optimizer
 print 'Loss: ', loss
 print 'Wgt name: ', w_name
+w_name_l = w_name
+load_m = True
 load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
 m_layers_len = len(model.layers)
 if 'n' in load_c:
