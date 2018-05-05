@@ -312,7 +312,7 @@ model.compile(loss=loss,
 Loading Weight (Transfer Weight)
 """
 import pickle
-w_name = sys.argv[5] # raw_input('Enter file name to load weights: ')
+w_name = sys.argv[3] # raw_input('Enter file name to load weights: ')
 load_c = 'n' # raw_input('Do you want to load CRF weight too? ')
 m_layers_len = len(model.layers)
 if 'n' in load_c:
