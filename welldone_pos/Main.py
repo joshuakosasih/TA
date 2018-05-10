@@ -366,7 +366,7 @@ else:
 use_estop = raw_input('Do you want to use callback? ')
 callback = None
 if 'y' in use_estop:
-    epoch = 100
+    epoch = 20
     callback = EarlyStopping(monitor='val_loss', patience=2, verbose=0, mode='auto')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)], validation_data=val_data, validation_split=0.1,
