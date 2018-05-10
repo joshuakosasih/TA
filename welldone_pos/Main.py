@@ -18,6 +18,7 @@ from keras.layers import Lambda
 from keras.utils import plot_model
 from keras.utils import to_categorical
 from keras_contrib.layers import CRF
+from keras.callbacks import EarlyStopping
 
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
@@ -359,13 +360,17 @@ epoch = input('Enter number of epochs: ')
 batch = input('Enter number of batch size: ')
 use_val = raw_input('Do you want to use validation data? ')
 if 'y' in use_val:
-    val_data = ([np.array(x_val.padded), np.array(x_val_char)],[np.array(y_val_enc)])
+    val_data = ([np.array(x_val.padded), np.array(x_val_char)], [np.array(y_val_enc)])
 else:
     val_data = None
-
+use_estop = raw_input('Do you want to use callback? ')
+callback = None
+if 'y' in use_estop:
+    epoch = 100
+    callback = EarlyStopping(monitor='val_loss', patience=2, verbose=0, mode='auto')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
-          [np.array(y_encoded)], validation_data=val_data,
-          epochs=epoch, batch_size=batch)
+          [np.array(y_encoded)], validation_data=val_data, validation_split=0.1,
+          epochs=epoch, batch_size=batch, callbacks=[callback])
 
 """
 Evaluate
