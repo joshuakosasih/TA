@@ -1,4 +1,6 @@
+import ast
 import csv
+import sys
 import pickle
 from datetime import datetime
 
@@ -20,7 +22,18 @@ from keras.utils import to_categorical
 from keras_contrib.layers import CRF
 from keras.callbacks import EarlyStopping
 
-trainable = True  # word embedding is trainable or not
+"""
+Get Argvs
+"""
+a = []
+for i in range(1, len(sys.argv)):
+    a.append(sys.argv[i])
+
+if a[0] == '.':
+    trainable = True  # word embedding is trainable or not
+else:
+    trainable = ast.literal_eval(a[0])
+
 mask = True  # mask pad (zeros) or not
 
 
@@ -72,7 +85,7 @@ Preparing file
 """
 
 train = DL('id-ud-train.pos')
-test = DL('id-ud-test.pos')
+test = DL('id-ud-dev.pos')
 val = DL('id-ud-dev.pos')
 # train.add('id-ud-dev.pos')
 
@@ -81,8 +94,10 @@ Load pre-trained word embedding
 """
 
 embeddings_index = {}
-WE_DIR = raw_input('Enter word embedding file name: ')
-# WE_DIR = 'polyglot.vec'
+if a[1] == '.':
+    WE_DIR = 'polyglot.vec'
+else:
+    WE_DIR = a[1]
 
 print 'Loading', WE_DIR, '...'
 f = open(WE_DIR, 'r')
@@ -105,8 +120,10 @@ Load pre-trained char embedding
 """
 
 char_embeddings_index = {}
-CE_DIR = raw_input('Enter char embedding file name: ')
-# CE_DIR = 'polyglot-char.vec'
+if a[2] == '.':
+    CE_DIR = 'polyglot-char.vec'
+else:
+    CE_DIR = a[2]
 
 print 'Loading', CE_DIR, '...'
 f = open(CE_DIR, 'r')
@@ -175,7 +192,10 @@ print('%s unique chars not found in embedding.' % len(char_notfound))
 """
 Converting word text data to int using index
 """
-trimlen = input('Enter trimming length (default 63.5): ')
+if a[3] == '.':
+    trimlen = 188
+else:
+    trimlen = int(a[3])
 train.trim(trimlen)
 test.trim(trimlen)
 val.trim(trimlen)
@@ -226,8 +246,10 @@ embedding_layer = Embedding(len(word.index) + 1,
 sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
 
 embedded_sequences = embedding_layer(sequence_input)
-
-drop = input('Enter dropout for Embedding: ')
+if a[4] == '.':
+    drop = 0.5
+else:
+    drop = float(a[4])
 dropout = Dropout(rate=drop)(embedded_sequences)
 
 """
@@ -263,10 +285,15 @@ embedded_sequences_c = embedding_layer_c(sequence_input_c)
 dropout_c = Dropout(rate=drop)(embedded_sequences_c)
 
 rone = Lambda(reshape_one)(dropout_c)
-
-merge_m = raw_input('Enter merge mode for GRU Karakter: ')
+if a[5] == '.':
+    merge_m = 'concat'
+else:
+    merge_m = a[5]
 merge_m_c = merge_m
-dropout_gru = input('Enter dropout for GRU: ')
+if a[6] == '.':
+    dropout_gru = 0.0
+else:
+    dropout_gru = float(a[6])
 rec_dropout = dropout_gru
 gru_karakter = Bidirectional(
     GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout_gru, recurrent_dropout=rec_dropout),
@@ -279,10 +306,14 @@ Combine word + char model
 """
 
 print "Model Choice:"
-model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
-merge_m = raw_input('Enter merge mode for GRU Kata: ')
-# dropout = input('Enter GRU Karakter dropout: ')
-# rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
+if a[7] == '.':
+    model_choice = 3
+else:
+    model_choice = int(a[7])
+if a[8] == '.':
+    merge_m = 'concat'
+else:
+    merge_m = a[8]
 combine = 0
 w_name_l = ''
 w_name = ''
@@ -305,8 +336,10 @@ else:
                                      recurrent_dropout=rec_dropout),
                                  merge_mode=merge_m, weights=None)(merge)
     else:
-        combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, '
-                        '5 for Maximum, 6 for Concatenate: ')
+        if a[9] == '.':
+            combine = 6
+        else:
+            combine = int(a[9])
         if combine == 2:
             merge = Subtract()([dropout, rtwo])
         elif combine == 3:
@@ -322,20 +355,24 @@ else:
         if combine == 6:
             gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
                                          recurrent_dropout=rec_dropout),
-                                     merge_mode=merge_m, weights=None)(
-                merge)
+                                     merge_mode=merge_m, weights=None)(merge)
         else:
             gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
                                          recurrent_dropout=rec_dropout),
-                                     merge_mode=merge_m, weights=None)(
-                merge)
+                                     merge_mode=merge_m, weights=None)(merge)
 
 crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 
-optimizer = raw_input('Enter optimizer (default rmsprop): ')
-loss = raw_input('Enter loss function (default categorical_crossentropy): ')
+if a[10] == '.':
+    optimizer = 'rmsprop'
+else:
+    optimizer = a[10]
+if a[11] == '.':
+    loss = 'categorical_crossentropy'
+else:
+    loss = a[11]
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
@@ -343,27 +380,24 @@ model.compile(loss=loss,
 
 plot_model(model, to_file='model.png')
 
-load_m = raw_input('Do you want to load model weight? ')
-if 'y' in load_m:
-    w_name = raw_input('Enter file name to load weights: ')
-    w_name_l = w_name
-    load_c = raw_input('Do you want to load CRF weight too? ')
-    m_layers_len = len(model.layers)
-    if 'n' in load_c:
-        m_layers_len -= 1
-    for i in range(m_layers_len):
-        with open(w_name + "-" + str(i) + ".wgt", "rb") as fp:
-            w = pickle.load(fp)
-            model.layers[i].set_weights(w)
-
-epoch = input('Enter number of epochs: ')
-batch = input('Enter number of batch size: ')
-use_val = raw_input('Do you want to use validation data? ')
+if a[12] != '.':
+    epoch = a[12]
+if a[13] == '.':
+    batch = 32
+else:
+    batch = int(a[13])
+if a[14] == '.':
+    use_val = 'y'
+else:
+    use_val = a[14]
 if 'y' in use_val:
     val_data = ([np.array(x_val.padded), np.array(x_val_char)], [np.array(y_val_enc)])
 else:
     val_data = None
-use_estop = raw_input('Do you want to use callback? ')
+if a[12] == '.':
+    use_estop = 'y'
+else:
+    use_estop = 'n'
 callback = None
 if 'y' in use_estop:
     epoch = 100
@@ -442,12 +476,11 @@ Save weight
 """
 rnow = datetime.now()
 
-save_m = 'y'  # raw_input('Do you want to save model weight? ')
+save_m = 'y'
 if 'y' in save_m:
     w_name = str(rnow.date())[5:] + '_' \
              + str(rnow.time())[:-10] + '_' \
              + str(round(f1, 3) * 1000)[:-2]
-    # raw_input('Enter file name to save weights: ')
     for i in range(len(model.layers)):
         with open(w_name + '_' + str(i) + '.wgt', 'wb') as fp:
             pickle.dump(model.layers[i].get_weights(), fp)
