@@ -317,16 +317,19 @@ m_layers_len = len(model.layers)
 if 'n' in load_c:
     m_layers_len = m_layers_len - 1
 for i in range(m_layers_len):
-    if i != 5:
+    print i
+    if i != 1 and i!=5:
         with open(w_name + "-" + str(i) + ".wgt", "rb") as fp:
             w = pickle.load(fp)
             model.layers[i].set_weights(w)
+            """
     else:
         with open(w_name + "-" + str(5) + ".wgt", "rb") as fp:
             w = pickle.load(fp)
             w_zeroes = np.zeros((word.added, int(EMBEDDING_DIM)))
             new_w = np.concatenate((w[0], w_zeroes), axis=0)
             model.layers[i].set_weights([new_w])
+            """
 
 """
 Training

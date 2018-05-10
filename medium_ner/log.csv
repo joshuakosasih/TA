@@ -6,3 +6,4 @@ no,2018-05-04,13:29,ner_3_train.ner,ner_3_test.ner,polyglot.vec,polyglot-char.ve
 no,2018-05-06,22:36,ner_3_train.ner,ner_3_test.ner,polyglot.vec,polyglot-char.vec,101391,94,237,83,24,True,sum,concat,0.2,1,1,adam,binary_crossentropy,False,,100.0,-,26,16,0.65811373482720081,0.70864270864270862,n,
 no,2018-05-07,10:42,ner_3_train.ner,ner_3_test.ner,polyglot.vec,polyglot-char.vec,101391,94,237,83,24,True,sum,concat,0.2,1,1,adam,binary_crossentropy,False,,100.0,-,27,16,0.6730849380248316,0.71663183039713341,y,ner717
 no,2018-05-09,21:24,ner_3_train.ner,ner_3_test.ner,polyglot.vec,polyglot-char.vec,101391,94,237,83,24,True,sum,concat,0.2,1,1,adam,binary_crossentropy,False,,100.0,-,26,16,0.66746057398380165,0.70967741935483863,n,
+no,2018-05-10,15:32,ner_3_train.ner,ner_3_test.ner,polyglot.vec,polyglot-char.vec,7436,0,1032,83,24,True,sum,concat,0.2,1,1,adagrad,categorical_crossentropy,True,nw921,100.0,-,27,16,0.58793869171630764,0.63910538800406635,n,nw921
