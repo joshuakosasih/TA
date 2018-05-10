@@ -33,12 +33,12 @@ def activationPrompt(name):
 """
 Preparing file
 """
-train_name = raw_input('Enter training file name: ')
+train_name = 'ner_3_train.ner' # raw_input('Enter training file name: ')
 train = DL(train_name)
 # percentage = input('Enter percentage of data to take: ')
 # seed = input('Enter seed for slicing data: ')
 # train.slice(percentage, seed)
-test_name = raw_input('Enter testing file name: ')
+test_name = 'ner_3_test.ner' # raw_input('Enter testing file name: ')
 test = DL(test_name)
 
 """
@@ -288,8 +288,8 @@ model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 if model_choice == 2:
     model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
-optimizer = 'adagrad' # raw_input('Enter optimizer (default rmsprop): ')
-loss = 'categorical_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
+optimizer = 'adam' # raw_input('Enter optimizer (default rmsprop): ')
+loss = 'binary_crossentropy' # raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
@@ -406,6 +406,7 @@ print max([f1_mac, f1_mic])
 """
 Save weight
 """
+import pickle
 save_m = raw_input('Do you want to save model weight? ')
 if 'y' in save_m:
     w_name = raw_input('Enter file name to save weights: ')
