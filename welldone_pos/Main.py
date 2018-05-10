@@ -1,10 +1,16 @@
+import csv
+import pickle
+from datetime import datetime
+
 import numpy as np
+import tensorflow as tf
 from DataProcessor import DataIndexer as DI
 from DataProcessor import DataLoader as DL
 from DataProcessor import DataMapper as DM
 from keras import Model
-from keras.layers import Bidirectional
-from keras.layers import Dense
+from keras import backend as K
+from keras.layers import Add, Subtract, Multiply, Average, Maximum, Concatenate
+from keras.layers import Bidirectional, Dropout
 from keras.layers import Embedding
 from keras.layers import GRU
 from keras.layers import Input
@@ -12,27 +18,9 @@ from keras.layers import Lambda
 from keras.utils import plot_model
 from keras.utils import to_categorical
 from keras_contrib.layers import CRF
-from keras import backend as K
-from keras.models import load_model
-import tensorflow as tf
 
 trainable = True  # word embedding is trainable or not
 mask = True  # mask pad (zeros) or not
-
-
-def embeddingPrompt(name):  # not used anymore, default is true for both trainable and mask
-    global trainable
-    trainable = raw_input('Is ' + name + ' embedding trainable? ')
-    global mask
-    mask = raw_input('Use mask for zeros in ' + name + ' embedding? ')
-    if 'y' in trainable:
-        trainable = True
-    else:
-        trainable = False
-    if 'y' in mask:
-        mask = True
-    else:
-        mask = False
 
 
 def activationPrompt(name):
@@ -42,7 +30,41 @@ def activationPrompt(name):
     choice = input('Enter type of activation function for ' + name + ': ')
     activations = ['softmax', 'elu', 'selu', 'softplus', 'softsign',
                    'relu', 'tanh', 'sigmoid', 'hard_sigmoid', 'linear']
-    return activations[choice-1]
+    return activations[choice - 1]
+
+
+"""
+Converting char text data to int using index
+"""
+
+
+def convertCharText2Int(dataload):
+    x_tmp1 = []
+    global char_padsize
+    for sent in dataload.words:
+        x_map = DM(sent, char.index, False)
+        if x_map.padsize > char_padsize:
+            char_padsize = x_map.padsize
+        x_tmp1.append(x_map)
+
+    x_tmp2 = []
+    for sent in x_tmp1:
+        sent.pad(char_padsize)
+        x_tmp2.append(sent.padded)
+    print('Padded until %s chars.' % char_padsize)
+    zeroes = []
+    for i in range(char_padsize):
+        zeroes.append(0)
+    x_char = []
+    for sent in x_tmp2:
+        padded_sent = sent
+        pad = padsize - len(sent)
+        for i in range(pad):
+            padded_sent = np.vstack((zeroes, padded_sent))
+        x_char.append(padded_sent)
+    print('Padded until %s tokens.' % padsize)
+    return x_char
+
 
 """
 Preparing file
@@ -50,7 +72,8 @@ Preparing file
 
 train = DL('id-ud-train.pos')
 test = DL('id-ud-test.pos')
-train.add('id-ud-dev.pos')
+val = DL('id-ud-dev.pos')
+# train.add('id-ud-dev.pos')
 
 """
 Load pre-trained word embedding
@@ -154,57 +177,38 @@ Converting word text data to int using index
 trimlen = input('Enter trimming length (default 63.5): ')
 train.trim(trimlen)
 test.trim(trimlen)
+val.trim(trimlen)
 
 x_train = DM(train.words, word.index)
 x_test = DM(test.words, word.index)
+x_val = DM(val.words, word.index)
 print "Number of OOV:", len(x_test.oov_index)
 print "OOV word occurences:", x_test.oov
-
+print "Number of OOV (val):", len(x_val.oov_index)
+print "OOV word occurences (val):", x_val.oov
 padsize = max([x_train.padsize, x_test.padsize])
 x_train.pad(padsize)
+x_test.pad(padsize)
+x_val.pad(padsize)
 print('Padded until %s tokens.' % padsize)
 
 y_train = DM(train.labels, label.index)
 y_test = DM(test.labels, label.index)
+y_val = DM(val.labels, label.index)
 
 y_train.pad(padsize)
+y_test.pad(padsize)
+y_val.pad(padsize)
 y_encoded = to_categorical(y_train.padded)
+y_val_enc = to_categorical(y_val.padded)
 
 """
 Converting char text data to int using index
 """
-
-x_train_tmp1 = []
 char_padsize = 0
-for sent in train.words:
-    x_map = DM(sent, char.index, False)
-    if x_map.padsize > char_padsize:
-        char_padsize = x_map.padsize
-    x_train_tmp1.append(x_map)
-
-# char_padsize = max([x_train.char_padsize, x_test.char_padsize])
-
-x_train_tmp2 = []
-for sent in x_train_tmp1:
-    sent.pad(char_padsize)
-    x_train_tmp2.append(sent.padded)
-
-print('Padded until %s chars.' % char_padsize)
-
-zeroes = []
-for i in range(char_padsize):
-    zeroes.append(0)
-
-x_train_char = []
-for sent in x_train_tmp2:
-    padded_sent = sent
-    pad = padsize - len(sent)
-    for i in range(pad):
-        padded_sent = np.vstack((zeroes, padded_sent))
-    x_train_char.append(padded_sent)
-
-print('Padded until %s tokens.' % padsize)
-
+x_train_char = convertCharText2Int(train)
+x_test_char = convertCharText2Int(test)
+x_val_char = convertCharText2Int(val)
 """
 Create keras word model
 """
@@ -222,6 +226,9 @@ sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
 
 embedded_sequences = embedding_layer(sequence_input)
 
+drop = input('Enter dropout for Embedding: ')
+dropout = Dropout(rate=drop)(embedded_sequences)
+
 """
 Create keras char model
 """
@@ -232,7 +239,10 @@ def reshape_one(c):
 
 
 def reshape_two(c):
-    return K.reshape(c, (tf.shape(c)[0] / padsize, padsize, CHAR_EMBEDDING_DIM))
+    if merge_m_c == 'concat':
+        return K.reshape(c, (tf.shape(c)[0] / padsize, padsize, CHAR_EMBEDDING_DIM * 2))
+    else:
+        return K.reshape(c, (tf.shape(c)[0] / padsize, padsize, CHAR_EMBEDDING_DIM))
 
 
 MAX_WORD_LENGTH = char_padsize
@@ -249,20 +259,23 @@ sequence_input_c = Input(shape=(padsize, MAX_WORD_LENGTH,), dtype='int32')
 
 embedded_sequences_c = embedding_layer_c(sequence_input_c)
 
-rone = Lambda(reshape_one)(embedded_sequences_c)
+dropout_c = Dropout(rate=drop)(embedded_sequences_c)
+
+rone = Lambda(reshape_one)(dropout_c)
 
 merge_m = raw_input('Enter merge mode for GRU Karakter: ')
 merge_m_c = merge_m
-dropout = input('Enter dropout for GRU: ')
-rec_dropout = dropout
-gru_karakter = Bidirectional(GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rone)
+dropout_gru = input('Enter dropout for GRU: ')
+rec_dropout = dropout_gru
+gru_karakter = Bidirectional(
+    GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout_gru, recurrent_dropout=rec_dropout),
+    merge_mode=merge_m, weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
 
 """
 Combine word + char model
 """
-from keras.layers import Add, Subtract, Multiply, Average, Maximum
 
 print "Model Choice:"
 model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
@@ -273,36 +286,52 @@ combine = 0
 w_name_l = ''
 w_name = ''
 if model_choice == 1:
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
-        embedded_sequences)
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
+                                 recurrent_dropout=rec_dropout),
+                             merge_mode=merge_m, weights=None)(
+        dropout)
 elif model_choice == 2:
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
-        rtwo)
-else:
-    combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, 5 for Maximum: ')
-    if combine == 2:
-        merge = Subtract()([embedded_sequences, rtwo])
-    elif combine == 3:
-        merge = Multiply()([embedded_sequences, rtwo])
-    elif combine == 4:
-        merge = Average()([embedded_sequences, rtwo])
-    elif combine == 5:
-        merge = Maximum()([embedded_sequences, rtwo])
+    if merge_m_c == 'concat':
+        gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
+                                     recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rtwo)
     else:
-        merge = Add()([embedded_sequences, rtwo])
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout, recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(
-        merge)
+        gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
+                                     recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rtwo)
+else:
+    if merge_m_c == 'concat':
+        merge = Concatenate()([dropout, rtwo])
+        gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 3, return_sequences=True, dropout=dropout_gru,
+                                     recurrent_dropout=rec_dropout),
+                                 merge_mode=merge_m, weights=None)(merge)
+    else:
+        combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, '
+                        '5 for Maximum, 6 for Concatenate: ')
+        if combine == 2:
+            merge = Subtract()([dropout, rtwo])
+        elif combine == 3:
+            merge = Multiply()([dropout, rtwo])
+        elif combine == 4:
+            merge = Average()([dropout, rtwo])
+        elif combine == 5:
+            merge = Maximum()([dropout, rtwo])
+        elif combine == 6:
+            merge = Concatenate()([dropout, rtwo])
+        else:
+            merge = Add()([dropout, rtwo])
+        if combine == 6:
+            gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
+                                         recurrent_dropout=rec_dropout),
+                                     merge_mode=merge_m, weights=None)(
+                merge)
+        else:
+            gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
+                                         recurrent_dropout=rec_dropout),
+                                     merge_mode=merge_m, weights=None)(
+                merge)
 
 crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 
-preds = Dense(len(label.index) + 1, activation='softmax')(gru_kata)
-
-print "Model Choice:"
-model_choice = input('Enter 1 for CRF or 2 for Dense layer: ')
-
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
-if model_choice == 2:
-    model = Model(inputs=[sequence_input, sequence_input_c], outputs=[preds])
 
 optimizer = raw_input('Enter optimizer (default rmsprop): ')
 loss = raw_input('Enter loss function (default categorical_crossentropy): ')
@@ -313,7 +342,6 @@ model.compile(loss=loss,
 
 plot_model(model, to_file='model.png')
 
-import pickle
 load_m = raw_input('Do you want to load model weight? ')
 if 'y' in load_m:
     w_name = raw_input('Enter file name to load weights: ')
@@ -321,7 +349,7 @@ if 'y' in load_m:
     load_c = raw_input('Do you want to load CRF weight too? ')
     m_layers_len = len(model.layers)
     if 'n' in load_c:
-        m_layers_len = m_layers_len - 1
+        m_layers_len -= 1
     for i in range(m_layers_len):
         with open(w_name + "-" + str(i) + ".wgt", "rb") as fp:
             w = pickle.load(fp)
@@ -329,41 +357,15 @@ if 'y' in load_m:
 
 epoch = input('Enter number of epochs: ')
 batch = input('Enter number of batch size: ')
+use_val = raw_input('Do you want to use validation data? ')
+if 'y' in use_val:
+    val_data = ([np.array(x_val.padded), np.array(x_val_char)],[np.array(y_val_enc)])
+else:
+    val_data = None
+
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
-          [np.array(y_encoded)],
+          [np.array(y_encoded)], validation_data=val_data,
           epochs=epoch, batch_size=batch)
-
-
-"""
-Converting text data to int using index
-"""
-x_test_tmp1 = []
-for sent in test.words:
-    x_map = DM(sent, char.index, False)
-    if x_map.padsize > char_padsize:
-        char_padsize = x_map.padsize
-    x_test_tmp1.append(x_map)
-
-x_test_tmp2 = []
-for sent in x_test_tmp1:
-    sent.pad(char_padsize)
-    x_test_tmp2.append(sent.padded)
-
-print('Padded until %s chars.' % char_padsize)
-
-zeroes = []
-for i in range(char_padsize):
-    zeroes.append(0)
-
-x_test_char = []
-for sent in x_test_tmp2:
-    padded_sent = sent
-    pad = padsize - len(sent)
-    for i in range(pad):
-        padded_sent = np.vstack((zeroes, padded_sent))
-    x_test_char.append(padded_sent)
-
-print('Padded until %s tokens.' % padsize)
 
 """
 Evaluate
@@ -376,7 +378,6 @@ for labr in range(label.cnt):
         row.append(0)
     mateval.append(row)
 
-x_test.pad(padsize)
 results = []
 print "Computing..."
 raw_results = model.predict([np.array(x_test.padded), np.array(x_test_char)])
@@ -387,15 +388,14 @@ for raw_result in raw_results:
         result.append(value)
     results.append(result)
 
-y_test.pad(padsize)
 total_nonzero = 0  # to get labelled token total number
 for i, sent in enumerate(y_test.padded):
     for j, token in enumerate(sent):
         pred = results[i][j]
         answ = token
-        mateval[answ][pred] = mateval[answ][pred] + 1  # row shows label and column shows prediction given
+        mateval[answ][pred] += 1  # row shows label and column shows prediction given
         if not answ == 0:
-            total_nonzero = total_nonzero + 1
+            total_nonzero += 1
 
 total_true = 0
 for i in range(1, len(mateval)):
@@ -428,32 +428,34 @@ from sklearn.metrics import f1_score
 
 f1_mac = f1_score(y_true, y_pred, labels=label_index, average='macro')
 f1_mic = f1_score(y_true, y_pred, labels=label_index, average='micro')
+f1 = max([f1_mac, f1_mic])
 print 'F-1 Score:'
-print max([f1_mac, f1_mic])
+print f1
 
 """
 Save weight
 """
-save_m = raw_input('Do you want to save model weight? ')
+rnow = datetime.now()
+
+save_m = 'y'  # raw_input('Do you want to save model weight? ')
 if 'y' in save_m:
-    w_name = raw_input('Enter file name to save weights: ')
+    w_name = str(rnow.date())[5:] + '_' \
+             + str(rnow.time())[:-10] + '_' \
+             + str(round(f1, 3) * 1000)[:-2]
+    # raw_input('Enter file name to save weights: ')
     for i in range(len(model.layers)):
-        with open(w_name+'-'+str(i)+'.wgt', 'wb') as fp:
+        with open(w_name + '_' + str(i) + '.wgt', 'wb') as fp:
             pickle.dump(model.layers[i].get_weights(), fp)
-
-
-# pm.predict('buah hati dia ingin memiliki cinta seorang anak tetapi aku tidak cinta kemudian menikah untuk kedua', padsize)
 
 """
 Logging Experiment
 """
-import csv
-from datetime import datetime
-rnow = datetime.now()
 logcsv = open('log.csv', 'a')
 writer = csv.writer(logcsv, delimiter=',')
-writer.writerow(['no', str(rnow.date()), str(rnow.time())[:-10], train.filename, test.filename, WE_DIR, CE_DIR, word.cnt-1, char.cnt-1, 
-	len(x_test.oov_index), padsize, char_padsize, trainable, merge_m_c, merge_m, dropout, model_choice, 
-	combine, optimizer, loss, load_m, w_name_l, epoch, batch, f1_mac, f1_mic, save_m, w_name])
+writer.writerow(
+    ['no', str(rnow.date()), str(rnow.time())[:-10], train.filename, test.filename, WE_DIR, CE_DIR,
+     word.cnt - 1, char.cnt - 1, len(x_test.oov_index), padsize, char_padsize, trainable, merge_m_c,
+     merge_m, dropout, model_choice, combine, optimizer, loss, load_m, w_name_l, epoch, batch, f1_mac,
+     f1_mic, save_m, w_name])
 
 logcsv.close()
