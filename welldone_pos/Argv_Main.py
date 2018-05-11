@@ -378,7 +378,7 @@ model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['acc'])
 
-plot_model(model, to_file='model.png')
+# plot_model(model, to_file='model.png')
 
 if a[12] != '.':
     epoch = a[12]
