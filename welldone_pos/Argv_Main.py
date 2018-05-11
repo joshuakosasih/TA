@@ -400,7 +400,7 @@ else:
     use_estop = 'n'
 callback = None
 if 'y' in use_estop:
-    epoch = 20
+    epoch = 25
     callback = EarlyStopping(monitor='val_loss', patience=2, verbose=0, mode='auto')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)], validation_data=val_data, validation_split=0.1,
@@ -493,6 +493,7 @@ if 'y' in use_estop:
 
 logcsv = open('log.csv', 'a')
 writer = csv.writer(logcsv, delimiter=',')
+load_m = 'n'
 writer.writerow(
     ['no', str(rnow.date()), str(rnow.time())[:-10], train.filename, test.filename, WE_DIR, CE_DIR,
      word.cnt - 1, char.cnt - 1, len(x_test.oov_index), padsize, char_padsize, trainable, merge_m_c,
