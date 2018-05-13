@@ -22,6 +22,9 @@ from keras.utils import to_categorical
 from keras_contrib.layers import CRF
 from keras.callbacks import EarlyStopping
 
+loss_func = ['categorical_crossentropy', 'categorical_hinge', 'binary_crossentropy',
+             'kullback_leibler_divergence', 'poisson', 'cosine_proximity', 'logcosh',
+             'mean_squared_error', 'mean_squared_logarithmic_error', 'squared_hinge']
 """
 Get Argvs
 """
@@ -366,13 +369,14 @@ crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 
 if a[10] == '.':
-    optimizer = 'rmsprop'
+    optimizer = 'adagrad'
 else:
     optimizer = a[10]
 if a[11] == '.':
     loss = 'categorical_crossentropy'
 else:
-    loss = a[11]
+    # loss = a[11]
+    loss = loss_func[int(a[11])]
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
