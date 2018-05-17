@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>POS Tagger</title>
+</head>
+ 
+<body>
+	<div id="inputdiv">
+		<h1>POS Tagger</h1>
+		<form action="/pos" method="post">
+			Enter text to be tagged: <input type="text" name="in_x" value="{{in_val}}"><br>
+		  	<input type="submit" value="Submit">
+		</form>
+	</div>
+	<div id="outputdiv">
+		<h2>Result</h2>
+		<p id="fresh" style="display: none;">{{in_val}}</p>
+		<p id="jcontainer" style="display: none;">{{jsondata}}</p>
+		<table>
+			<tr id="words">
+			</tr>
+			<tr id="labels">
+			</tr>
+		</table>
+	</div>
+</body>
+
+<script type="text/javascript">
+	var empt = document.getElementById("fresh").innerHTML;
+	if (empt == null || empt == "") {
+		document.getElementById("outputdiv").style.display = 'none';
+	}
+	else {
+		var jvar = document.getElementById("jcontainer").innerHTML;
+		var jsvar = JSON.parse(jvar);
+		console.log(jsvar);
+
+		var trword = document.getElementById("words");
+		var trlabel = document.getElementById("labels");
+		var word = [];
+		var label = [];
+		var x;
+		var l = 0;
+		for (x in jsvar.words) {
+			word.push(trword.insertCell(l));
+			word[l].innerHTML = jsvar.words[l];
+			label.push(trlabel.insertCell(l));
+			label[l].innerHTML = jsvar.labels[l];
+			l += 1;
+		}
+	}
+</script>
+</html>

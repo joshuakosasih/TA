@@ -1,0 +1,6 @@
+POS Tagger
+
+pada	hari	jumat	kliwon	,	presiden	jokowi	mengunjungi	kabupaten	sidorejo	.
+ADP	NOUN	NOUN	?	PUNCT	NOUN	?	VERB	NOUN	?	PUNCT
+
+^ why does OOV still can't be categorized?
