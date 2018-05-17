@@ -1,4 +1,6 @@
+import ast
 import csv
+import sys
 import pickle
 from datetime import datetime
 
@@ -20,7 +22,8 @@ from keras.utils import to_categorical
 from keras_contrib.layers import CRF
 from keras.callbacks import EarlyStopping
 
-trainable = True  # word embedding is trainable or not
+trainable = ast.literal_eval(sys.argv[2])  # word embedding is trainable or not
+gtrainable = ast.literal_eval(sys.argv[3])  # GRU is trainable or not
 mask = True  # mask pad (zeros) or not
 
 
@@ -71,9 +74,14 @@ def convertCharText2Int(dataload):
 Preparing file
 """
 
+percentage = 0.9
+seed = sys.argv[1]
 train = DL('ner_3_train.ner')
-test = DL('ner_3_test.ner')
-# val = DL('id-ud-dev.pos')
+train.slice(percentage, seed)
+test = DL('ner_3_train.ner')
+test.antislice(percentage, seed)
+val = DL('ner_3_train.ner')
+val.antislice(percentage, seed)
 # train.add('id-ud-dev.pos')
 
 """
@@ -178,14 +186,14 @@ print('%s unique chars not found in embedding.' % len(char_notfound))
 """
 Converting word text data to int using index
 """
-trimlen = input('Enter trimming length (default 63.5): ')
+trimlen = 188  # input('Enter trimming length (default 63.5): ')
 train.trim(trimlen)
 test.trim(trimlen)
-# val.trim(trimlen)
+val.trim(trimlen)
 
 x_train = DM(train.words, word.index)
 x_test = DM(test.words, word.index)
-# x_val = DM(val.words, word.index)
+x_val = DM(val.words, word.index)
 print "Number of OOV:", len(x_test.oov_index)
 print "OOV word occurences:", x_test.oov
 # print "Number of OOV (val):", len(x_val.oov_index)
@@ -193,18 +201,18 @@ print "OOV word occurences:", x_test.oov
 padsize = max([x_train.padsize, x_test.padsize])
 x_train.pad(padsize)
 x_test.pad(padsize)
-# x_val.pad(padsize)
+x_val.pad(padsize)
 print('Padded until %s tokens.' % padsize)
 
 y_train = DM(train.labels, label.index)
 y_test = DM(test.labels, label.index)
-# y_val = DM(val.labels, label.index)
+y_val = DM(val.labels, label.index)
 
 y_train.pad(padsize)
 y_test.pad(padsize)
-# y_val.pad(padsize)
+y_val.pad(padsize)
 y_encoded = to_categorical(y_train.padded)
-# y_val_enc = to_categorical(y_val.padded)
+y_val_enc = to_categorical(y_val.padded)
 
 """
 Converting char text data to int using index
@@ -212,7 +220,7 @@ Converting char text data to int using index
 char_padsize = 0
 x_test_char = convertCharText2Int(test)
 x_train_char = convertCharText2Int(train)
-# x_val_char = convertCharText2Int(val)
+x_val_char = convertCharText2Int(val)
 """
 Create keras word model
 """
@@ -230,7 +238,7 @@ sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
 
 embedded_sequences = embedding_layer(sequence_input)
 
-drop = input('Enter dropout for Embedding: ')
+drop = 0.4  # input('Enter dropout for Embedding: ')
 dropout = Dropout(rate=drop)(embedded_sequences)
 
 """
@@ -267,12 +275,13 @@ dropout_c = Dropout(rate=drop)(embedded_sequences_c)
 
 rone = Lambda(reshape_one)(dropout_c)
 
-merge_m = raw_input('Enter merge mode for GRU Karakter: ')
+merge_m = 'concat'  # raw_input('Enter merge mode for GRU Karakter: ')
 merge_m_c = merge_m
-dropout_gru = input('Enter dropout for GRU: ')
+dropout_gru = 0.5  # input('Enter dropout for GRU: ')
 rec_dropout = dropout_gru
 gru_karakter = Bidirectional(
-    GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout_gru, recurrent_dropout=rec_dropout),
+    GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout_gru,
+        recurrent_dropout=rec_dropout, trainable=gtrainable),
     merge_mode=merge_m, weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
@@ -282,75 +291,36 @@ Combine word + char model
 """
 
 print "Model Choice:"
-model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
-merge_m = raw_input('Enter merge mode for GRU Kata: ')
+model_choice = 3  # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
+merge_m = 'concat'  # raw_input('Enter merge mode for GRU Kata: ')
 # dropout = input('Enter GRU Karakter dropout: ')
 # rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 combine = 0
 w_name_l = ''
 w_name = ''
-if model_choice == 1:
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
-                                 recurrent_dropout=rec_dropout),
-                             merge_mode=merge_m, weights=None)(
-        dropout)
-elif model_choice == 2:
-    if merge_m_c == 'concat':
-        gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
-                                     recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rtwo)
-    else:
-        gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
-                                     recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rtwo)
-else:
-    if merge_m_c == 'concat':
-        merge = Concatenate()([dropout, rtwo])
-        gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 3, return_sequences=True, dropout=dropout_gru,
-                                     recurrent_dropout=rec_dropout),
-                                 merge_mode=merge_m, weights=None)(merge)
-    else:
-        combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, '
-                        '5 for Maximum, 6 for Concatenate: ')
-        if combine == 2:
-            merge = Subtract()([dropout, rtwo])
-        elif combine == 3:
-            merge = Multiply()([dropout, rtwo])
-        elif combine == 4:
-            merge = Average()([dropout, rtwo])
-        elif combine == 5:
-            merge = Maximum()([dropout, rtwo])
-        elif combine == 6:
-            merge = Concatenate()([dropout, rtwo])
-        else:
-            merge = Add()([dropout, rtwo])
-        if combine == 6:
-            gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
-                                         recurrent_dropout=rec_dropout),
-                                     merge_mode=merge_m, weights=None)(
-                merge)
-        else:
-            gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
-                                         recurrent_dropout=rec_dropout),
-                                     merge_mode=merge_m, weights=None)(
-                merge)
+
+merge = Concatenate()([dropout, rtwo])
+gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 3, return_sequences=True, dropout=dropout_gru,
+                             recurrent_dropout=rec_dropout, trainable=gtrainable),
+                         merge_mode=merge_m, weights=None)(merge)
 
 crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 
-optimizer = raw_input('Enter optimizer (default rmsprop): ')
-loss = raw_input('Enter loss function (default categorical_crossentropy): ')
+optimizer = 'adagrad'  # raw_input('Enter optimizer (default rmsprop): ')
+loss = 'poisson'  # raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['acc'])
 
-plot_model(model, to_file='model.png')
 
-load_m = raw_input('Do you want to load model weight? ')
+load_m = 'y'  # raw_input('Do you want to load model weight? ')
 if 'y' in load_m:
-    w_name = raw_input('Enter file name to load weights: ')
+    w_name = sys.argv[4]  # raw_input('Enter file name to load weights: ')
     w_name_l = w_name
-    load_c = raw_input('Do you want to load CRF weight too? ')
+    load_c = 'n'  # raw_input('Do you want to load CRF weight too? ')
     m_layers_len = len(model.layers)
     if 'n' in load_c:
         m_layers_len -= 1
@@ -367,21 +337,26 @@ if 'y' in load_m:
                 new_w = np.concatenate((w[0], w_zeroes), axis=0)
                 model.layers[i].set_weights([new_w])
 
-epoch = input('Enter number of epochs: ')
-batch = input('Enter number of batch size: ')
+epoch = 10  # input('Enter number of epochs: ')
+batch = 32  # input('Enter number of batch size: ')
 # use_val = raw_input('Do you want to use validation data? ')
 # if 'y' in use_val:
-# val_data = ([np.array(x_val.padded), np.array(x_val_char)], [np.array(y_val_enc)])
+val_data = ([np.array(x_val.padded), np.array(x_val_char)], [np.array(y_val_enc)])
 # else:
-val_data = None
-use_estop = raw_input('Do you want to use callback? ')
+# val_data = None
+use_estop = 'y'  # raw_input('Do you want to use callback? ')
 callback = None
 if 'y' in use_estop:
     epoch = 70
-    callback = EarlyStopping(monitor='val_loss', patience=2, verbose=0, mode='auto')
+    callback = EarlyStopping(monitor='val_loss', patience=3, verbose=0, mode='auto')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)], validation_data=val_data, validation_split=0.1,
           epochs=epoch, batch_size=batch, callbacks=[callback])
+
+print "Val slice seed:", seed
+print "Embedding Trainable:", trainable
+print "GRU Trainable:", gtrainable
+print "Loaded wgt name:", w_name
 
 """
 Evaluate

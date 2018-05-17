@@ -1,4 +1,5 @@
 import csv
+import sys
 import pickle
 from datetime import datetime
 
@@ -72,7 +73,11 @@ Preparing file
 """
 
 train = DL('ner_3_train.ner')
+percentage = float(sys.argv[1])  # input('Enter percentage of data to take: ')
+seed = int(sys.argv[2])  # input('Enter seed for slicing data: ')
+train.slice(percentage, seed)
 test = DL('ner_3_test.ner')
+print "Cut percentage", percentage, "with seed", seed
 # val = DL('id-ud-dev.pos')
 # train.add('id-ud-dev.pos')
 
@@ -178,7 +183,7 @@ print('%s unique chars not found in embedding.' % len(char_notfound))
 """
 Converting word text data to int using index
 """
-trimlen = input('Enter trimming length (default 63.5): ')
+trimlen = 188  # input('Enter trimming length (default 63.5): ')
 train.trim(trimlen)
 test.trim(trimlen)
 # val.trim(trimlen)
@@ -230,7 +235,7 @@ sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
 
 embedded_sequences = embedding_layer(sequence_input)
 
-drop = input('Enter dropout for Embedding: ')
+drop = 0.4  # input('Enter dropout for Embedding: ')
 dropout = Dropout(rate=drop)(embedded_sequences)
 
 """
@@ -267,9 +272,9 @@ dropout_c = Dropout(rate=drop)(embedded_sequences_c)
 
 rone = Lambda(reshape_one)(dropout_c)
 
-merge_m = raw_input('Enter merge mode for GRU Karakter: ')
+merge_m = 'concat'  # raw_input('Enter merge mode for GRU Karakter: ')
 merge_m_c = merge_m
-dropout_gru = input('Enter dropout for GRU: ')
+dropout_gru = 0.5  # input('Enter dropout for GRU: ')
 rec_dropout = dropout_gru
 gru_karakter = Bidirectional(
     GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout_gru, recurrent_dropout=rec_dropout),
@@ -282,75 +287,62 @@ Combine word + char model
 """
 
 print "Model Choice:"
-model_choice = input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
-merge_m = raw_input('Enter merge mode for GRU Kata: ')
+model_choice = 3  # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
+merge_m = 'concat'  # raw_input('Enter merge mode for GRU Kata: ')
 # dropout = input('Enter GRU Karakter dropout: ')
 # rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 combine = 0
 w_name_l = ''
 w_name = ''
-if model_choice == 1:
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
+
+if merge_m_c == 'concat':
+    merge = Concatenate()([dropout, rtwo])
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 3, return_sequences=True, dropout=dropout_gru,
                                  recurrent_dropout=rec_dropout),
-                             merge_mode=merge_m, weights=None)(
-        dropout)
-elif model_choice == 2:
-    if merge_m_c == 'concat':
+                             merge_mode=merge_m, weights=None)(merge)
+else:
+    combine = 1
+    if combine == 2:
+        merge = Subtract()([dropout, rtwo])
+    elif combine == 3:
+        merge = Multiply()([dropout, rtwo])
+    elif combine == 4:
+        merge = Average()([dropout, rtwo])
+    elif combine == 5:
+        merge = Maximum()([dropout, rtwo])
+    elif combine == 6:
+        merge = Concatenate()([dropout, rtwo])
+    else:
+        merge = Add()([dropout, rtwo])
+    if combine == 6:
         gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
-                                     recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rtwo)
+                                     recurrent_dropout=rec_dropout),
+                                 merge_mode=merge_m, weights=None)(
+            merge)
     else:
         gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
-                                     recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rtwo)
-else:
-    if merge_m_c == 'concat':
-        merge = Concatenate()([dropout, rtwo])
-        gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 3, return_sequences=True, dropout=dropout_gru,
                                      recurrent_dropout=rec_dropout),
-                                 merge_mode=merge_m, weights=None)(merge)
-    else:
-        combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, '
-                        '5 for Maximum, 6 for Concatenate: ')
-        if combine == 2:
-            merge = Subtract()([dropout, rtwo])
-        elif combine == 3:
-            merge = Multiply()([dropout, rtwo])
-        elif combine == 4:
-            merge = Average()([dropout, rtwo])
-        elif combine == 5:
-            merge = Maximum()([dropout, rtwo])
-        elif combine == 6:
-            merge = Concatenate()([dropout, rtwo])
-        else:
-            merge = Add()([dropout, rtwo])
-        if combine == 6:
-            gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
-                                         recurrent_dropout=rec_dropout),
-                                     merge_mode=merge_m, weights=None)(
-                merge)
-        else:
-            gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
-                                         recurrent_dropout=rec_dropout),
-                                     merge_mode=merge_m, weights=None)(
-                merge)
+                                 merge_mode=merge_m, weights=None)(
+            merge)
 
 crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 
-optimizer = raw_input('Enter optimizer (default rmsprop): ')
-loss = raw_input('Enter loss function (default categorical_crossentropy): ')
+optimizer = 'adagrad'  # raw_input('Enter optimizer (default rmsprop): ')
+loss = 'poisson'  # raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
 model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['acc'])
 
-plot_model(model, to_file='model.png')
+# plot_model(model, to_file='model.png')
 
-load_m = raw_input('Do you want to load model weight? ')
+load_m = 'y'  # raw_input('Do you want to load model weight? ')
 if 'y' in load_m:
-    w_name = raw_input('Enter file name to load weights: ')
+    w_name = '05-17_13:37_921'  # raw_input('Enter file name to load weights: ')
     w_name_l = w_name
-    load_c = raw_input('Do you want to load CRF weight too? ')
+    load_c = 'n'  # raw_input('Do you want to load CRF weight too? ')
     m_layers_len = len(model.layers)
     if 'n' in load_c:
         m_layers_len -= 1
@@ -367,18 +359,18 @@ if 'y' in load_m:
                 new_w = np.concatenate((w[0], w_zeroes), axis=0)
                 model.layers[i].set_weights([new_w])
 
-epoch = input('Enter number of epochs: ')
-batch = input('Enter number of batch size: ')
+epoch = 10  # input('Enter number of epochs: ')
+batch = 32  # input('Enter number of batch size: ')
 # use_val = raw_input('Do you want to use validation data? ')
 # if 'y' in use_val:
 # val_data = ([np.array(x_val.padded), np.array(x_val_char)], [np.array(y_val_enc)])
 # else:
 val_data = None
-use_estop = raw_input('Do you want to use callback? ')
+use_estop = 'y'  # raw_input('Do you want to use callback? ')
 callback = None
 if 'y' in use_estop:
     epoch = 70
-    callback = EarlyStopping(monitor='val_loss', patience=2, verbose=0, mode='auto')
+    callback = EarlyStopping(monitor='val_loss', patience=3, verbose=0, mode='auto')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)], validation_data=val_data, validation_split=0.1,
           epochs=epoch, batch_size=batch, callbacks=[callback])
