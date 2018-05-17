@@ -218,8 +218,8 @@ y_val_enc = to_categorical(y_val.padded)
 Converting char text data to int using index
 """
 char_padsize = 0
-x_test_char = convertCharText2Int(test)
 x_train_char = convertCharText2Int(train)
+x_test_char = convertCharText2Int(test)
 x_val_char = convertCharText2Int(val)
 """
 Create keras word model

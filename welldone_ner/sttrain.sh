@@ -6,7 +6,7 @@ do
   do
     for k in $(seq 0 2)
     do
-      python Argv_MainTransfer.py $k $i $j 05-17_13:37_921 >> logTtrain.txt
+      python Argv_MainTransfer.py $k $i $j 05-17_13_37_921 >> logTtrain.txt
     done
   done
 done
