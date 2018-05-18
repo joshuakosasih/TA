@@ -1,6 +1,10 @@
 POS Tagger
 
+Pada hari jumat kliwon, Presiden Jokowi mengunjungi Kabupaten Sidorejo.
+
 pada	hari	jumat	kliwon	,	presiden	jokowi	mengunjungi	kabupaten	sidorejo	.
 ADP	NOUN	NOUN	?	PUNCT	NOUN	?	VERB	NOUN	?	PUNCT
 
 ^ why does OOV still can't be categorized?
+because the first letter is not capitalized, the char level component is not sure either whats the tag should be, but they would certainly tag it as NOUN
+
