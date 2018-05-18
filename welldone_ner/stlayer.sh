@@ -6,7 +6,7 @@ do
   do
     for k in $(seq 0 1)
     do
-      python Argv_MainTransfer_Cut.py $i $k >> logTlayer.txt
+      python Argv_MainTransfer_Cut.py $i $k $j >> logTlayer.txt
     done
   done
 done
