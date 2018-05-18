@@ -22,7 +22,7 @@ from keras_contrib.layers import CRF
 from keras.callbacks import EarlyStopping
 
 trainable = True  # word embedding is trainable or not
-gtrainable = False # gru is trainable or not
+gtrainable = True  # gru is trainable or not
 mask = True  # mask pad (zeros) or not
 
 
@@ -350,16 +350,17 @@ if 'y' in load_m:
         m_layers_len -= 1
     for i in range(m_layers_len):
         print 'Loading layer', i
-        if i != 5:
-            with open(w_name + "_" + str(i) + ".wgt", "rb") as fp:
-                w = pickle.load(fp)
-                model.layers[i].set_weights(w)
-        else:
-            with open(w_name + "_" + str(5) + ".wgt", "rb") as fp:
-                w = pickle.load(fp)
-                w_zeroes = np.zeros((word.added, int(EMBEDDING_DIM)))
-                new_w = np.concatenate((w[0], w_zeroes), axis=0)
-                model.layers[i].set_weights([new_w])
+        if i < sys.argv[3]:
+            if i != 5:
+                with open(w_name + "_" + str(i) + ".wgt", "rb") as fp:
+                    w = pickle.load(fp)
+                    model.layers[i].set_weights(w)
+            else:
+                with open(w_name + "_" + str(5) + ".wgt", "rb") as fp:
+                    w = pickle.load(fp)
+                    w_zeroes = np.zeros((word.added, int(EMBEDDING_DIM)))
+                    new_w = np.concatenate((w[0], w_zeroes), axis=0)
+                    model.layers[i].set_weights([new_w])
 
 epoch = 10  # input('Enter number of epochs: ')
 batch = 32  # input('Enter number of batch size: ')
