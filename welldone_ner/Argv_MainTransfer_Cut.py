@@ -349,7 +349,7 @@ if 'y' in load_m:
     if 'n' in load_c:
         m_layers_len -= 1
     for i in range(m_layers_len):
-        if i < sys.argv[3]:
+        if i < int(sys.argv[3]):
             print 'Loading layer', i
             if i != 5:
                 with open(w_name + "_" + str(i) + ".wgt", "rb") as fp:
