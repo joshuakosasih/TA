@@ -1,8 +1,8 @@
-import sys
 import codecs
-import numpy as np
-import matplotlib.pyplot as plt
+import random
 
+import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.manifold import TSNE
 
 
@@ -14,14 +14,16 @@ def load_embeddings(file_name):
 
 
 embeddings_file = raw_input('Enter embedding file name: ')
-wv, vocabulary = load_embeddings(embeddings_file)
+wv, vocabulary = load_embeddings('polyglot.vec' if embeddings_file == '' else embeddings_file)
 
 tsne = TSNE(n_components=2, random_state=0)
 np.set_printoptions(suppress=True)
-Y = tsne.fit_transform(wv[:1000, :])
+Y = tsne.fit_transform(wv[:20000, :])
 
-plt.scatter(Y[:, 0], Y[:, 1])
+plt.scatter(Y[:, 0], Y[:, 1], s=1)
 for label, x, y in zip(vocabulary, Y[:, 0], Y[:, 1]):
-    plt.annotate(label, xy=(x, y), xytext=(0, 0), textcoords='offset points')
+    if random.randint(0, 39) == 0:
+        plt.annotate(label, xy=(x, y), xytext=(0, 0), textcoords='offset points')
 
 plt.show()
+
