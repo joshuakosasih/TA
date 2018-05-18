@@ -8,7 +8,7 @@ fout = open(w_name + "-char.vec", "w")
 w = pickle.load(fp)
 w = w[0]
 idx = DI()
-idx.load('word')
+idx.load('char')
 ii = idx.index
 keys = ii.keys()
 values = ii.values()
