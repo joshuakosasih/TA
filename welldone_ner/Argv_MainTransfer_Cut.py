@@ -22,6 +22,7 @@ from keras_contrib.layers import CRF
 from keras.callbacks import EarlyStopping
 
 trainable = True  # word embedding is trainable or not
+gtrainable = False # gru is trainable or not
 mask = True  # mask pad (zeros) or not
 
 
@@ -277,7 +278,8 @@ merge_m_c = merge_m
 dropout_gru = 0.5  # input('Enter dropout for GRU: ')
 rec_dropout = dropout_gru
 gru_karakter = Bidirectional(
-    GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout_gru, recurrent_dropout=rec_dropout),
+    GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout_gru,
+        recurrent_dropout=rec_dropout, trainable=gtrainable),
     merge_mode=merge_m, weights=None)(rone)
 
 rtwo = Lambda(reshape_two)(gru_karakter)
@@ -298,7 +300,7 @@ w_name = ''
 if merge_m_c == 'concat':
     merge = Concatenate()([dropout, rtwo])
     gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 3, return_sequences=True, dropout=dropout_gru,
-                                 recurrent_dropout=rec_dropout),
+                                 recurrent_dropout=rec_dropout, trainable=gtrainable),
                              merge_mode=merge_m, weights=None)(merge)
 else:
     combine = 1
@@ -316,12 +318,12 @@ else:
         merge = Add()([dropout, rtwo])
     if combine == 6:
         gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
-                                     recurrent_dropout=rec_dropout),
+                                     recurrent_dropout=rec_dropout, trainable=gtrainable),
                                  merge_mode=merge_m, weights=None)(
             merge)
     else:
         gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
-                                     recurrent_dropout=rec_dropout),
+                                     recurrent_dropout=rec_dropout, trainable=gtrainable),
                                  merge_mode=merge_m, weights=None)(
             merge)
 
