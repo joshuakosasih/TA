@@ -9,12 +9,24 @@ Wali	I-LOC
 Kota	I-LOC
 Surabaya	B-LOC
 
+Di depan rumah Wali Kota Surabaya terpilih ini hanya terdapat tenda polos tanpa ada hiasan dan beberapa bunga ucapan selamat atas pelantikan Risma.
+
+My result: (quite the same with yuliadi)
+Di	depan	rumah	Wali	Kota	Surabaya	terpilih	ini	hanya	terdapat	tenda	polos	tanpa	ada	hiasan	dan	beberapa	bunga	ucapan	selamat	atas	pelantikan	Risma	.
+O	O	O	B-MISC	I-MISC	I-LOC	O	O	O	O	O	O	O	O	O	O	O	O	O	O	O	O	B-PER	O
+
 PWNU	B-ORG
 Jatim	I-ORG
 di	O
 Hotel	B-LOC
 Mercure	I-LOC
 Surabaya	I-LOC
+
+Sekarang tinggal di DPP pusat , " kata Sekjen PDIP Hasto Kristiyanto kepada wartawan usai menghadiri seminar ' Kembali ke Pancasila ' yang digelar PWNU Jatim di Hotel Mercure Surabaya , Selasa ( 1/3/2016 ) .
+
+My result: (quite nice, but there is '?')
+Sekarang	tinggal	di	DPP	pusat	,	``	kata	Sekjen	PDIP	Hasto	Kristiyanto	kepada	wartawan	usai	menghadiri	seminar	'	Kembali	ke	Pancasila	'	yang	digelar	PWNU	Jatim	di	Hotel	Mercure	Surabaya	,	Selasa	(	1/3/2016	)	.
+O	O	O	B-ORG	O	O	O	O	O	B-ORG	B-PER	I-PER	O	O	O	O	O	O	O	O	B-MISC	O	O	O	B-ORG	I-ORG	O	B-LOC	?	I-LOC	O	O	O	?	O	O
 
 menantang	O
 para	O
@@ -27,11 +39,22 @@ Munas	B-MISC
 Surabaya	I-MISC
 Community	I-MISC
 
+Bahkan saat ke Jakarta kemarin untuk menghadiri Munas Surabaya Community , Risma mengaku sembunyi-sembunyi agar tidak kepergok media .
+
+My result: (quite nice, the same with yuliadi, but there is '?')
+Bahkan	saat	ke	Jakarta	kemarin	untuk	menghadiri	Munas	Surabaya	Community	,	Risma	mengaku	sembunyi-sembunyi	agar	tidak	kepergok	media	.
+O	O	O	B-LOC	O	O	O	B-MISC	I-MISC	I-MISC	O	B-PER	O	?	O	O	O	O	O
 
 Cyrus	B-ORG
 Network	I-ORG  <-- segment
 Hasan	B-PER
 Nasbi	I-PER
+
+" Jadi partai yang ikut arahan dan aturan main presiden , " kata Chief Executive Officer ( CEO ) Cyrus Network Hasan Nasbi kepada detikcom, Rabu ( 23/3/2016 ) .
+
+My result: (quite sad, worse than yuliadi, there is '?')
+``	Jadi	partai	yang	ikut	arahan	dan	aturan	main	presiden	,	``	kata	Chief	Executive	Officer	(	CEO	)	Cyrus	Network	Hasan	Nasbi	kepada	detikcom	,	Rabu	(	23/3/2016	)	.
+O	O	O	O	O	O	O	O	O	O	O	O	O	O	O	O	O	O	O	B-PER	I-ORG	I-PER	?	O	B-ORG	O	O	O	?	O	O
 
 menempuh	O
 pendidikan	O
@@ -40,6 +63,11 @@ di	O
 Universitas	B-ORG  <-- BUKAN LOC
 Harvard	I-ORG
 
+Malia Obama , putri tertua Presiden Amerika Serikat Barack Obama dan Michelle Obama dipastikan akan mengikuti jejak orangtuanya untuk menempuh pendidikan tinggi di Universitas Harvard .
+
+My result: (nice, same with yuliadi)
+Malia	Obama	,	putri	tertua	Presiden	Amerika	Serikat	Barack	Obama	dan	Michelle	Obama	dipastikan	akan	mengikuti	jejak	orangtuanya	untuk	menempuh	pendidikan	tinggi	di	Universitas	Harvard	.
+B-PER	I-PER	O	O	O	O	B-MISC	I-MISC	B-PER	I-PER	O	B-PER	I-PER	O	O	O	O	O	O	O	O	O	O	B-ORG	I-ORG	O
 
 investasi	O
 Swiss	B-MISC
@@ -236,3 +264,9 @@ RI	B-MISC
 
 manajer	O
 Indonesia	B-MISC
+
+" Lutut Nitya agak bengkak , jadi disarankan untuk beristirahat dan memulihkan kondisi , " ujar Rexy Mainaky, kepala bidang Pembinaan dan Prestasi PBSI yang juga menjadi manajer Indonesia ke Kunshan .
+
+My result: (quite sad, worse than yuliadi, there is '?')
+``	Lutut	Nitya	agak	bengkak	,	jadi	disarankan	untuk	beristirahat	dan	memulihkan	kondisi	,	``	ujar	Rexy	Mainaky	,	kepala	bidang	Pembinaan	dan	Prestasi	PBSI	yang	juga	menjadi	manajer	Indonesia	ke	Kunshan	.
+O	?	?	O	O	O	O	O	O	O	O	O	O	O	O	O	?	?	O	O	O	O	O	O	B-ORG	O	O	O	O	B-MISC	O	?	O
