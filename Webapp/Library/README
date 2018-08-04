@@ -1,0 +1,67 @@
+==================
+Sequence Tagger
+- joshua, 13514012
+==================
+
+1. make sure you have all dependencies installed and able to run
+
+     nltk
+     numpy as np
+     random
+     pickle
+     csv
+     json
+     pickle
+     datetime
+     tensorflow
+     keras
+     keras_contrib -> https://github.com/keras-team/keras-contrib
+     sklearn
+
+     * also download the word level embedding (polyglot) here: http://bit.ly/19bSjgz
+
+2. import the library
+
+     from Main import SeqTagger
+
+3. create seqtagger object
+
+	tagger = SeqTagger()
+
+4. set parameters (optional, if not set the object will use default value)
+
+	ex:
+	 tagger.padsize = 100
+	 tagger.char_padsize = 30
+	 tagger.EMBEDDING_DIM = 50
+	 tagger.CHAR_EMBEDDING_DIM = 50
+	 tagger.optimizer = 'categorical_crossentropy'
+	 tagger.patience = 4
+	to view all configurable parameter, check "Data and other attributes" section in help(SeqTagger)
+
+5. create seqtagger model
+
+     SeqTagger(training data, development/validation data, testing data, pre-trained word embedding, pre-trained char embedding)
+
+    ex:
+     tagger.createModel('id-ud-train.pos', 'id-ud-dev.pos', 'id-ud-test.pos', 'polyglot.vec', 'polyglot-char.vec')
+
+     tagger.createModel('train.txt', 'valid.txt', 'test.txt', 'polyglot.vec', 'polyglot-char.vec')
+
+
+6. train the model
+
+     tagger.trainFit()
+
+7. evaluate the result
+
+     tagger.evaluate()
+
+8. save model
+
+	 tagger.saveModel('savedmodelname')
+
+9. load model
+
+	 tagger.loadModel('savedmodelname')
+	*to load model, you need to create the model first (createModel()) and set the embedding and training data that will be used

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>POS Tagger</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="content col-md-8 col-md-offset-2">
+        <div class="form-row">
+            <div class="form-group">
+                <div id="inputdiv">
+                    <div class="pos-title">
+                        <h1>POS Tagger</h1>
+                    </div>
+                    <form action="/pos" method="post">
+                        <div class="pos-content">
+                            <label for="input1">Enter text to be tagged:</label>
+                            <input id="input1" class="textarea" type="text" name="in_x" value="{{in_val}}">
+                        </div>
+                        <div class="pos-content text-center">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="form-group">
+                <div id="outputdiv">
+                    <div class="pos-title">
+                        <h2>Result</h2>
+                    </div>
+                    <div class="pos-result">
+                        <p id="fresh" style="display: none;">{{in_val}}</p>
+                        <p id="jcontainer" style="display: none;">{{jsondata}}</p>
+                        <table>
+                            <tr id="words">
+                            </tr>
+                            <tr id="labels">
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    var empt = document.getElementById("fresh").innerHTML;
+    if (empt == null || empt == "") {
+        document.getElementById("outputdiv").style.display = 'none';
+    }
+    else {
+        var jvar = document.getElementById("jcontainer").innerHTML;
+        var jsvar = JSON.parse(jvar);
+        console.log(jsvar);
+
+        var trword = document.getElementById("words");
+        var trlabel = document.getElementById("labels");
+        var word = [];
+        var label = [];
+        var x;
+        var l = 0;
+        for (x in jsvar.words) {
+            word.push(trword.insertCell(l));
+            word[l].innerHTML = jsvar.words[l];
+            label.push(trlabel.insertCell(l));
+            label[l].innerHTML = jsvar.labels[l];
+            l += 1;
+        }
+    }
+
+    var data = {
+            "labels": [
+                "PROPN",
+                "VERB",
+                "NOUN",
+                "PROPN",
+                "PUNCT",
+                "PROPN",
+                "VERB",
+                "VERB",
+                "PROPN",
+                "PROPN",
+                "ADP",
+                "PROPN",
+                "PROPN",
+                "ADP",
+                "NOUN",
+                "PROPN",
+                "NUM",
+                "PROPN",
+                "ADP",
+                "?",
+                "VERB",
+                "PUNCT"
+        ],
+            "words": [
+                "Jokowi",
+                "beserta",
+                "ketua",
+                "PDIP",
+                ",",
+                "Megawati",
+                "Soekarnoputri",
+                "mendiskusikan",
+                "Pemilu",
+                "Serentak",
+                "di",
+                "Jakarta",
+                "Pusat",
+                "pada",
+                "hari",
+                "Kamis",
+                "29",
+                "Maret",
+                "agar",
+                "elektabilitas",
+                "meningkat",
+                "."
+        ]
+    }
+
+</script>
+</html>
