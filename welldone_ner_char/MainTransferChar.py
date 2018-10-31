@@ -270,7 +270,7 @@ rone = Lambda(reshape_one)(dropout_c)
 
 merge_m = 'concat'  # raw_input('Enter merge mode for GRU Karakter: ')
 merge_m_c = merge_m
-dropout_gru = 0  # input('Enter dropout for GRU: ')
+dropout_gru = 0.5  # input('Enter dropout for GRU: ')
 rec_dropout = dropout_gru
 gru_karakter = Bidirectional(
     GRU(CHAR_EMBEDDING_DIM, return_sequences=False, dropout=dropout_gru, recurrent_dropout=rec_dropout),
@@ -283,62 +283,26 @@ Combine word + char model
 """
 
 print "Model Choice:"
-model_choice = 3  # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
+model_choice = 2  # input('Enter 1 for WE only, 2 for CE only, 3 for both: ')
 merge_m = 'concat'  # raw_input('Enter merge mode for GRU Kata: ')
 # dropout = input('Enter GRU Karakter dropout: ')
 # rec_dropout = input('Enter GRU Karakter recurrent dropout: ')
 combine = 0
 w_name_l = ''
 w_name = ''
-if model_choice == 1:
-    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
-                                 recurrent_dropout=rec_dropout),
-                             merge_mode=merge_m, weights=None)(
-        dropout)
-elif model_choice == 2:
-    if merge_m_c == 'concat':
-        gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
-                                     recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rtwo)
-    else:
-        gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
-                                     recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rtwo)
+
+if merge_m_c == 'concat':
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
+                                    recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rtwo)
 else:
-    if merge_m_c == 'concat':
-        merge = Concatenate()([dropout, rtwo])
-        gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 3, return_sequences=True, dropout=dropout_gru,
-                                     recurrent_dropout=rec_dropout),
-                                 merge_mode=merge_m, weights=None)(merge)
-    else:
-        combine = input('Enter 1 for Add, 2 for Subtract, 3 for Multiply, 4 for Average, '
-                        '5 for Maximum, 6 for Concatenate: ')
-        if combine == 2:
-            merge = Subtract()([dropout, rtwo])
-        elif combine == 3:
-            merge = Multiply()([dropout, rtwo])
-        elif combine == 4:
-            merge = Average()([dropout, rtwo])
-        elif combine == 5:
-            merge = Maximum()([dropout, rtwo])
-        elif combine == 6:
-            merge = Concatenate()([dropout, rtwo])
-        else:
-            merge = Add()([dropout, rtwo])
-        if combine == 6:
-            gru_kata = Bidirectional(GRU(EMBEDDING_DIM * 2, return_sequences=True, dropout=dropout_gru,
-                                         recurrent_dropout=rec_dropout),
-                                     merge_mode=merge_m, weights=None)(
-                merge)
-        else:
-            gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
-                                         recurrent_dropout=rec_dropout),
-                                     merge_mode=merge_m, weights=None)(
-                merge)
+    gru_kata = Bidirectional(GRU(EMBEDDING_DIM, return_sequences=True, dropout=dropout_gru,
+                                    recurrent_dropout=rec_dropout), merge_mode=merge_m, weights=None)(rtwo)
 
 crf = CRF(len(label.index) + 1, learn_mode='marginal')(gru_kata)
 
 model = Model(inputs=[sequence_input, sequence_input_c], outputs=[crf])
 
-optimizer = 'adam'  # raw_input('Enter optimizer (default rmsprop): ')
+optimizer = raw_input('Enter optimizer (default rmsprop): ')
 loss = 'poisson'  # raw_input('Enter loss function (default categorical_crossentropy): ')
 model.summary()
 model.compile(loss=loss,
@@ -377,9 +341,10 @@ batch = 32  # input('Enter number of batch size: ')
 # else:
 val_data = None
 # use_estop = raw_input('Do you want to use callback? ')
+use_estop = 'y'
 callback = None
 if 'y' in use_estop:
-    epoch = 70
+    epoch = 500
     callback = EarlyStopping(monitor='val_loss', patience=2, verbose=0, mode='auto')
 model.fit([np.array(x_train.padded), np.array(x_train_char)],
           [np.array(y_encoded)], validation_data=val_data, validation_split=0.1,
