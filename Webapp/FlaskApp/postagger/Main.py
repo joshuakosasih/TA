@@ -126,7 +126,7 @@ class POSTagger:
                       optimizer=optimizer,
                       metrics=['acc'])
 
-        self.w_name = '05-17_13:37_921'
+        self.w_name = '05-17_13_37_921'
         m_layers_len = len(self.model.layers)
         for i in range(m_layers_len):
             with open(self.w_name + "_" + str(i) + ".wgt", "rb") as fp:
